@@ -86,3 +86,8 @@ for the same case. The genetic algorithm gets stuck in local optima.
 convergence flag (two best restarts within 0.05 t/ha).
 **Why:** a single restart is not a reliable upper bound; agreement between restarts is the
 evidence that the search has found the best basin it can find.
+
+## 2026-09-24: Note on the manifest of the first E1 run
+The manifest of `results/runs/2026-09-24_e1_benchmark` says `git_dirty: true`. The only
+difference from commit 2ac4e88 was the untracked campaign log `results/run_all.log`, which is
+ignored since the next commit. The code of that run is exactly commit 2ac4e88.
