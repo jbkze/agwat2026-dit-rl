@@ -1,10 +1,10 @@
 # E0, EA-SS: one robust schedule per budget that maximizes the 10 % yield quantile over the
-# training years. Tunis only; Nebraska is optional (about 2 days on h200, see the plan).
+# training and validation years (1981-2001, as in the paper). Tunis only; Nebraska is optional (about 2 days on h200, see the plan).
 name: e0_oracle_ss
 kind: oracle
 mode: ss
 quantile: 0.1
-years: train
+years: train_val
 budgets: {tunis: [150, 200, 300, 400, 600]}
 restarts: {n_events: [6, 10, 20], seeds: [0, 1, 2]}
 window_days: {tunis: 134}

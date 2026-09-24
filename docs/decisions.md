@@ -65,3 +65,15 @@ learn from. RLlib 1.13, which Kelly et al. used, rescales actions by default
 **Decision:** the continuous action lives in [-1, 1] and is mapped linearly to 0..`max_depth`.
 **Why:** this reproduces the starting behaviour of the original DRL2 and is the recommended
 setup for continuous actions in stable-baselines3.
+
+## 2026-09-24: 300,000 training steps instead of 100,000
+**Context:** the check run `check_paper` (one seed, Tunis 1980) gave DRL1 0.72, 4.84 and
+11.00 t/ha at 300, 400 and 600 mm, against 3.7, 7.4 and 13.4 t/ha in the manuscript. A
+step-by-step comparison with the thesis environment (same actions, Tunis 1980, 400 mm) showed no
+difference in observations or rewards larger than 2e-6, so the environment is not the cause. The
+validation curve at 400 mm was still rising steeply at the end (1.57 t/ha after 70,000 steps,
+4.37 t/ha after 90,000 steps).
+**Decision:** every DRL variant trains for 300,000 steps. The learning curves (E6) show whether
+this is enough.
+**Why:** a comparison between variants is only fair once each has converged. The higher step
+count triples the DRL compute to about 9 hours on h200 for all campaigns together.

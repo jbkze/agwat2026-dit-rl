@@ -61,7 +61,8 @@ def _seeds(spec, site: str) -> list[int]:
 
 
 def _years(spec: str, site: Site) -> list[int]:
-    return {"train": site.train_years, "val": site.val_years, "test": site.test_years}[spec]
+    return {"train": site.train_years, "val": site.val_years, "test": site.test_years,
+            "train_val": site.train_years + site.val_years}[spec]
 
 
 def expand(exp: dict) -> list[dict]:

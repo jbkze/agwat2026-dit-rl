@@ -20,7 +20,7 @@ drl1:
   constraint: mask
   reward: dense
   normalize: false
-  timesteps: 100000
+  timesteps: 300000
   eval_every: 10000
   ppo: {}
 
@@ -31,7 +31,7 @@ drl2:
   constraint: clip
   reward: terminal
   normalize: true
-  timesteps: 100000
+  timesteps: 300000
   eval_every: 10000
   # Kelly et al. trained with Ray RLlib 1.13 (aquacrop-gym, ppo_example.ipynb). These are the
   # SB3 equivalents of that config and of the RLlib PPO defaults it relies on. The adaptive

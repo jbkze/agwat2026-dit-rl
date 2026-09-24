@@ -22,8 +22,9 @@ All experiments use one simulation setup, so that every method sees the same pro
   budget and one seed.
 - **Model selection:** during training the agent is evaluated on the validation years every
   10,000 steps. The checkpoint with the highest mean validation yield is kept and tested.
-- **Training length:** 100,000 environment steps for every DRL run, the same for all variants.
-  The learning curves from experiment E6 show whether this is enough for each variant.
+- **Training length:** 300,000 environment steps for every DRL run, the same for all variants.
+  A first check with 100,000 steps stopped DRL1 while its validation yield was still rising
+  (`docs/decisions.md`). The learning curves from experiment E6 show whether 300,000 is enough.
 - **Hyperparameters:** DRL1 uses the PPO defaults of stable-baselines3 2.3.2 and sb3-contrib
   2.3.0, as in the thesis. Kelly et al. trained DRL2 with Ray RLlib 1.13; DRL2 here uses the
   stable-baselines3 equivalents of that configuration (discount factor 1, 3 hidden layers of
@@ -55,7 +56,8 @@ Two optimizer runs that need no learning:
   of that year is known in advance. Tunis: year 1980, 13 budgets from 0 to 800 mm. Nebraska:
   30 test years, budgets 75, 100 and 125 mm.
 - **EA-SS:** one fixed schedule for all years that maximizes the 10 % quantile of yield over the
-  training years. Tunis only, at the budgets of E1. For Nebraska, EA-SS is optional because of
+  years 1981–2001 (training and validation years, as in the paper). Tunis only, at the five
+  budgets of E2. For Nebraska, EA-SS is optional because of
   its cost (see compute estimate).
 
 The optimizer is a genetic algorithm from pymoo with an event-based encoding: a fixed number of
@@ -182,16 +184,16 @@ except DRL2 in Nebraska, which uses it as its reward (as in Kelly et al.).
 ## Compute estimate
 
 Measured on the h200 server in July 2026: one DRL1 training with 100,000 steps takes about
-7 minutes on one CPU core (about 10 minutes on a laptop core in September 2026); the GPU does
-not speed it up. About 60 runs fit in parallel. The
+7 minutes on one CPU core (about 10 minutes on a laptop core in September 2026), so about
+21 minutes with 300,000 steps; the GPU does not speed it up. About 60 runs fit in parallel. The
 oracle evaluates about 77 schedules per second on 56 cores.
 
 | Experiment | Runs or evaluations | Time on h200 |
 |---|---|---|
-| E1 DRL | 320 trainings | about 40 min |
-| E2 | 640 trainings | about 1.3 h |
-| E3 | 400 trainings | about 50 min |
-| E4 | 120 trainings | about 15 min |
+| E1 DRL | 320 trainings | about 2 h |
+| E2 | 640 trainings | about 4 h |
+| E3 | 400 trainings | about 2.5 h |
+| E4 | 160 trainings | about 1 h |
 | E5, E6, E7 | evaluation only | minutes |
 | E0 EA-DS Tunis + Nebraska | about 6.6 million simulations | about 1 day |
 | E0 EA-SS Tunis (5 budgets, 21 years each) | about 6.8 million simulations | about 1 day |
