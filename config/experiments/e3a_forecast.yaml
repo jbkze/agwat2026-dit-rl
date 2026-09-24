@@ -1,0 +1,8 @@
+# E3: DRL1 with a perfect 7-day forecast of rainfall and reference ET.
+name: e3a_forecast
+kind: methods
+agents: [drl1_forecast]
+budgets:
+  tunis: [150, 200, 300, 400, 600]
+  nebraska: [75, 100, 125]
+seeds: 10

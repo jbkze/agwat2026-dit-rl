@@ -1,0 +1,24 @@
+# Which run folders the analysis reads. Fill in after each campaign; nothing else changes.
+runs:
+  e1_benchmark: null        # e.g. results/runs/2026-09-30_e1_benchmark
+  e2_ablation: null
+  e3a_forecast: null
+  e3b_test_year: null
+  e4_low_budget: null
+  e5_robustness: null
+
+# Source of the EA-DS / EA-SS reference values.
+#   pymoo:    best restart per case from the E0 runs below
+#   getoptis: CSV files from Niels (columns: site, year, budget_mm, yield_t_ha)
+oracle:
+  source: pymoo
+  pymoo:
+    ds: null                # e.g. results/runs/2026-09-28_e0_oracle_ds
+    ss: null
+  getoptis:
+    ds: data/external/getoptis_ea_ds.csv
+    ss: data/external/getoptis_ea_ss.csv
+  converged_if_top2_within: 0.05   # t/ha between the two best restarts of a case
+
+# Simplex heuristics by Niels (columns: site, year, budget_mm, method, yield_t_ha); optional
+external_heuristics: data/external/simplex_heuristics.csv

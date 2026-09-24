@@ -1,0 +1,8 @@
+# Quick end-to-end check (a few minutes on a laptop): one short DRL training, one heuristic,
+# one short oracle restart. Run with: make smoke
+name: smoke
+kind: methods
+agents: [drl1, fixed_interval]
+overrides: {timesteps: 1024, eval_every: 512}
+budgets: {tunis: [300]}
+seeds: 1

@@ -1,0 +1,7 @@
+# Check against the published Tunis values (manuscript Tab. 2, 1980): DRL1 3.7 / 7.4 / 13.4 t/ha
+# and DRL2 0.5 / 6.7 / 11.9 t/ha at 300 / 400 / 600 mm. One seed only; run before the campaigns.
+name: check_paper
+kind: methods
+agents: [drl1, drl2, threshold, fixed_interval]
+budgets: {tunis: [300, 400, 600]}
+seeds: 1

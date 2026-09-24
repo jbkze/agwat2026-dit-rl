@@ -1,0 +1,2 @@
+# Copy to config/paths.local.yaml (not committed) and set the local checkout of the paper repo.
+paper_repo: C:/Users/jkunze/Documents/projects/wasserstress/DIT-RL

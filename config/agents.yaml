@@ -1,0 +1,73 @@
+# Scheduling methods. An experiment refers to these entries by name and may override
+# single keys (for example in an ablation). `sites:` holds keys that differ per site.
+#
+# DRL keys
+#   observation   feature set (DRL1, KELLY, DRL1_FORECAST) or explicit list, see observations.py
+#   depths        discrete action set in mm; or max_depth for a continuous action 0..max_depth
+#   interval      days between decisions
+#   constraint    mask: infeasible depths cannot be chosen; clip: cut to the remaining budget
+#   reward        dense: relative ET per step + yield at the end; terminal: yield at the end;
+#                 profit: profit at the end
+#   normalize     fixed mean/std scaling from random seasons on the training years
+#   ppo           keyword arguments for PPO; empty = library defaults
+# Heuristic keys
+#   rule, interval, params (fixed), grid (tuned on the training years), budget: null = unlimited
+
+drl1:
+  observation: DRL1
+  depths: [0, 1, 2, 3, 5, 8, 13, 21, 34]
+  interval: 5
+  constraint: mask
+  reward: dense
+  normalize: false
+  timesteps: 100000
+  eval_every: 10000
+  ppo: {}
+
+drl2:
+  observation: DRL1          # in Tunis, DRL2 uses the same 5 variables as DRL1 (manuscript Sec. 3.1)
+  max_depth: 34
+  interval: 7
+  constraint: clip
+  reward: terminal
+  normalize: true
+  timesteps: 100000
+  eval_every: 10000
+  # Kelly et al. trained with Ray RLlib 1.13 (aquacrop-gym, ppo_example.ipynb). These are the
+  # SB3 equivalents of that config and of the RLlib PPO defaults it relies on. The adaptive
+  # KL penalty of RLlib has no SB3 counterpart and is left out.
+  ppo:
+    gamma: 1.0
+    gae_lambda: 1.0
+    learning_rate: 5.0e-5
+    n_steps: 512
+    batch_size: 128
+    n_epochs: 30
+    clip_range: 0.3
+    ent_coef: 0.0
+    policy_kwargs: {net_arch: [64, 64, 64]}
+  sites:
+    nebraska: {observation: KELLY, max_depth: 25, interval: 1, reward: profit}
+
+drl1_forecast:
+  base: drl1
+  observation: DRL1_FORECAST
+
+threshold:
+  rule: threshold
+  interval: 1
+  params: {max_depth: 34}
+  grid: {depletion_fraction: [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 0.95, 1.0]}
+
+fixed_interval:
+  rule: fixed_interval
+  interval: 1
+  params: {first_dap: 15, last_dap: 100}
+  grid: {n_doses: [1, 2, 3, 4, 5, 6, 8, 10, 12, 15]}
+
+full_irrigation:
+  rule: threshold
+  interval: 1
+  budget: null
+  params: {depletion_fraction: 0.3, max_depth: 34}
+  grid: {}

@@ -1,0 +1,10 @@
+.venv/
+__pycache__/
+*.egg-info/
+.cache/
+scratch/
+config/paths.local.yaml
+.env
+# Run folders hold models and logs; they are archived on Zenodo, not in git.
+results/runs/
+paper_assets/

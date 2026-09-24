@@ -1,0 +1,17 @@
+# E0, EA-DS: best schedule for each known test year (perfect foresight). See docs/experiment-plan.md.
+name: e0_oracle_ds
+kind: oracle
+mode: ds
+years: test
+budgets: {tunis: all, nebraska: all}
+restarts:                     # every combination is one restart; the best one is kept
+  n_events: [6, 10, 20]
+  seeds: [0, 1, 2]
+window_days: {tunis: 134, nebraska: 150}   # irrigation events fall into the first N days
+ga:
+  pop_size: 100
+  tol: 0.001                  # t/ha; stop when the best yield gains less over `period` generations
+  period: 30
+  max_gen: 1000               # safeguard only; a restart that hits it is marked as not converged
+  max_event_mm: 60
+  seeded_share: 0.5           # share of the start population with a few concentrated doses

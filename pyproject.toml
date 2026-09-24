@@ -1,0 +1,33 @@
+[project]
+name = "ditrl"
+version = "0.1.0"
+description = "Experiments for the DIT-RL revision: DRL irrigation scheduling under a hard seasonal water budget"
+requires-python = ">=3.10,<3.13"
+# Versions pinned to the set that already ran on the h200 server (2026-07).
+dependencies = [
+    "aquacrop @ git+https://github.com/jbkze/aquacrop-waterstress",
+    "numpy==1.26.4",
+    "pandas==2.2.2",
+    "numba==0.60.0",
+    "cffi==1.16.0",
+    "gymnasium==0.29.1",
+    "stable-baselines3==2.3.2",
+    "sb3-contrib==2.3.0",
+    "torch==2.4.1",             # 2.4.0 misses an OpenMP DLL on Windows
+    "pymoo==0.6.1.3",
+    "pyyaml>=6.0",
+    "matplotlib>=3.8",
+    "scipy>=1.11",
+    "tqdm",
+    "setuptools",            # numba.pycc needs it at runtime (AquaCrop imports it)
+]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+line-length = 100

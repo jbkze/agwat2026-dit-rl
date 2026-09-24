@@ -1,0 +1,6 @@
+# E1: all methods at all budgets of both sites.
+name: e1_benchmark
+kind: methods
+agents: [drl1, drl2, threshold, fixed_interval, full_irrigation]
+budgets: {tunis: all, nebraska: all}
+seeds: 10
