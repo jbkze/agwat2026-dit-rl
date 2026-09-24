@@ -1,4 +1,4 @@
-# Diagnosis, second step (docs/decisions.md, 2026-09-25): is the weak DRL2 value at 300 mm caused
+# Diagnosis, second step (docs/decisions.md, 2026-09-24): is the weak DRL2 value at 300 mm caused
 # by the size of the unscaled profit reward (about -2000)? Kelly's original code divided the
 # profit by 1000; the Tunis commit removed that. Same setup as drl2_published / profit.
 name: diag_drl2_scale

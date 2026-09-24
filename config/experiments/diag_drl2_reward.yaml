@@ -1,4 +1,4 @@
-# Diagnosis of the weak published DRL2 values in Tunis (docs/decisions.md, 2026-09-25).
+# Diagnosis of the weak published DRL2 values in Tunis (docs/decisions.md, 2026-09-24).
 # 2 x 2 design: reward (yield at season end as the manuscript describes DRL2, or profit with
 # water cost as in the code) x setup (drl2: years and interval of this repo; drl2_published:
 # years 1990-1999 and 5-day decisions of the code). Same training length as the check runs.

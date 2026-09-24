@@ -1,6 +1,6 @@
 # Why the published DRL2 values in Tunis are so low
 
-Question (2026-09-25): in the manuscript (Tab. B1, Tunis 1980) DRL2 reaches 0.5 t/ha at 300 mm,
+Question (2026-09-24): in the manuscript (Tab. B1, Tunis 1980) DRL2 reaches 0.5 t/ha at 300 mm,
 while DRL1 reaches 3.7 t/ha; above 700 mm DRL2 even loses yield (13.3 down to 12.6 t/ha).
 
 ## Answer
@@ -35,8 +35,8 @@ code (training 1990–1994, validation 1995–1999, a decision every 5 days).
 | manuscript DRL2 | | 0.5 | 11.9 | 12.6 |
 | manuscript DRL1 | | 3.7 | 13.4 | 14.1 |
 
-Test yield in t/ha, range over the three seeds. Runs: `results/runs/2026-09-25_diag_drl2_reward`
-and `results/runs/2026-09-25_diag_drl2_scale` (configs `config/experiments/diag_drl2_*.yaml`).
+Test yield in t/ha, range over the three seeds. Runs: `results/runs/2026-09-24_diag_drl2_reward`
+and `results/runs/2026-09-24_diag_drl2_scale` (configs `config/experiments/diag_drl2_*.yaml`).
 
 Irrigation schedules at 300 mm (seed 0): with the unscaled profit reward the agent applies
 12–21 mm every 5 days from day 1 to day 91 (crop dies); with the yield reward it applies few
@@ -52,7 +52,7 @@ Irrigation schedules at 300 mm (seed 0): with the unscaled profit reward the age
 
 ## Checked and ruled out
 
-- Crop model version (AquaCrop 1.12 vs 3.x): negligible for fixed schedules (manuscript Fig. 4).
+- Crop model version (AquaCrop 1.12 vs 3.x): negligible for fixed schedules (manuscript, figure comparing the AquaCrop versions).
 - Stale stress observation in AquaCrop 1.1.2: `Ksw` is written to the model state every day.
 - The design of DRL2 itself (continuous depth, no mask, reward at the end only): with a yield
   reward or the scaled profit it reaches the level of DRL1 at 300 and 600 mm.
