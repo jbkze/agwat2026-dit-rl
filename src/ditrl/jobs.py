@@ -26,7 +26,7 @@ def env_spec(job: dict, years: list[int]) -> EnvSpec:
                    observation=cfg.get("observation", "DRL1"), depths=cfg.get("depths"),
                    max_depth=cfg.get("max_depth", 1000.0), interval=cfg["interval"],
                    constraint=cfg.get("constraint", "clip"), reward=cfg.get("reward", "terminal"),
-                   prices=info["prices"])
+                   reward_scale=cfg.get("reward_scale", 1.0), prices=info["prices"])
 
 
 def _year_split(job: dict) -> tuple[list[int], list[int], list[int]]:

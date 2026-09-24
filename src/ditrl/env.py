@@ -39,6 +39,7 @@ class EnvSpec:
     prices: dict = field(default_factory=dict)
     noise: dict = field(default_factory=dict)  # feature -> relative sd of observation noise
     scale: dict | None = None            # {"mean": [...], "std": [...]}: fixed normalization
+    reward_scale: float = 1.0            # every reward is multiplied by this factor
 
 
 class IrrigationEnv(gym.Env):
@@ -96,7 +97,7 @@ class IrrigationEnv(gym.Env):
     def step(self, action):
         proposed = self._depth(action)
         self.step_mm(proposed)
-        reward = self._reward()
+        reward = self._reward() * self.spec_.reward_scale
         self.decisions[-1].update(proposed_mm=proposed, step_reward=reward)
         info = season_result(self.model) if self.done else {}
         return self._observe(), reward, self.done, False, info
