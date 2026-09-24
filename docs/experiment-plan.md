@@ -38,9 +38,9 @@ The configurations DRL1 and DRL2 are defined in the unified environment as follo
 |---|---|---|
 | Observation | 5 variables: remaining budget, root-zone water, deep percolation, leaf-expansion stress, growth stage | Tunis: same 5 variables (as in the paper). Nebraska: the 18 variables of Kelly et al. |
 | Action | discrete depths 0, 1, 2, 3, 5, 8, 13, 21, 34 mm | continuous depth 0–34 mm (Tunis) or 0–25 mm (Nebraska) |
-| Decision interval | 5 days | 7 days (Tunis) or 1 day (Nebraska) |
+| Decision interval | 5 days | 5 days (Tunis, as in the code) or 1 day (Nebraska) |
 | Budget handling | action mask: depths above the remaining budget cannot be chosen | depth is cut to the remaining budget, no penalty |
-| Reward | relative evapotranspiration at each step, yield at the end | yield (Tunis) or profit (Nebraska) at the end only |
+| Reward | relative evapotranspiration at each step, yield at the end | yield (Tunis) or profit (Nebraska) at the end only; see `docs/diagnosis-drl2.md` for the unscaled profit reward of the published Tunis runs |
 | Algorithm | MaskablePPO (sb3-contrib), default settings | PPO (stable-baselines3), settings of Kelly et al. |
 
 The DRL2 settings above follow the manuscript text and the code of Kelly et al. Before the

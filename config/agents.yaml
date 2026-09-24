@@ -27,7 +27,7 @@ drl1:
 drl2:
   observation: DRL1          # in Tunis, DRL2 uses the same 5 variables as DRL1 (manuscript Sec. 3.1)
   max_depth: 34
-  interval: 7
+  interval: 5                # as in the Tunis code (ppo_example.ipynb: DAYS_TO_IRR=5)
   constraint: clip
   reward: terminal
   normalize: true

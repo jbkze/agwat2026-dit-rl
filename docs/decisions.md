@@ -91,3 +91,12 @@ evidence that the search has found the best basin it can find.
 The manifest of `results/runs/2026-09-24_e1_benchmark` says `git_dirty: true`. The only
 difference from commit 2ac4e88 was the untracked campaign log `results/run_all.log`, which is
 ignored since the next commit. The code of that run is exactly commit 2ac4e88.
+
+## 2026-09-25: Cause of the weak published DRL2 values; DRL2 decides every 5 days in Tunis
+**Context:** full diagnosis in `docs/diagnosis-drl2.md`. The published Tunis DRL2 runs used an
+unscaled profit reward (about -2,000); with it the agent barely learns. Scaled by 1/1000 (as in
+Kelly's original code) or with a yield reward, DRL2 reaches the level of DRL1 at 300 and 600 mm.
+**Decision:** DRL2 in this repo keeps the yield reward in Tunis (as the manuscript describes it)
+and decides every 5 days, as the Tunis code did; 7 days (the config default of the code) capped
+the seasonal water at 19 x 34 mm = 646 mm. Whether the paper keeps the published DRL2 numbers,
+replaces them, or reports both is a decision for the authors.
