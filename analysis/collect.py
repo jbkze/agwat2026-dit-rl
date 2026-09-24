@@ -11,13 +11,28 @@ from pathlib import Path
 import pandas as pd
 import yaml
 
+from ditrl.config import latest_run
+
 REPO = Path(__file__).resolve().parents[1]
 DERIVED = REPO / "results" / "derived"
 FACTORS = ("observation", "constraint", "reward", "depths", "interval")
 
 
 def analysis_config() -> dict:
-    return yaml.safe_load((REPO / "config" / "analysis.yaml").read_text(encoding="utf-8"))
+    """config/analysis.yaml with every `latest` replaced by the newest matching run folder
+    (or None if that experiment has not run yet)."""
+    cfg = yaml.safe_load((REPO / "config" / "analysis.yaml").read_text(encoding="utf-8"))
+
+    def resolve(value, experiment):
+        if value != "latest":
+            return value
+        run = latest_run(experiment)
+        return str(run.relative_to(REPO)) if run else None
+
+    cfg["runs"] = {k: resolve(v, k) for k, v in cfg["runs"].items()}
+    pymoo = cfg["oracle"]["pymoo"]
+    cfg["oracle"]["pymoo"] = {m: resolve(v, f"e0_oracle_{m}") for m, v in pymoo.items()}
+    return cfg
 
 
 def _jobs(run_dir: Path):

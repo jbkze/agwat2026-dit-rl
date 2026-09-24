@@ -11,7 +11,7 @@ window_days: {tunis: 134, nebraska: 150}   # irrigation events fall into the fir
 ga:
   pop_size: 100
   tol: 0.001                  # t/ha; stop when the best yield gains less over `period` generations
-  period: 30
+  period: 50
   max_gen: 1000               # safeguard only; a restart that hits it is marked as not converged
   max_event_mm: 60
   seeded_share: 0.5           # share of the start population with a few concentrated doses

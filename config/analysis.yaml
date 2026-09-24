@@ -1,11 +1,11 @@
-# Which run folders the analysis reads. Fill in after each campaign; nothing else changes.
+# Which run folders the analysis reads: a path, or `latest` for the newest run of that name.
 runs:
-  e1_benchmark: null        # e.g. results/runs/2026-09-30_e1_benchmark
-  e2_ablation: null
-  e3a_forecast: null
-  e3b_test_year: null
-  e4_low_budget: null
-  e5_robustness: null
+  e1_benchmark: latest
+  e2_ablation: latest
+  e3a_forecast: latest
+  e3b_test_year: latest
+  e4_low_budget: latest
+  e5_robustness: latest
 
 # Source of the EA-DS / EA-SS reference values.
 #   pymoo:    best restart per case from the E0 runs below
@@ -13,8 +13,8 @@ runs:
 oracle:
   source: pymoo
   pymoo:
-    ds: null                # e.g. results/runs/2026-09-28_e0_oracle_ds
-    ss: null
+    ds: latest              # newest run of e0_oracle_ds
+    ss: latest
   getoptis:
     ds: data/external/getoptis_ea_ds.csv
     ss: data/external/getoptis_ea_ss.csv

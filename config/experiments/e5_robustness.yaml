@@ -1,10 +1,8 @@
 # E5: trained models from E1 and E2 on the test years with noisy observations.
-# Fill in the run folders after E1 and E2 have finished.
+# `source_runs` takes run folders or experiment names (then the newest run of that experiment).
 name: e5_robustness
 kind: evaluate
-source_runs:
-  - results/runs/YYYY-MM-DD_e1_benchmark
-  - results/runs/YYYY-MM-DD_e2_ablation
+source_runs: [e1_benchmark, e2_ablation]
 noise:
   features: [root_zone_water, deep_percolation]
   sd: [0.05, 0.1, 0.2]        # relative standard deviation of Gaussian noise

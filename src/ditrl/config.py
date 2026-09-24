@@ -19,6 +19,12 @@ from ditrl.sites import REPO, Site
 CONFIG = REPO / "config"
 
 
+def latest_run(experiment: str) -> Path | None:
+    """Newest run folder of an experiment (folders are named <date>_<experiment>[tag])."""
+    runs = sorted((REPO / "results" / "runs").glob(f"*_{experiment}"))
+    return runs[-1] if runs else None
+
+
 def load_yaml(path: Path | str) -> dict:
     return yaml.safe_load(Path(path).read_text(encoding="utf-8"))
 
@@ -118,8 +124,9 @@ def _oracle_jobs(exp: dict, site: Site, budgets: list) -> list[dict]:
 def _evaluate_jobs(exp: dict) -> list[dict]:
     """E5: evaluate every finished DRL job of the source runs again, with observation noise."""
     jobs = []
-    for run in exp["source_runs"]:
-        run_dir = REPO / run
+    for run in exp["source_runs"]:  # a run folder, or an experiment name for its newest run
+        run_dir = REPO / run if "/" in run else latest_run(run)
+        run = run_dir.relative_to(REPO).as_posix()
         for line in (run_dir / "jobs.jsonl").read_text().splitlines():
             src = json.loads(line)
             if src["kind"] != "drl" or not (run_dir / "jobs" / src["id"] / "result.json").exists():

@@ -1,5 +1,6 @@
 """Paper asset registry: the only definition of what flows into the paper.
 
+    python -m analysis.assets stage    # regenerate everything into paper_assets/ only
     python -m analysis.assets export   # regenerate everything and copy it into the paper repo
     python -m analysis.assets check    # regenerate into a temp folder and compare (drift check)
 
@@ -64,6 +65,24 @@ def _write_manifest(target: Path, hashes: dict[str, str]) -> None:
     (target / "MANIFEST.md").write_text("\n".join(lines) + "\n")
 
 
+def stage() -> None:
+    """Regenerate everything into paper_assets/ only; the paper repo stays untouched. An asset
+    whose inputs are missing is reported and skipped, so that the others are still built."""
+    hashes = {}
+    for rel, (generate, _) in ASSETS.items():
+        out = STAGING / rel
+        out.parent.mkdir(parents=True, exist_ok=True)
+        try:
+            generate(out)
+            hashes[rel] = _sha(out)
+        except Exception as err:  # noqa: BLE001  (report and continue with the next asset)
+            hashes[rel] = f"not built: {err}"
+            print(f"SKIPPED {rel}: {err}")
+    _write_manifest(STAGING, hashes)
+    print(f"staged {sum(not h.startswith('not built') for h in hashes.values())} of "
+          f"{len(ASSETS)} assets in {STAGING}")
+
+
 def export() -> None:
     hashes = _generate_all(STAGING)
     _write_manifest(STAGING, hashes)
@@ -90,4 +109,4 @@ def check() -> None:
 
 
 if __name__ == "__main__":
-    {"export": export, "check": check}[sys.argv[1]]()
+    {"stage": stage, "export": export, "check": check}[sys.argv[1]]()

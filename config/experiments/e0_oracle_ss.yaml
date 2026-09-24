@@ -8,4 +8,4 @@ years: train_val
 budgets: {tunis: [150, 200, 300, 400, 600]}
 restarts: {n_events: [6, 10, 20], seeds: [0, 1, 2]}
 window_days: {tunis: 134}
-ga: {pop_size: 100, tol: 0.001, period: 30, max_gen: 1000, max_event_mm: 60, seeded_share: 0.5}
+ga: {pop_size: 100, tol: 0.001, period: 50, max_gen: 1000, max_event_mm: 60, seeded_share: 0.5}

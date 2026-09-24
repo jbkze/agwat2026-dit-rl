@@ -1,4 +1,4 @@
-.PHONY: install run dry-run smoke test collect paper-assets check-drift
+.PHONY: install run all dry-run smoke test collect stage-assets paper-assets check-drift
 
 # Windows default; on Linux call make PY=.venv/bin/python ...
 PY ?= .venv/Scripts/python
@@ -13,6 +13,10 @@ install:
 run:
 	$(PY) scripts/run.py $(CONFIG) --workers $(WORKERS)
 
+# Every experiment in order, resumable, then derived tables and paper assets
+all:
+	PYTHONPATH=. $(PY) scripts/run_all.py --workers $(WORKERS)
+
 dry-run:
 	$(PY) scripts/run.py $(CONFIG) --dry-run
 
@@ -26,6 +30,9 @@ test:
 
 collect:
 	$(PY) -m analysis.collect
+
+stage-assets:
+	PYTHONPATH=. $(PY) -m analysis.assets stage
 
 paper-assets:
 	$(PY) -m analysis.assets export

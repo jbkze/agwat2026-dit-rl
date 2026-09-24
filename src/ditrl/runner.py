@@ -73,6 +73,15 @@ def _pin_threads() -> None:
     torch.set_num_threads(1)
 
 
+def keep_awake() -> None:
+    """Stop Windows from going to standby while the run is active (the check runs on
+    2026-09-24 stalled for more than two hours during standby). Closing the lid still suspends."""
+    if sys.platform == "win32":
+        import ctypes
+        es_continuous, es_system_required = 0x80000000, 0x00000001
+        ctypes.windll.kernel32.SetThreadExecutionState(es_continuous | es_system_required)
+
+
 def run_job(job: dict, job_dir: str) -> tuple[str, str]:
     """Worker process: run one job and write result.json (or error.txt)."""
     from ditrl.jobs import HANDLERS
@@ -133,6 +142,7 @@ def run(experiment: Path, workers: int, resume: Path | None = None, limit: int |
     if _git("status", "--porcelain"):
         log.warning("working tree has uncommitted changes; results are not tied to a commit")
 
+    keep_awake()
     failed = 0
     with ProcessPoolExecutor(max_workers=workers) as pool:
         futures = [pool.submit(run_job, j, str(run_dir / "jobs" / j["id"])) for j in pending]

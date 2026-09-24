@@ -31,7 +31,7 @@ effect, repeat the two KELLY cells with `normalize: true` to separate both.
 ## 2026-09-24: Oracle with pymoo until the GET-OPTIS code is available
 **Context:** GET-OPTIS is not available yet; Niels was asked for the code.
 **Decision:** a pymoo genetic algorithm with the event-based encoding of GET-OPTIS. A restart
-stops only when the best yield gains less than 0.001 t/ha over 30 generations (cap of 1,000
+stops only when the best yield gains less than 0.001 t/ha over 50 generations (cap of 1,000
 generations as a safeguard). Every case gets 9 restarts (3 numbers of events, 3 seeds); a case
 counts as converged when the two best restarts differ by less than 0.05 t/ha and the best one
 stopped because of the stall rule. The analysis reads the reference values through
@@ -77,3 +77,12 @@ validation curve at 400 mm was still rising steeply at the end (1.57 t/ha after 
 this is enough.
 **Why:** a comparison between variants is only fair once each has converged. The higher step
 count triples the DRL compute to about 9 hours on h200 for all campaigns together.
+
+## 2026-09-24: Stall window of 50 generations, restarts stay essential
+**Context:** in `check_oracle` a single restart (10 events, seed 0, Tunis 1980, 300 mm) stopped
+by the stall rule after 87 generations at 4.04 t/ha; in July, several restarts reached 5.22 t/ha
+for the same case. The genetic algorithm gets stuck in local optima.
+**Decision:** stall window 50 generations instead of 30; E0 keeps 9 restarts per case and the
+convergence flag (two best restarts within 0.05 t/ha).
+**Why:** a single restart is not a reliable upper bound; agreement between restarts is the
+evidence that the search has found the best basin it can find.

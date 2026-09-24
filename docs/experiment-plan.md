@@ -65,7 +65,7 @@ irrigation events, each with a day and a depth. Depths are scaled down when the 
 budget. To make sure the search converges:
 
 - a run stops only when the best yield has improved by less than 0.001 t/ha over the last
-  30 generations; a cap of 1,000 generations exists only as a safeguard and is logged when hit,
+  50 generations; a cap of 1,000 generations exists only as a safeguard and is logged when hit,
 - every case is solved with several restarts (number of events 6, 10 and 20, three seeds each),
   and the best restart is kept,
 - a case counts as converged when the two best restarts differ by less than 0.05 t/ha;
