@@ -22,7 +22,7 @@ from stable_baselines3.common.logger import configure
 from stable_baselines3.common.monitor import Monitor
 from stable_baselines3.common.utils import set_random_seed
 
-from ditrl.env import EnvSpec, IrrigationEnv
+from ditrl.env import EnvSpec, IrrigationEnv, profit
 
 log = logging.getLogger(__name__)
 
@@ -50,7 +50,9 @@ def evaluate(model, spec: EnvSpec, years: list[int], seed: int | None = None) ->
 
 
 class ValidationCallback(BaseCallback):
-    """Evaluates on the validation years, logs the curve and saves the best checkpoint."""
+    """Evaluates on the validation years, logs the curve and saves the best checkpoint.
+    The checkpoint is selected by the quantity the agent is trained on: mean profit for the
+    profit reward (as in Kelly's code), mean yield otherwise."""
 
     def __init__(self, spec: EnvSpec, years: list[int], every: int, out: Path):
         super().__init__()
@@ -67,15 +69,18 @@ class ValidationCallback(BaseCallback):
         self._check()
 
     def _check(self) -> None:
-        yields = [r["yield_t_ha"] for r in evaluate(self.model, self.spec, self.years)]
-        mean = float(np.mean(yields))
-        self.curve.append({"step": self.num_timesteps, "val_mean_yield": mean,
-                           "val_min_yield": float(np.min(yields))})
-        if mean > self.best:
-            self.best = mean
+        seasons = evaluate(self.model, self.spec, self.years)
+        yields = [r["yield_t_ha"] for r in seasons]
+        profits = [profit(r, self.spec.prices) for r in seasons] if self.spec.prices else [np.nan]
+        score = float(np.mean(profits if self.spec.reward == "profit" else yields))
+        self.curve.append({"step": self.num_timesteps, "val_mean_yield": float(np.mean(yields)),
+                           "val_min_yield": float(np.min(yields)),
+                           "val_mean_profit": float(np.mean(profits)), "selection_score": score})
+        if score > self.best:
+            self.best = score
             self.model.save(self.out / "best_model.zip")
-        log.info("step %d: mean validation yield %.3f t/ha (best %.3f)",
-                 self.num_timesteps, mean, self.best)
+        log.info("step %d: mean validation yield %.3f t/ha, selection score %.3f (best %.3f)",
+                 self.num_timesteps, float(np.mean(yields)), score, self.best)
 
 
 def observation_scale(spec: EnvSpec, seasons: int, seed: int) -> dict:

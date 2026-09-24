@@ -14,7 +14,7 @@ import numpy as np
 from ditrl import drl, heuristics, oracle
 from ditrl.config import load_sites
 from ditrl.env import EnvSpec, IrrigationEnv
-from ditrl.sites import REPO
+from ditrl.sites import REPO, year_range
 
 log = logging.getLogger(__name__)
 
@@ -33,7 +33,10 @@ def _year_split(job: dict) -> tuple[list[int], list[int], list[int]]:
     site = load_sites()["sites"][job["site"]]
     if job.get("train_years"):  # E3: train, select and test on the same single year
         return job["train_years"], job["train_years"], job["train_years"]
-    return site.train_years, site.val_years, site.test_years
+    years = job["config"].get("years", {})  # a method may use its own split, e.g. Kelly's code
+    train = year_range(years["train"]) if "train" in years else site.train_years
+    val = year_range(years["val"]) if "val" in years else site.val_years
+    return train, val, site.test_years
 
 
 def _summary(seasons: list[dict]) -> dict:

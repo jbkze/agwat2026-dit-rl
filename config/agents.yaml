@@ -71,3 +71,13 @@ full_irrigation:
   budget: null
   params: {depletion_fraction: 0.3, max_depth: 34}
   grid: {}
+
+# DRL2 exactly as in the Tunis code that produced the published DRL2 values
+# (github.com/jbkze/aquacrop-gym-kelly, commit a91986f, ppo_example.ipynb): profit reward
+# including water cost, training years 1990-1994, validation years 1995-1999, decisions every
+# 5 days. Used only by the diagnosis runs in config/experiments/diag_drl2_*.yaml.
+drl2_published:
+  base: drl2
+  reward: profit
+  interval: 5
+  years: {train: [1990, 1994], val: [1995, 1999]}
