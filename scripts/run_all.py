@@ -1,11 +1,12 @@
-"""Run every experiment of the plan in order, then build the derived tables and stage the paper
-assets in paper_assets/ (the paper repo is not touched).
+"""Run the experiments of one or more stages of docs/experiment-plan.md, then build the derived
+tables and stage the paper assets in paper_assets/ (the paper repo is not touched).
 
-    python scripts/run_all.py --workers 14
+    python scripts/run_all.py --stage 1 --workers 14      # minimum
+    python scripts/run_all.py --stage 2                   # everything of stages 1 and 2
 
-Each experiment continues its newest run folder if one exists, so calling this script again
-after an interruption resumes where it stopped. Order: the results needed first come first;
-E5 needs the trained models of E1 and E2.
+A stage includes all lower stages. Each experiment continues its newest run folder if one
+exists, so calling this script again after an interruption resumes where it stopped, and
+calling it with a higher stage adds only the new experiments.
 """
 
 import os
@@ -20,16 +21,20 @@ import logging  # noqa: E402
 from ditrl.config import CONFIG, latest_run  # noqa: E402
 from ditrl.runner import run  # noqa: E402
 
-ORDER = ["e1_benchmark", "e2_ablation", "e0_oracle_ds", "e4_low_budget", "e3a_forecast",
-         "e3b_test_year", "e0_oracle_ss", "e5_robustness"]
+STAGES = {
+    1: ["s1_benchmark", "s1_ablation"],
+    2: ["s2_benchmark_seeds", "s2_ablation_seeds", "s2_ablation_interactions",
+        "s2_benchmark_budgets", "s2_low_budget", "s2_robustness"],
+    3: ["s3_forecast", "s3_test_year", "s3_obs_scaled", "s3_oracle_ds", "s3_oracle_ss"],
+}
 
 
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawTextHelpFormatter)
     ap.add_argument("--workers", type=int, default=max(1, (os.cpu_count() or 2) - 2))
-    ap.add_argument("--only", nargs="+", choices=ORDER, help="run only these experiments")
+    ap.add_argument("--stage", type=int, choices=sorted(STAGES), default=1)
     args = ap.parse_args()
-    for name in args.only or ORDER:
+    for name in [n for s in sorted(STAGES) if s <= args.stage for n in STAGES[s]]:
         run(CONFIG / "experiments" / f"{name}.yaml", args.workers, resume=latest_run(name))
         logging.getLogger().handlers.clear()  # the next run opens its own run.log
 

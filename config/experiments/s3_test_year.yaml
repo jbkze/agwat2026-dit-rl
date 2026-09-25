@@ -1,6 +1,5 @@
-# E3: DRL1 trained, selected and tested on the same single year (year-specific reference,
-# Saikai et al. 2023). One job per test year.
-name: e3b_test_year
+# Stage 3 (complete). DRL1 trained, selected and tested on the same single year (E3).
+name: s3_test_year
 kind: methods
 agents: [drl1]
 train_on_test_year: true

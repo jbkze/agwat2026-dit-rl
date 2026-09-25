@@ -1,6 +1,6 @@
-# E0, EA-SS: one robust schedule per budget that maximizes the 10 % yield quantile over the
-# training and validation years (1981-2001, as in the paper). Tunis only; Nebraska is optional (about 2 days on h200, see the plan).
-name: e0_oracle_ss
+# Stage 3 (complete). Own EA-SS robust schedule with pymoo (E0): maximizes the 10 % yield quantile
+# over 1981-2001, as in the paper. Tunis only.
+name: s3_oracle_ss
 kind: oracle
 mode: ss
 quantile: 0.1

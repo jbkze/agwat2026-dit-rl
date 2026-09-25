@@ -100,3 +100,15 @@ Kelly's original code) or with a yield reward, DRL2 reaches the level of DRL1 at
 and decides every 5 days, as the Tunis code did; 7 days (the config default of the code) capped
 the seasonal water at 19 x 34 mm = 646 mm. Whether the paper keeps the published DRL2 numbers,
 replaces them, or reports both is a decision for the authors.
+
+## 2026-09-25: Experiments in three stages; published GET-OPTIS values as the oracle
+**Context:** the full campaign takes 8 to 9 days on the laptop; how much fits into the revision
+depends on the time left and on access to h200.
+**Decision:** the plan is split into three stages (`docs/experiment-plan.md`); stage 1 is the
+minimum, later stages add seeds, cells, budgets and experiments without repeating jobs. The
+ablation cells and the low-budget variants are named methods in `config/agents.yaml`, so that each
+stage trains only new cells. Stages 1 and 2 use the EA-DS and EA-SS values of the manuscript as
+the oracle (they are GET-OPTIS results), stored in `data/external/`; the own pymoo oracle moves
+to stage 3. The flat configs `e0` to `e5` are replaced by the staged configs.
+**Why:** each stage ends with a result set that can go into the paper, and the most expensive
+part (the oracle) is only needed if the published GET-OPTIS values are to be checked.

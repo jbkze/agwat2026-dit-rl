@@ -1,0 +1,8 @@
+# Stage 3 (complete). Is the observation effect of the ablation partly a scaling effect?
+name: s3_obs_scaled
+kind: methods
+agents: [drl1_obs_scaled]
+budgets:
+  tunis: [150, 200, 300, 400, 600]
+  nebraska: [75, 100, 125]
+seeds: 10

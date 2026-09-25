@@ -1,9 +1,13 @@
 # Experiment plan for the DIT-RL revision
 
-Status: draft of 2026-09-24. This plan lists every experiment that the reviewers ask for,
-directly or through the to-do notes in the response letter (version of 2026-09-22).
-Three items are out of scope because no reviewer asks for them: stress tests under a shifted
-climate, a second crop model or crop, and extracting a readable rule from a trained policy.
+Status: 2026-09-25. The plan is built in three stages. Stage 1 contains the minimum the revision
+needs; stages 2 and 3 add to it without repeating anything. Each stage ends with a complete set
+of results, so the campaign can stop after any stage, depending on the time left.
+
+It covers every experiment that the reviewers ask for, directly or through the to-do notes in
+the response letter (version of 2026-09-22). Three items are out of scope because no reviewer
+asks for them: stress tests under a shifted climate, a second crop model or crop, and extracting
+a readable rule from a trained policy.
 
 ## Shared setup
 
@@ -18,8 +22,8 @@ All experiments use one simulation setup, so that every method sees the same pro
   the paper, the test years also serve for model selection, so that results stay comparable with
   Kelly et al. (2024). This choice is repeated as a limitation in the paper.
 - **Seasonal budget:** a hard upper limit. No method may apply more water than the budget.
-- **Seeds:** every DRL configuration is trained with 10 seeds. A run is one configuration, one
-  budget and one seed.
+- **Seeds:** 5 per DRL configuration in stage 1, 10 from stage 2 on (stage 2 adds seeds 5-9).
+  A training job is one configuration, one budget and one seed.
 - **Model selection:** during training the agent is evaluated on the validation years every
   10,000 steps. The checkpoint with the highest mean validation yield is kept and tested.
 - **Training length:** 300,000 environment steps for every DRL run, the same for all variants.
@@ -43,12 +47,82 @@ The configurations DRL1 and DRL2 are defined in the unified environment as follo
 | Reward | relative evapotranspiration at each step, yield at the end | yield (Tunis) or profit (Nebraska) at the end only; see `docs/diagnosis-drl2.md` for the unscaled profit reward of the published Tunis runs |
 | Algorithm | MaskablePPO (sb3-contrib), default settings | PPO (stable-baselines3), settings of Kelly et al. |
 
-The DRL2 settings above follow the manuscript text and the code of Kelly et al. Before the
-campaign starts they are checked once more against the archived reference code (open point).
+The DRL2 settings above follow the manuscript text and the Tunis code that produced the published
+values. That code rewarded DRL2 with the unscaled profit, which explains its weak published
+results in Tunis (`docs/diagnosis-drl2.md`); DRL2 here uses the yield reward the manuscript
+describes.
 
-## Experiments
+## Stages at a glance
 
-### E0: Perfect-foresight oracle and robust open-loop schedule
+| Stage | What it adds | DRL trainings | Laptop (14 workers) | h200 (60 workers) |
+|---|---|---|---|---|
+| 1 Minimum | benchmark at 8 budgets, one-factor ablation, rules, 5 seeds | 200 | about 1 day | about 1.5 h |
+| 2 Standard | 10 seeds, full 2 x 2 x 2 ablation, all Tunis budgets, low-budget diagnosis, noise | 780 | about 4 days | about 5 h |
+| 3 Complete | value of weather information, scaling check, own pymoo oracle | 480 + 972 oracle restarts | about 5 days | about 15 h |
+
+Training times are measured: on the laptop, 14 parallel trainings of 300,000 steps take about
+100 minutes, i.e. about 8 trainings per hour; on h200 one training takes about 21 minutes on one
+core (July 2026). The oracle times in stage 3 are a rough estimate from about 0.1 to 0.15 seconds
+per simulated season. Rules and evaluations take minutes and are left out of the table.
+
+Run a stage with `make stage STAGE=1` (or `scripts/run_all.py --stage 1`). A higher stage runs
+only what is missing, and every stage can be resumed after an interruption.
+
+**Oracle values in stages 1 and 2.** The EA-DS and EA-SS values of the manuscript are GET-OPTIS
+results (Tunis: Tab. B1; Nebraska: EA-DS per test year). They are stored in `data/external/` and
+serve as the reference until the GET-OPTIS code is available. Stage 3 adds an own oracle with
+pymoo, which can check or replace them.
+
+## Stage 1: Minimum
+
+Enough to answer the requests that the reviewers share: ablation, simple rules, parameter
+documentation, and a DRL2 that is trained correctly.
+
+| Config | Content | Jobs |
+|---|---|---|
+| `s1_benchmark` | DRL1, DRL2, threshold rule, fixed-interval rule, full irrigation; Tunis 150, 200, 300, 400, 600 mm; Nebraska 75, 100, 125 mm; 5 seeds | 80 DRL + 18 rules |
+| `s1_ablation` | DRL1 with one design choice changed: 18 variables, cut instead of mask, reward only at the end; same budgets, 5 seeds | 120 DRL |
+
+Without extra runs, stage 1 also gives: the hyperparameter table (R2#3), the masking pseudocode
+(R3#6), the actions chosen at 150 and 200 mm (first part of R3#3), per-year yields and the lower
+tail in Nebraska (first part of R1#4), learning curves (E6) and the ex post profit (E7). The
+diagnosis runs for DRL2 (`diag_drl2_*`) are already done.
+
+Answers: R1#3, R2#2, R3#4 (one-factor ablation), R1#5, R2#3, R3#6; partly R1#4 and R3#3.
+
+## Stage 2: Standard
+
+Makes stage 1 statistically solid and complete across budgets.
+
+| Config | Content | Jobs |
+|---|---|---|
+| `s2_benchmark_seeds` | seeds 5-9 for DRL1 and DRL2 of stage 1 | 80 DRL |
+| `s2_ablation_seeds` | seeds 5-9 for the three ablation cells of stage 1 | 120 DRL |
+| `s2_ablation_interactions` | the four cells with two or three choices changed, which completes the 2 x 2 x 2 design; 10 seeds | 320 DRL |
+| `s2_benchmark_budgets` | the remaining Tunis budgets 100, 125, 500, 700, 725, 750, 800 mm (0 mm gives 0 t/ha for every method and needs no run); 10 seeds | 140 DRL + 14 rules |
+| `s2_low_budget` | E4 below, 10 seeds | 120 DRL |
+| `s2_robustness` | benchmark models of stages 1 and 2 with noisy observations | evaluation only |
+
+Answers in addition: R1#4 and R2#5 (noise), R3#3 (why DRL fails at low budgets), and the full
+crop water production function of RQ (i).
+
+## Stage 3: Complete
+
+Adds what makes the paper stronger but is not strictly needed for the revision.
+
+| Config | Content | Jobs |
+|---|---|---|
+| `s3_forecast` | DRL1 with a perfect 7-day forecast (E3) | 80 DRL |
+| `s3_test_year` | DRL1 trained on the test year itself (E3) | 320 DRL |
+| `s3_obs_scaled` | 18 variables with fixed scaling: is the observation effect of the ablation partly a scaling effect? | 80 DRL |
+| `s3_oracle_ds`, `s3_oracle_ss` | own pymoo oracle (E0), needed only without GET-OPTIS code or as a check | 927 + 45 restarts |
+
+Answers in addition: R2#4 (decomposition of the gap), R1#2 (role of the oracle, with our own
+convergence check).
+
+## Experiments in detail
+
+### E0: Perfect-foresight oracle and robust open-loop schedule (stage 3)
 
 Two optimizer runs that need no learning:
 
@@ -78,7 +152,7 @@ file in `data/external/` and the analysis reads them through one entry in the co
 
 Answers: R1#2 (role of the oracle), R2#4 (together with E3).
 
-### E1: Benchmark across budgets
+### E1: Benchmark across budgets (stage 1, completed in stage 2)
 
 All methods at all budgets: DRL1, DRL2, two simple heuristics under the same budget, full
 irrigation without a budget, EA-SS and EA-DS.
@@ -95,7 +169,7 @@ of EA-DS, water actually used, and whether yield rises with the budget.
 
 Answers: R1#5 (simple heuristics), R3#3 (together with E4), RQ (i).
 
-### E2: Ablation of the three design choices
+### E2: Ablation of the three design choices (stages 1 and 2)
 
 Full factorial design over the three components of DRL1. Action set and decision interval are
 held at the DRL1 values, so that masking is possible in every cell.
@@ -106,10 +180,10 @@ held at the DRL1 values, so that masking is possible in every cell.
 | Budget handling | action mask | cut to remaining budget |
 | Reward | stepwise relative evapotranspiration + yield | yield at the end only |
 
-Budgets: Tunis 150, 200, 300, 400, 600 mm; Nebraska 75, 100, 125 mm. Eight cells, 10 seeds
-each. The cell "5 variables, mask, stepwise reward" has the same settings as DRL1 in E1; it is
-trained again inside E2, so that the ablation is one self-contained run and the repetition shows
-how well DRL1 results reproduce.
+Budgets: Tunis 150, 200, 300, 400, 600 mm; Nebraska 75, 100, 125 mm. The cell "5 variables,
+mask, stepwise reward" is DRL1 from the benchmark runs. Stage 1 trains the three cells that change
+one choice (5 seeds), which already gives each main effect. Stage 2 adds seeds 5-9 and the four
+cells that change two or three choices; only then can interactions between the choices be seen.
 
 Analysis: the main effect of each factor on test yield, paired over the other factors, seeds and
 test years, with a bootstrap interval, a Wilcoxon signed-rank test and Holm correction over all
@@ -117,7 +191,7 @@ factors, sites and budgets (`analysis/stats.py`).
 
 Answers: R1#3, R2#2, R3#4.
 
-### E3: Value of weather information
+### E3: Value of weather information (stage 3)
 
 Splits the gap between DRL1 and EA-DS into a part caused by missing weather information and a
 part caused by the learning method. Two extra DRL variants:
@@ -136,7 +210,7 @@ this model setup only.
 
 Answers: R2#4 (decomposition of the gap).
 
-### E4: Why DRL fails at low budgets in Tunis
+### E4: Why DRL fails at low budgets in Tunis (stage 2)
 
 At 100–200 mm both DRL agents produce zero yield, while EA-DS finds productive schedules. The
 oracle schedules from E0 apply a few large doses. The hypothesis: the DRL1 action set (at most
@@ -153,9 +227,9 @@ distribution of chosen actions can be shown for 100–200 mm.
 
 Answers: R3#3.
 
-### E5: Robustness and extreme years
+### E5: Robustness and extreme years (per-year results from stage 1, noise in stage 2)
 
-No new training. The trained models from E1 and E2 are evaluated on:
+No new training. The trained benchmark models are evaluated on:
 
 - **each test year separately:** per-year yields, the 10 % quantile, and the mean of the worst
   10 % of years (CVaR); the three driest Nebraska test years (lowest seasonal rainfall minus
@@ -167,52 +241,32 @@ The analysis keeps apart zero yield, crop death and a missing result.
 
 Answers: R1#4, R2#5 (behaviour under observation errors).
 
-### E6: Learning curves and reliability over seeds
+### E6: Learning curves and reliability over seeds (from stage 1)
 
 No new training. From the validation log of every run of E1 to E4: mean validation yield over
 training steps, and the share of seeds that reach at least 90 % of the best seed.
 
 Answers: R2#3 (training details), supports R1#3.
 
-### E7: Ex post economics
+### E7: Ex post economics (from stage 1)
 
 No new training. Profit per test year from yield and water use, with the prices of Kelly et al.
 (2024): 180 USD per tonne of maize, 1 USD per mm and hectare of irrigation, 1,728 USD per
 hectare of fixed costs. Prices are an evaluation setting only; no method optimizes profit
 except DRL2 in Nebraska, which uses it as its reward (as in Kelly et al.).
 
-## Compute estimate
-
-Measured on the h200 server in July 2026: one DRL1 training with 100,000 steps takes about
-7 minutes on one CPU core (about 10 minutes on a laptop core in September 2026), so about
-21 minutes with 300,000 steps; the GPU does not speed it up. About 60 runs fit in parallel. The
-oracle evaluates about 77 schedules per second on 56 cores.
-
-| Experiment | Runs or evaluations | Time on h200 |
-|---|---|---|
-| E1 DRL | 320 trainings | about 2 h |
-| E2 | 640 trainings | about 4 h |
-| E3 | 400 trainings | about 2.5 h |
-| E4 | 160 trainings | about 1 h |
-| E5, E6, E7 | evaluation only | minutes |
-| E0 EA-DS Tunis + Nebraska | about 6.6 million simulations | about 1 day |
-| E0 EA-SS Tunis (5 budgets, 21 years each) | about 6.8 million simulations | about 1 day |
-| E0 EA-SS Nebraska (optional) | about 13.6 million simulations | about 2 days |
-
-The oracle dominates the compute. With GET-OPTIS results from Niels, E0 is not needed.
-
 ## Mapping to the reviewer comments
 
-| Comment | Experiment |
-|---|---|
-| R1#2 oracle role | E0, E3 |
-| R1#3 ablation | E2 |
-| R1#4 robustness, extreme cases | E5 |
-| R1#5 simple heuristics | E1 |
-| R2#2 benefit of each component | E2 |
-| R2#3 hyperparameters | run manifests, E6 |
-| R2#4 decomposition of the gap | E3 |
-| R2#5 path to the field | E5 (observation noise) |
-| R3#3 actions at 100–200 mm | E4, action logs of E1 |
-| R3#4 ablation | E2 |
-| R3#6 masking pseudocode | `src/ditrl/env.py`, method `action_masks` |
+| Comment | Experiment | Answered from stage |
+|---|---|---|
+| R1#2 oracle role | E0, E3 | wording in any stage; own check in 3 |
+| R1#3 ablation | E2 | 1 (main effects), 2 (interactions) |
+| R1#4 robustness, extreme cases | E5 | 1 (per-year tails), 2 (noise) |
+| R1#5 simple heuristics | E1 | 1 |
+| R2#2 benefit of each component | E2 | 1 |
+| R2#3 hyperparameters | run manifests, E6 | 1 |
+| R2#4 decomposition of the gap | E3 | 3 |
+| R2#5 path to the field | E5 (observation noise) | 2 |
+| R3#3 actions at 100-200 mm | E4, action logs of E1 | 1 (actions), 2 (cause) |
+| R3#4 ablation | E2 | 1 |
+| R3#6 masking pseudocode | `src/ditrl/env.py`, method `action_masks` | 1 |

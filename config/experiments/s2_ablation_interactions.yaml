@@ -1,0 +1,8 @@
+# Stage 2 (standard). The four cells with two or three choices changed: full 2 x 2 x 2 design.
+name: s2_ablation_interactions
+kind: methods
+agents: [drl1_obs_clip, drl1_obs_term, drl1_clip_term, drl1_all_three]
+budgets:
+  tunis: [150, 200, 300, 400, 600]
+  nebraska: [75, 100, 125]
+seeds: 10

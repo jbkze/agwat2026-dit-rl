@@ -1,4 +1,4 @@
-.PHONY: install run all dry-run smoke test collect stage-assets paper-assets check-drift
+.PHONY: install run stage dry-run smoke test collect stage-assets paper-assets check-drift
 
 # Windows default; on Linux call make PY=.venv/bin/python ...
 PY ?= .venv/Scripts/python
@@ -9,13 +9,14 @@ install:
 	uv pip install --python $(PY) -e . --index-strategy unsafe-best-match \
 		--extra-index-url https://download.pytorch.org/whl/cpu
 
-# make run CONFIG=config/experiments/e2_ablation.yaml [WORKERS=60]
+# make run CONFIG=config/experiments/s1_ablation.yaml [WORKERS=60]
 run:
 	$(PY) scripts/run.py $(CONFIG) --workers $(WORKERS)
 
-# Every experiment in order, resumable, then derived tables and paper assets
-all:
-	PYTHONPATH=. $(PY) scripts/run_all.py --workers $(WORKERS)
+# All experiments up to a stage of docs/experiment-plan.md, resumable: make stage STAGE=1
+STAGE ?= 1
+stage:
+	PYTHONPATH=. $(PY) scripts/run_all.py --stage $(STAGE) --workers $(WORKERS)
 
 dry-run:
 	$(PY) scripts/run.py $(CONFIG) --dry-run

@@ -19,8 +19,8 @@ def _pct(x: float) -> str:
 
 def generate(out: Path) -> None:
     lines = [HEADER]
-    if (DERIVED / "e1_benchmark_seasons.csv").exists() and (DERIVED / "oracle_ds.csv").exists():
-        e1 = pd.read_csv(DERIVED / "e1_benchmark_seasons.csv")
+    if (DERIVED / "benchmark_seasons.csv").exists() and (DERIVED / "oracle_ds.csv").exists():
+        e1 = pd.read_csv(DERIVED / "benchmark_seasons.csv")
         e1 = e1[(e1["split"] == "test") & (e1["site"] == "nebraska")]
         oracle = pd.read_csv(DERIVED / "oracle_ds.csv")
         oracle = oracle[oracle["site"] == "nebraska"].groupby("budget_mm")["yield_t_ha"].mean()

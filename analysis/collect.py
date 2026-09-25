@@ -18,21 +18,28 @@ DERIVED = REPO / "results" / "derived"
 FACTORS = ("observation", "constraint", "reward", "depths", "interval")
 
 
+def _resolve(entries: list[str]) -> list[str]:
+    """Run folders for a list of run folders or experiment names; missing runs are dropped."""
+    out = []
+    for entry in entries:
+        run = REPO / entry if "/" in entry else latest_run(entry)
+        if run is not None and run.exists():
+            out.append(run.relative_to(REPO).as_posix())
+    return out
+
+
 def analysis_config() -> dict:
-    """config/analysis.yaml with every `latest` replaced by the newest matching run folder
-    (or None if that experiment has not run yet)."""
+    """config/analysis.yaml with every run list resolved to the run folders that exist."""
     cfg = yaml.safe_load((REPO / "config" / "analysis.yaml").read_text(encoding="utf-8"))
-
-    def resolve(value, experiment):
-        if value != "latest":
-            return value
-        run = latest_run(experiment)
-        return str(run.relative_to(REPO)) if run else None
-
-    cfg["runs"] = {k: resolve(v, k) for k, v in cfg["runs"].items()}
-    pymoo = cfg["oracle"]["pymoo"]
-    cfg["oracle"]["pymoo"] = {m: resolve(v, f"e0_oracle_{m}") for m, v in pymoo.items()}
+    cfg["runs"] = {k: _resolve(v) for k, v in cfg["runs"].items()}
+    cfg["oracle"]["pymoo"] = {m: _resolve(v) for m, v in cfg["oracle"]["pymoo"].items()}
     return cfg
+
+
+def combined(table, runs: list[str]) -> pd.DataFrame:
+    """One derived table over several runs (`table` is seasons, decisions, ...)."""
+    frames = [table(run) for run in runs]
+    return pd.concat(frames, ignore_index=True) if frames else pd.DataFrame()
 
 
 def _jobs(run_dir: Path):
@@ -125,7 +132,8 @@ def oracle(mode: str = "ds") -> pd.DataFrame:
     cfg = analysis_config()["oracle"]
     if cfg["source"] == "getoptis":
         return pd.read_csv(REPO / cfg["getoptis"][mode])
-    table = best_of_restarts(oracle_restarts(cfg["pymoo"][mode]), cfg["converged_if_top2_within"])
+    table = best_of_restarts(combined(oracle_restarts, cfg["pymoo"][mode]),
+                             cfg["converged_if_top2_within"])
     if not table["converged"].all():
         print(f"warning: {(~table['converged']).sum()} oracle cases are not converged")
     return table
@@ -134,13 +142,13 @@ def oracle(mode: str = "ds") -> pd.DataFrame:
 def main() -> None:
     DERIVED.mkdir(parents=True, exist_ok=True)
     cfg = analysis_config()
-    for name, run in cfg["runs"].items():
-        if run:
-            seasons(run).to_csv(DERIVED / f"{name}_seasons.csv", index=False)
-            if name != "e5_robustness":  # noisy re-evaluations: yields are enough
-                decisions(run).to_csv(DERIVED / f"{name}_decisions.csv", index=False)
-            learning_curves(run).to_csv(DERIVED / f"{name}_learning.csv", index=False)
-            print(f"collected {name} from {run}")
+    for name, runs in cfg["runs"].items():
+        if runs:
+            combined(seasons, runs).to_csv(DERIVED / f"{name}_seasons.csv", index=False)
+            if name != "robustness":  # noisy re-evaluations: yields are enough
+                combined(decisions, runs).to_csv(DERIVED / f"{name}_decisions.csv", index=False)
+            combined(learning_curves, runs).to_csv(DERIVED / f"{name}_learning.csv", index=False)
+            print(f"collected {name} from {', '.join(runs)}")
     for mode in ("ds", "ss"):
         if cfg["oracle"]["source"] == "getoptis" or cfg["oracle"]["pymoo"][mode]:
             oracle(mode).to_csv(DERIVED / f"oracle_{mode}.csv", index=False)

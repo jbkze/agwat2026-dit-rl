@@ -19,7 +19,7 @@ def derived(name: str) -> pd.DataFrame:
     """A table from results/derived/. Fails with a hint if `make collect` has not run yet."""
     path = DERIVED / f"{name}.csv"
     if not path.exists():
-        raise FileNotFoundError(f"{path} is missing: fill in config/analysis.yaml, then make collect")
+        raise FileNotFoundError(f"{path} is missing: run the stage that produces it, then make collect")
     return pd.read_csv(path)
 
 
@@ -29,7 +29,11 @@ def test_seasons(name: str) -> pd.DataFrame:
 
 
 def run_dir(name: str) -> Path:
-    return REPO / analysis_config()["runs"][name]
+    """First existing run folder of a derived table in config/analysis.yaml."""
+    runs = analysis_config()["runs"][name]
+    if not runs:
+        raise FileNotFoundError(f"no run for {name!r} yet (config/analysis.yaml)")
+    return REPO / runs[0]
 
 
 def save_pdf(fig, out: Path) -> None:

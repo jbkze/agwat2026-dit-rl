@@ -14,7 +14,7 @@ from pathlib import Path
 
 import yaml
 
-from ditrl.sites import REPO, Site
+from ditrl.sites import REPO, Site, year_range
 
 CONFIG = REPO / "config"
 
@@ -62,8 +62,9 @@ def _budgets(spec, site: Site) -> list:
 
 
 def _seeds(spec, site: str) -> list[int]:
-    n = spec[site] if isinstance(spec, dict) else spec
-    return list(range(n))
+    """`10` means seeds 0-9; `[5, 9]` means seeds 5-9 (for adding seeds in a later stage)."""
+    spec = spec[site] if isinstance(spec, dict) else spec
+    return year_range(spec) if isinstance(spec, list) else list(range(spec))
 
 
 def _years(spec: str, site: Site) -> list[int]:
@@ -126,6 +127,9 @@ def _evaluate_jobs(exp: dict) -> list[dict]:
     jobs = []
     for run in exp["source_runs"]:  # a run folder, or an experiment name for its newest run
         run_dir = REPO / run if "/" in run else latest_run(run)
+        if run_dir is None or not (run_dir / "jobs.jsonl").exists():
+            print(f"skipping source {run!r}: no run yet")
+            continue
         run = run_dir.relative_to(REPO).as_posix()
         for line in (run_dir / "jobs.jsonl").read_text().splitlines():
             src = json.loads(line)

@@ -17,7 +17,7 @@ COLORS = dict(zip(METHOD_ORDER, [ps.TAB10[c] for c in ("blue", "orange", "green"
 
 
 def generate(out: Path) -> None:
-    df = test_seasons("e1_benchmark")
+    df = test_seasons("benchmark")
     per_seed = (df.groupby(["site", "agent", "budget_mm", "seed"], dropna=False)["yield_t_ha"]
                 .mean().reset_index())
     oracle = derived("oracle_ds").groupby(["site", "budget_mm"])["yield_t_ha"].mean().reset_index()

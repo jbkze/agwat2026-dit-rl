@@ -1,5 +1,5 @@
-# E3: DRL1 with a perfect 7-day forecast of rainfall and reference ET.
-name: e3a_forecast
+# Stage 3 (complete). DRL1 with a perfect 7-day forecast of rainfall and reference ET (E3).
+name: s3_forecast
 kind: methods
 agents: [drl1_forecast]
 budgets:

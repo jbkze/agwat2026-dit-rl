@@ -34,11 +34,11 @@ def information(out: Path) -> None:
     """E3: mean test yield from no weather knowledge to full knowledge, per site and budget."""
     def mean_yield(df, label):
         return df.groupby(["site", "budget_mm"])["yield_t_ha"].mean().rename(label)
-    e1 = test_seasons("e1_benchmark")
+    e1 = test_seasons("benchmark")
     cols = [mean_yield(e1[e1["agent"] == a], METHOD_LABEL[a])
             for a in ("threshold", "fixed_interval", "drl1")]
-    cols.append(mean_yield(test_seasons("e3a_forecast"), "DRL1 + 7-day forecast"))
-    cols.append(mean_yield(test_seasons("e3b_test_year"), "DRL1 trained on test year"))
+    cols.append(mean_yield(test_seasons("forecast"), "DRL1 + 7-day forecast"))
+    cols.append(mean_yield(test_seasons("test_year"), "DRL1 trained on test year"))
     cols.append(derived("oracle_ds").groupby(["site", "budget_mm"])["yield_t_ha"].mean()
                 .rename("EA-DS"))
     try:
@@ -54,14 +54,14 @@ def information(out: Path) -> None:
 def robustness(out: Path) -> None:
     """E5: mean, 10 % quantile and CVaR of test yield per method (median over seeds), and the
     mean yield under observation noise."""
-    e1 = test_seasons("e1_benchmark")
+    e1 = test_seasons("benchmark")
     rows = []
     for (site, budget, agent, seed), g in e1.groupby(["site", "budget_mm", "agent", "seed"]):
         if site == "nebraska":
             rows.append({"site": site, "budget_mm": budget, "agent": agent,
                          "mean": g["yield_t_ha"].mean(), **lower_tail(g["yield_t_ha"])})
     t = pd.DataFrame(rows).groupby(["site", "budget_mm", "agent"]).median().reset_index()
-    noisy = test_seasons("e5_robustness")
+    noisy = test_seasons("robustness")
     noisy = noisy[noisy["site"] == "nebraska"]
     for sd, g in noisy.groupby("noise_sd"):
         m = g.groupby(["budget_mm", "agent"])["yield_t_ha"].mean().rename(f"noise {sd:.0%}")
@@ -75,7 +75,7 @@ def robustness(out: Path) -> None:
 
 def hyperparameters(out: Path) -> None:
     """R2#3: the PPO settings actually used, read from the run folders of E1."""
-    jobs_dir = run_dir("e1_benchmark") / "jobs"
+    jobs_dir = run_dir("benchmark") / "jobs"
     cols = {}
     for agent in ("drl1", "drl2"):
         for site in ("tunis", "nebraska"):

@@ -11,7 +11,7 @@ from analysis.common import METHOD_LABEL, derived, save_pdf
 
 
 def generate(out: Path) -> None:
-    df = derived("e1_benchmark_learning")
+    df = derived("benchmark_learning")
     cases = df[["site", "budget_mm"]].drop_duplicates().sort_values(["site", "budget_mm"])
     cases = cases.groupby("site").tail(3)  # three budgets per site keep the figure readable
     fig, axes = plt.subplots(1, len(cases), figsize=(2.8 * len(cases), 2.8), squeeze=False)

@@ -1,8 +1,8 @@
 """Run one experiment config.
 
-    python scripts/run.py config/experiments/e2_ablation.yaml --workers 60
-    python scripts/run.py config/experiments/e2_ablation.yaml --resume results/runs/2026-09-24_e2_ablation
-    python scripts/run.py config/experiments/e2_ablation.yaml --dry-run
+    python scripts/run.py config/experiments/s1_ablation.yaml --workers 60
+    python scripts/run.py config/experiments/s1_ablation.yaml --resume results/runs/2026-09-30_s1_ablation
+    python scripts/run.py config/experiments/s1_ablation.yaml --dry-run
 """
 
 import os

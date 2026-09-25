@@ -9,14 +9,15 @@ AGWAT-D-26-00823). Paper repo: `../DIT-RL` (Overleaf-synced). Structure follows 
 
 Answer the reviewer requests with new experiments: ablation (E2), heuristics under the same
 budget (E1), value of weather information (E3), failure at low budgets (E4), robustness (E5).
-Plan: `docs/experiment-plan.md`. Status 2026-09-24: code complete, smoke test passes, first
-comparison with the published Tunis values (`check_paper`) started. Campaigns not yet run.
-Oracle values come from pymoo until Niels sends the GET-OPTIS code.
+Plan: `docs/experiment-plan.md`, in three stages (1 minimum, 2 standard, 3 complete); run with
+`make stage STAGE=n`. Status 2026-09-25: code complete, checks against the published Tunis values
+done, cause of the weak published DRL2 values found (`docs/diagnosis-drl2.md`). No stage run yet.
+Oracle values: published GET-OPTIS values in `data/external/` until Niels sends the code.
 
 ## Entry points
 
 - `make smoke`, `make test`
-- `make run CONFIG=config/experiments/<exp>.yaml WORKERS=60`
+- `make stage STAGE=1 WORKERS=60` (a whole stage) or `make run CONFIG=config/experiments/<exp>.yaml`
 - `make collect`, `make paper-assets`, `make check-drift`
 - Asset registry: `analysis/assets.py`
 

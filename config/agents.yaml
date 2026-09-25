@@ -81,3 +81,22 @@ drl2_published:
   reward: profit
   interval: 5
   years: {train: [1990, 1994], val: [1995, 1999]}
+
+# The eight cells of the ablation around DRL1 (E2). Each changes one or more of the three design
+# choices back to the DRL2 level; action set and decision interval stay those of DRL1.
+# Stage 1 runs the first three (one choice changed), stage 2 the four combinations.
+drl1_obs:        {base: drl1, observation: KELLY}
+drl1_clip:       {base: drl1, constraint: clip}
+drl1_terminal:   {base: drl1, reward: terminal}
+drl1_obs_clip:   {base: drl1, observation: KELLY, constraint: clip}
+drl1_obs_term:   {base: drl1, observation: KELLY, reward: terminal}
+drl1_clip_term:  {base: drl1, constraint: clip, reward: terminal}
+drl1_all_three:  {base: drl1, observation: KELLY, constraint: clip, reward: terminal}
+
+# Low-budget diagnosis (E4): larger doses and/or daily decisions on top of DRL1.
+drl1_large_doses: {base: drl1, depths: [0, 5, 13, 21, 34, 55, 89]}
+drl1_daily:       {base: drl1, interval: 1}
+drl1_large_daily: {base: drl1, depths: [0, 5, 13, 21, 34, 55, 89], interval: 1}
+
+# Scaling check for the observation factor of the ablation: 18 variables with fixed scaling.
+drl1_obs_scaled:  {base: drl1, observation: KELLY, normalize: true}

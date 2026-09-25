@@ -11,11 +11,12 @@ from analysis import paper_style as ps
 from analysis.common import derived, save_pdf
 
 BUDGETS = [100, 125, 150, 200]
+AGENTS = ["drl1", "drl1_large_doses", "drl1_daily", "drl1_large_daily"]
 
 
 def generate(out: Path) -> None:
-    d = derived("e4_low_budget_decisions")
-    d = d[d["budget_mm"].isin(BUDGETS)].copy()
+    d = derived("low_budget_decisions")
+    d = d[d["budget_mm"].isin(BUDGETS) & d["site"].eq("tunis") & d["agent"].isin(AGENTS)].copy()
     d["variant"] = "max " + d["depths"].str.extract(r"(\d+)\]$")[0] + " mm, every " \
         + d["interval"].astype(str) + " d"
     variants = sorted(d["variant"].unique())

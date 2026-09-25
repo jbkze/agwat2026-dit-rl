@@ -1,23 +1,28 @@
-# Which run folders the analysis reads: a path, or `latest` for the newest run of that name.
+# Which runs the analysis reads. Each table in results/derived/ combines the runs listed here:
+# run folders, or experiment names (then the newest run of that experiment). Runs that do not
+# exist yet are skipped, so the analysis works after every stage.
 runs:
-  e1_benchmark: latest
-  e2_ablation: latest
-  e3a_forecast: latest
-  e3b_test_year: latest
-  e4_low_budget: latest
-  e5_robustness: latest
+  benchmark: [s1_benchmark, s2_benchmark_budgets, s2_benchmark_seeds]
+  ablation: [s1_benchmark, s2_benchmark_seeds, s1_ablation, s2_ablation_seeds,
+             s2_ablation_interactions, s3_obs_scaled]
+  low_budget: [s1_benchmark, s2_benchmark_budgets, s2_benchmark_seeds, s2_low_budget]
+  robustness: [s2_robustness]
+  forecast: [s3_forecast]
+  test_year: [s3_test_year]
 
 # Source of the EA-DS / EA-SS reference values.
-#   pymoo:    best restart per case from the E0 runs below
-#   getoptis: CSV files from Niels (columns: site, year, budget_mm, yield_t_ha)
+#   getoptis: CSV files with columns site, year (EA-DS only), budget_mm, yield_t_ha. Until the
+#             GET-OPTIS code is here, they hold the published values of the manuscript tables
+#             (Tunis: Tab. B1; Nebraska: EA-DS per test year), see data/README.md.
+#   pymoo:    best restart per case from the stage-3 oracle runs
 oracle:
-  source: pymoo
-  pymoo:
-    ds: latest              # newest run of e0_oracle_ds
-    ss: latest
+  source: getoptis
   getoptis:
     ds: data/external/getoptis_ea_ds.csv
     ss: data/external/getoptis_ea_ss.csv
+  pymoo:
+    ds: [s3_oracle_ds]
+    ss: [s3_oracle_ss]
   converged_if_top2_within: 0.05   # t/ha between the two best restarts of a case
 
 # Simplex heuristics by Niels (columns: site, year, budget_mm, method, yield_t_ha); optional

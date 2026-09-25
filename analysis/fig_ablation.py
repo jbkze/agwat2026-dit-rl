@@ -17,8 +17,15 @@ LABELS = {"observation": "18 instead of 5 variables", "constraint": "clip instea
           "reward": "terminal instead of stepwise reward"}
 
 
+# DRL1 and the seven ablation cells (config/agents.yaml); DRL2 and the rules are left out,
+# because they differ from DRL1 also in action set and decision interval.
+AGENTS = ["drl1", "drl1_obs", "drl1_clip", "drl1_terminal", "drl1_obs_clip", "drl1_obs_term",
+          "drl1_clip_term", "drl1_all_three"]
+
+
 def effects():
-    return main_effects(test_seasons("e2_ablation"), FACTORS)
+    df = test_seasons("ablation")
+    return main_effects(df[df["agent"].isin(AGENTS)], FACTORS)
 
 
 def generate(out: Path) -> None:
