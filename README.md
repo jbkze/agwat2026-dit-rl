@@ -43,7 +43,7 @@ ditrl run stage1                       # stage 1 on all cores but two
 ditrl run ablation_one_change --workers 8
 ```
 
-A selection is any mix of stages (`stage1`, `stage2`, `stage3`) and experiment names from `config/plan.yaml`. Finished jobs are skipped, so any command can be repeated after an interruption.
+A selection is any mix of stages (`stage1`, `stage2`, `stage3`) and experiment names from `config/plan.yaml`. Finished jobs are skipped, so any command can be repeated after an interruption. Every DRL run trains until it converges (`training` in the plan). `--resume-from DIR` continues the trained models of an earlier round found in `DIR/jobs/` instead of starting them anew.
 
 **On several machines.** `--shard I/N` runs part I of N equal parts of the job list. The job list depends only on the plan, so every machine derives the same parts. Each machine writes into its own folder of raw results (`--runs DIR`); these folders merge by copying their `jobs/` and `manifests/` into one, because no two jobs share a folder. The container image runs the same command:
 
