@@ -6,6 +6,8 @@ sets them under `ppo`. The values actually used are written to `hyperparameters.
 
 During training the policy is evaluated on the validation years every `eval_every` steps. The
 checkpoint with the highest mean validation yield is kept and later evaluated on the test years.
+With `select: final` the validation curve is still logged, but the policy after the last
+training step is evaluated instead (ablation: no selection on data that may be the test years).
 """
 
 from __future__ import annotations
@@ -101,7 +103,8 @@ def observation_scale(spec: EnvSpec, seasons: int, seed: int) -> dict:
 
 
 def train(train_spec: EnvSpec, val_spec: EnvSpec, agent: dict, seed: int, out: Path):
-    """Train one agent and return the best checkpoint (by validation yield)."""
+    """Train one agent and return the best checkpoint (by validation yield), or the final
+    policy with `select: final`."""
     set_random_seed(seed)
     env = Monitor(IrrigationEnv(train_spec), filename=str(out / "monitor"))
     env.reset(seed=seed)
@@ -118,4 +121,7 @@ def train(train_spec: EnvSpec, val_spec: EnvSpec, agent: dict, seed: int, out: P
     model.learn(total_timesteps=agent["timesteps"], callback=callback)
     with open(out / "validation_curve.json", "w") as f:
         json.dump(callback.curve, f, indent=1)
+    if agent.get("select", "best") == "final":
+        model.save(out / "final_model.zip")
+        return model
     return algo.load(out / "best_model.zip", device="cpu")
