@@ -7,7 +7,4 @@ scratch/
 config/paths.local.yaml
 # Raw job folders (models, logs) are archived on Zenodo, not in git; results/ holds their tables.
 runs/
-# Until the merge of fetched job folders is done, these stay local.
-results/fetched/
-results/jobs/
 paper_assets/
