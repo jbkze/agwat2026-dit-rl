@@ -3,11 +3,8 @@ __pycache__/
 *.egg-info/
 .cache/
 scratch/
-config/paths.local.yaml
 .env
-# Run folders hold models and logs; they are archived on Zenodo, not in git.
-results/runs/
+config/paths.local.yaml
+# Results hold models and logs; they are archived on Zenodo, not in git. The tables are regenerable.
+results/
 paper_assets/
-results/*.log
-tmp-results/
-results/queue/
