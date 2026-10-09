@@ -1,6 +1,6 @@
 # Experiment plan for the DIT-RL revision
 
-Status: 2026-09-25. The plan is built in three stages. Stage 1 contains the minimum the revision
+Status: 2026-10-09 (ablation rebuilt in steps A to D around the four variants agreed with the co-author, and every DRL method now evaluates its last policy). The plan is built in three stages. Stage 1 contains the minimum the revision
 needs; stages 2 and 3 add to it without repeating anything. Each stage ends with a complete set
 of results, so the campaign can stop after any stage, depending on the time left.
 
@@ -17,15 +17,11 @@ All experiments use one simulation setup, so that every method sees the same pro
   fork stores the leaf-expansion stress coefficient on the model state; DRL1 observes it.
 - **Tunis site:** sand, soil starts at the permanent wilting point, no rain, maize planted on
   1 May. Training years 1981–1996, validation years 1997–2001, test year 1980.
-- **Nebraska site:** silty clay loam, soil starts at 70 % of available water, 100-year synthetic
-  weather series from Kelly et al. (2024). Training years 1995–2064, test years 2065–2094. As in
-  the paper, the test years also serve for model selection, so that results stay comparable with
-  Kelly et al. (2024). This choice is repeated as a limitation in the paper.
+- **Nebraska site:** silty clay loam, soil starts at 70 % of available water, 100-year synthetic weather series from Kelly et al. (2024). Training years 1995–2064, test years 2065–2094. The paper and Kelly et al. (2024) also selected the model on the test years. This plan does not (see model selection below).
 - **Seasonal budget:** a hard upper limit. No method may apply more water than the budget.
 - **Seeds:** 5 per DRL configuration in stage 1, 10 from stage 2 on (stage 2 adds seeds 5-9).
   A training job is one configuration, one budget and one seed.
-- **Model selection:** during training the agent is evaluated on the validation years every
-  10,000 steps. The checkpoint with the highest mean validation yield is kept and tested.
+- **Model selection:** none. Every DRL run is tested with the policy after its last training step, with deterministic actions, and no checkpoint or hyperparameter is chosen on evaluation data (`select: final`, decided on 2026-10-09). The agent is still evaluated on the validation years every 10,000 steps, but only for the learning curves (E6). Runs before that date kept the checkpoint with the best validation yield (`best_model.zip`).
 - **Training length:** 300,000 environment steps for every DRL run, the same for all variants.
   A first check with 100,000 steps stopped DRL1 while its validation yield was still rising
   (`docs/decisions.md`). The learning curves from experiment E6 show whether 300,000 is enough.
@@ -54,15 +50,15 @@ describes.
 
 ## Stages at a glance
 
-| Stage | What it adds | DRL trainings | Laptop (14 workers) | h200 (60 workers) |
+| Stage | What it adds | DRL trainings | Laptop (14 workers) | Job queue, h200 and gpu01 |
 |---|---|---|---|---|
-| 1 Minimum | benchmark at 8 budgets, one-factor ablation, rules, 5 seeds | 200 | about 1 day | about 1.5 h |
-| 2 Standard | 10 seeds, full 2 x 2 x 2 ablation, all Tunis budgets, low-budget diagnosis, noise | 780 | about 4 days | about 5 h |
+| 1 Minimum | benchmark at 8 budgets, rules, 5 seeds; ablation step A (four variants, three cases) with its pilot | 152 | about 17 h | to be measured by the pilot |
+| 2 Standard | 10 seeds, all Tunis budgets, low-budget diagnosis, noise; ablation steps B to D up to the full 2 x 4 x 2 design | 1,720 | about 8 days | to be measured by the pilot |
 | 3 Complete | value of weather information, scaling check, own pymoo oracle | 480 + 972 oracle restarts | about 5 days | about 15 h |
 
 Training times are measured: on the laptop, 14 parallel trainings of 300,000 steps take about
 100 minutes, i.e. about 8 trainings per hour; on h200 one training takes about 21 minutes on one
-core (July 2026). The oracle times in stage 3 are a rough estimate from about 0.1 to 0.15 seconds
+core (July 2026). A job on the WSE job queue gets 8 cores, so h200 should manage about 23 trainings per hour; the pilot of the ablation measures this and gpu01. The oracle times in stage 3 are a rough estimate from about 0.1 to 0.15 seconds
 per simulated season. Rules and evaluations take minutes and are left out of the table.
 
 Run a stage with `make stage STAGE=1` (or `scripts/run_all.py --stage 1`). A higher stage runs
@@ -81,7 +77,8 @@ documentation, and a DRL2 that is trained correctly.
 | Config | Content | Jobs |
 |---|---|---|
 | `s1_benchmark` | DRL1, DRL2, threshold rule, fixed-interval rule, full irrigation; Tunis 150, 200, 300, 400, 600 mm; Nebraska 75, 100, 125 mm; 5 seeds | 80 DRL + 18 rules |
-| `s1_ablation` | DRL1 with one design choice changed: 18 variables, cut instead of mask, reward only at the end; same budgets, 5 seeds | 120 DRL |
+| `a0_pilot_tunis`, `a0_pilot_nebraska` | pilot of ablation step A: every variant once per case, seed 100, to check the code and measure the runtime | 12 DRL |
+| `a1_ablation` | ablation step A (E2): four variants, Tunis 300 and 500 mm, Nebraska 75 mm, seeds 0-4 | 60 DRL |
 
 Without extra runs, stage 1 also gives: the hyperparameter table (R2#3), the masking pseudocode
 (R3#6), the actions chosen at 150 and 200 mm (first part of R3#3), per-year yields and the lower
@@ -97,11 +94,12 @@ Makes stage 1 statistically solid and complete across budgets.
 | Config | Content | Jobs |
 |---|---|---|
 | `s2_benchmark_seeds` | seeds 5-9 for DRL1 and DRL2 of stage 1 | 80 DRL |
-| `s2_ablation_seeds` | seeds 5-9 for the three ablation cells of stage 1 | 120 DRL |
-| `s2_ablation_interactions` | the four cells with two or three choices changed, which completes the 2 x 2 x 2 design; 10 seeds | 320 DRL |
+| `a2_budget_handling` | ablation step B (E2): cut and penalty as further budget handling, and the full Kelly cell | 45 DRL |
+| `a3_factorial` | ablation step C (E2): the nine cells that complete the 2 x 4 x 2 design | 135 DRL |
 | `s2_benchmark_budgets` | the remaining Tunis budgets 100, 125, 500, 700, 725, 750, 800 mm (0 mm gives 0 t/ha for every method and needs no run); 10 seeds | 140 DRL + 14 rules |
 | `s2_low_budget` | E4 below, 10 seeds | 120 DRL |
 | `s2_robustness` | benchmark models of stages 1 and 2 with noisy observations | evaluation only |
+| `a4_seeds`, `a4_budgets` | ablation step D (E2): seeds 5-9 for all 16 cells, then all 16 cells at the other budgets of the ablation | 240 + 960 DRL |
 
 Answers in addition: R1#4 and R2#5 (noise), R3#3 (why DRL fails at low budgets), and the full
 crop water production function of RQ (i).
@@ -169,25 +167,35 @@ of EA-DS, water actually used, and whether yield rises with the budget.
 
 Answers: R1#5 (simple heuristics), R3#3 (together with E4), RQ (i).
 
-### E2: Ablation of the three design choices (stages 1 and 2)
+### E2: Ablation of the three design choices (step A in stage 1, steps B to D in stage 2)
 
-Full factorial design over the three components of DRL1. Action set and decision interval are
-held at the DRL1 values, so that masking is possible in every cell.
+The ablation grows in four steps. Step A is the part agreed with the co-author and is required. Every later step adds cells, seeds or budgets without repeating anything, so the ablation can stop after any step. Action set and decision interval stay at the DRL1 values throughout, so that masking is possible in every cell.
 
-| Factor | Level 1 (DRL1) | Level 2 |
-|---|---|---|
-| Observation | 5 variables | 18 variables of Kelly et al. |
-| Budget handling | action mask | cut to remaining budget |
-| Reward | stepwise relative evapotranspiration + yield | yield at the end only |
+| Factor | Levels |
+|---|---|
+| Observation | 5 variables (DRL1); 18 variables of Kelly et al. |
+| Budget handling | action mask (DRL1); reject: a depth above the remaining budget is not applied (0 mm), no penalty; cut to the remaining budget, no penalty (Kelly et al.); penalty: as reject, and 1 is subtracted from the reward of that step |
+| Reward | relative evapotranspiration at each step + yield at the end (DRL1); yield at the end only |
 
-Budgets: Tunis 150, 200, 300, 400, 600 mm; Nebraska 75, 100, 125 mm. The cell "5 variables,
-mask, stepwise reward" is DRL1 from the benchmark runs. Stage 1 trains the three cells that change
-one choice (5 seeds), which already gives each main effect. Stage 2 adds seeds 5-9 and the four
-cells that change two or three choices; only then can interactions between the choices be seen.
+The 18 variables do not contain the 5: only the remaining budget and the growth stage (one-hot at Kelly) are in both, while root-zone water, deep percolation and expansion stress are missing at Kelly. Changing the observation therefore compares two kinds of information, not two numbers of variables, and the paper says so.
 
-Analysis: the main effect of each factor on test yield, paired over the other factors, seeds and
-test years, with a bootstrap interval, a Wilcoxon signed-rank test and Holm correction over all
-factors, sites and budgets (`analysis/stats.py`).
+With reject and penalty the policy proposes a depth u_t and the simulator applies a_t = u_t if u_t fits into the remaining budget B_t, else 0. The PPO update uses the proposed depths, the water accounting the applied ones, and the decision log keeps both.
+
+| Step | Config | Cells | Cases | Seeds | Runs |
+|---|---|---|---|---|---|
+| Pilot | `a0_pilot_*` | the four of step A | as in step A | 100 | 12 |
+| A (required) | `a1_ablation` | DRL1; 18 variables; reject; reward at the end only | Tunis 300 mm, Tunis 500 mm (test season 1980), Nebraska 75 mm (test years 71-100) | 0-4 | 60 |
+| B | `a2_budget_handling` | cut; penalty; the full Kelly cell (18 variables, cut, reward at the end) | as in step A | 0-4 | 45 |
+| C | `a3_factorial` | the nine cells that complete the 2 x 4 x 2 design | as in step A | 0-4 | 135 |
+| D | `a4_seeds`, `a4_budgets` | all 16 cells | as in step A, then Tunis 150, 200, 400, 600 mm and Nebraska 100, 125 mm | 5-9, then 0-9 | 1,200 |
+
+Before step A runs: the training budget, PPO hyperparameters, network, reward scaling, discounting, normalization and software versions are written into the configuration table from the run folders (`hyperparameters.json`, `manifest.json`), and the pilot gives the runtime. A run that fails is restarted with the same seed and reported. A seed is never replaced by another one.
+
+Evaluation per run: mean test yield (1 season in Tunis, 30 in Nebraska) of the final policy with deterministic actions. Per variant and case, the paired difference to DRL1 over the same seed; positive values mean that the change costs yield. Nebraska in addition: the 10 % quantile of yield per trained policy (for 30 years the fourth-lowest value, as in the main analysis), then summarized across seeds. Years and seeds are not pooled into one distribution. From step C on, the main effect of each factor is paired over the other factors, with a bootstrap interval, a Wilcoxon signed-rank test and Holm correction over all factors, sites and budgets (`analysis/stats.py`).
+
+Reporting: configuration table, result table over all cells and cases, and a plot of the paired differences per comparison. The spread across seeds is always shown.
+
+The earlier configs `s1_ablation`, `s2_ablation_seeds` and `s2_ablation_interactions` (2 x 2 x 2 design, best checkpoint) are superseded and kept only for the record.
 
 Answers: R1#3, R2#2, R3#4.
 

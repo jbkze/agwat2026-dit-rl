@@ -1,3 +1,4 @@
+# Superseded on 2026-10-09 by the ablation steps a1-a4 (docs/experiment-plan.md, E2); kept for the record.
 # Stage 1 (minimum). Ablation, one design choice changed at a time. DRL1 comes from s1_benchmark.
 name: s1_ablation
 kind: methods

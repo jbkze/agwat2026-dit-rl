@@ -1,0 +1,11 @@
+# Ablation step A (required): the four variants agreed with the co-author, one component of DRL1
+# changed each: 18 variables, reject instead of mask, reward at the end only. Three cases, seeds
+# 0-4. The 18 variables do not contain the 5, so variant 2 compares kinds of information, not
+# numbers of variables.
+name: a1_ablation
+kind: methods
+agents: [drl1, drl1_obs, drl1_reject, drl1_terminal]
+budgets:
+  tunis: [300, 500]
+  nebraska: [75]
+seeds: 5

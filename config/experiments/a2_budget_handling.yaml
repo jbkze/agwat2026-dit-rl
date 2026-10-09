@@ -1,0 +1,10 @@
+# Ablation step B: the remaining levels of budget handling (cut to the remaining budget as in
+# Kelly et al., reject with a penalty of 1) and the full Kelly cell (18 variables, cut, reward at
+# the end only), on the cases of step A.
+name: a2_budget_handling
+kind: methods
+agents: [drl1_clip, drl1_penalty, drl1_all_three]
+budgets:
+  tunis: [300, 500]
+  nebraska: [75]
+seeds: 5

@@ -99,9 +99,18 @@ drl1_obs_term:   {base: drl1, observation: KELLY, reward: terminal}
 drl1_clip_term:  {base: drl1, constraint: clip, reward: terminal}
 drl1_all_three:  {base: drl1, observation: KELLY, constraint: clip, reward: terminal}
 
-# Variant 3 of the four-variant ablation (config/experiments/a0_pilot_*.yaml): reject instead of mask.
+# Two further levels of budget handling for the ablation (E2): reject (step A) and penalty (step B).
 drl1_reject:     {base: drl1, constraint: reject}
 drl1_penalty:    {base: drl1, constraint: penalty}
+
+# The remaining cells of the full 2 x 4 x 2 design (observation x budget handling x reward), used
+# from ablation step C on (docs/experiment-plan.md, E2).
+drl1_obs_reject:       {base: drl1, observation: KELLY, constraint: reject}
+drl1_obs_penalty:      {base: drl1, observation: KELLY, constraint: penalty}
+drl1_reject_term:      {base: drl1, constraint: reject, reward: terminal}
+drl1_penalty_term:     {base: drl1, constraint: penalty, reward: terminal}
+drl1_obs_reject_term:  {base: drl1, observation: KELLY, constraint: reject, reward: terminal}
+drl1_obs_penalty_term: {base: drl1, observation: KELLY, constraint: penalty, reward: terminal}
 
 # Low-budget diagnosis (E4): larger doses and/or daily decisions on top of DRL1.
 drl1_large_doses: {base: drl1, depths: [0, 5, 13, 21, 34, 55, 89]}

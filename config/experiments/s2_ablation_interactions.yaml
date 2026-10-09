@@ -1,3 +1,4 @@
+# Superseded on 2026-10-09 by the ablation steps a1-a4 (docs/experiment-plan.md, E2); kept for the record.
 # Stage 2 (standard). The four cells with two or three choices changed: full 2 x 2 x 2 design.
 name: s2_ablation_interactions
 kind: methods

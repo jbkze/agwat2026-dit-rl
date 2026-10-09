@@ -22,9 +22,10 @@ from ditrl.config import CONFIG, latest_run  # noqa: E402
 from ditrl.runner import run  # noqa: E402
 
 STAGES = {
-    1: ["s1_benchmark", "s1_ablation"],
-    2: ["s2_benchmark_seeds", "s2_ablation_seeds", "s2_ablation_interactions",
-        "s2_benchmark_budgets", "s2_low_budget", "s2_robustness"],
+    # The ablation grows in steps a1 (required) to a4 (complete), see E2 of the plan.
+    1: ["s1_benchmark", "a1_ablation"],
+    2: ["a2_budget_handling", "a3_factorial", "s2_benchmark_seeds", "s2_benchmark_budgets",
+        "s2_low_budget", "s2_robustness", "a4_seeds", "a4_budgets"],
     3: ["s3_forecast", "s3_test_year", "s3_obs_scaled", "s3_oracle_ds", "s3_oracle_ss"],
 }
 
