@@ -22,6 +22,9 @@ from ditrl import observations
 from ditrl.sites import Site, new_model, season_result
 
 UNLIMITED = 1e9  # budget used for full irrigation
+# Reward subtracted for a depth above the remaining budget ("penalty"). Subtracted rather than
+# replacing the step reward, so that a rejected last step still pays the season's yield.
+PENALTY = 1.0
 
 
 @dataclass
@@ -37,6 +40,8 @@ class EnvSpec:
                                          # "clip": depth is cut to the remaining budget
                                          # "reject": a depth above the remaining budget
                                          # is not applied at all (0 mm), without penalty
+                                         # "penalty": as reject, and PENALTY is subtracted
+                                         # from the reward of that step
     reward: str = "dense"                # "dense" | "terminal" | "profit"
     prices: dict = field(default_factory=dict)
     noise: dict = field(default_factory=dict)  # feature -> relative sd of observation noise
@@ -98,9 +103,13 @@ class IrrigationEnv(gym.Env):
 
     def step(self, action):
         proposed = self._depth(action)
-        rejected = self.spec_.constraint == "reject" and proposed > self.remaining + 1e-9
+        rejected = (self.spec_.constraint in ("reject", "penalty")
+                    and proposed > self.remaining + 1e-9)
         self.step_mm(0.0 if rejected else proposed)
-        reward = self._reward() * self.spec_.reward_scale
+        reward = self._reward()
+        if rejected and self.spec_.constraint == "penalty":
+            reward -= PENALTY
+        reward *= self.spec_.reward_scale
         self.decisions[-1].update(proposed_mm=proposed, step_reward=reward)
         info = season_result(self.model) if self.done else {}
         return self._observe(), reward, self.done, False, info

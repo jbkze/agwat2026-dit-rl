@@ -4,6 +4,8 @@ oracle decoding, the action mask and the budget cut in the environment, and the 
     .venv/Scripts/python tests/test_core.py      (or: pytest tests)
 """
 
+from dataclasses import replace
+
 import numpy as np
 
 from analysis.stats import holm
@@ -44,6 +46,21 @@ def test_reject_applies_nothing():
     env.step(cfg["depths"].index(8))   # 6 mm left: rejected, not cut to 6 mm
     assert np.isclose(env.used, 34.0)
     assert env.decisions[-1]["proposed_mm"] == 8.0 and env.decisions[-1]["applied_mm"] == 0.0
+
+
+def test_penalty_rejects_and_subtracts():
+    site = load_sites()["sites"]["tunis"]
+    cfg = agent_config("drl1_penalty", "tunis")
+    spec = EnvSpec(site=site, budget=40.0, years=[1980], observation="DRL1",
+                   depths=cfg["depths"], interval=5, constraint=cfg["constraint"])
+    rewards = {}
+    for constraint in ("reject", "penalty"):
+        env = IrrigationEnv(replace(spec, constraint=constraint))
+        env.reset(options={"year": 1980})
+        env.step(cfg["depths"].index(34))
+        _, rewards[constraint], *_ = env.step(cfg["depths"].index(8))  # rejected in both
+        assert np.isclose(env.used, 34.0)
+    assert np.isclose(rewards["penalty"], rewards["reject"] - 1.0)
 
 
 def test_holm():
