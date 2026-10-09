@@ -53,8 +53,8 @@ def cmd_run(args) -> None:
     from ditrl.runner import run
     plan = Plan.load(args.plan)
     shard_text = "/".join(map(str, args.shard)) if args.shard else None
-    failed = run(_selected_jobs(args, plan), plan, Store(args.runs), args.workers,
-                 args.selection, shard_text)
+    failed = run(_selected_jobs(args, plan), plan, Store(args.runs, args.resume_from),
+                 args.workers, args.selection, shard_text)
     raise SystemExit(1 if failed else 0)
 
 
@@ -89,6 +89,8 @@ def main() -> None:
         if name == "run":
             sub.add_argument("--workers", type=int,
                              default=max(1, (os.cpu_count() or 1) - RESERVED_CORES))
+            sub.add_argument("--resume-from", type=Path, metavar="RUNS",
+                             help="runs of an earlier round: continue their trained models")
 
     assets = commands.add_parser("assets", help="paper figures, tables and macros")
     assets.add_argument("action", choices=["stage", "export", "check"])

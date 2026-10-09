@@ -21,16 +21,25 @@ RESULT = "result.json"
 
 
 class Store:
-    def __init__(self, root: Path):
+    def __init__(self, root: Path, previous: Path | None = None):
         self.root = Path(root)
         self.jobs = self.root / "jobs"
         self.manifests = self.root / "manifests"
+        # Runs of an earlier round whose trained models are continued instead of started anew.
+        self.previous = Store(previous) if previous else None
 
     def job_dir(self, job: Job | str, job_id: str | None = None) -> Path:
         """Folder of a job, given as a Job or as experiment name and job id."""
         if isinstance(job, Job):
             return self.jobs / job.experiment / job.id
         return self.jobs / job / job_id
+
+    def resumable(self, job: Job) -> Path | None:
+        """Folder of this job's trained model from the earlier round, if there is one."""
+        if self.previous is None:
+            return None
+        folder = self.previous.job_dir(job)
+        return folder if (folder / "model.zip").exists() else None
 
     def done(self, job: Job) -> bool:
         return (self.job_dir(job) / RESULT).exists()
