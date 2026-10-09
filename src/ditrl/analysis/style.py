@@ -24,6 +24,11 @@ GRID = dict(linestyle="--", linewidth=0.5, color="gray", alpha=0.3)
 BAND_ALPHA = 0.2
 PANEL_WIDTH = 4.2   # inches per site panel
 PANEL_HEIGHT = 3.4
+SMALL_PANEL = 2.8   # inches, width and height of one panel in a row of many
+TALL_PANEL = (3.2, 5.2)   # inches, width and height of a column with two stacked panels
+DOT_ALPHA = 0.7
+MEAN_BAR_HALF_WIDTH = 0.25   # in units of the categorical x axis
+TICK_ROTATION = 60
 
 TAB10 = {"blue": "#4e79a7", "orange": "#f28e2b", "red": "#e15759", "teal": "#76b7b2",
          "green": "#59a14f", "purple": "#b07aa1", "brown": "#9c755f", "pink": "#ff9da7",

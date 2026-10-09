@@ -21,7 +21,6 @@ from ditrl.analysis import figures, macros, tables
 from ditrl.paths import LOCAL_PATHS, REPO
 from ditrl.plan import Plan
 from ditrl.runner import git
-from ditrl.store import Store
 
 STAGING = REPO / "paper_assets"
 PAPER_FOLDER = "generated"   # folder in the paper repo that receives the assets
@@ -52,14 +51,14 @@ def _paper_dir() -> Path:
     return Path(yaml.safe_load(LOCAL_PATHS.read_text())["paper_repo"]) / PAPER_FOLDER
 
 
-def _generate(plan: Plan, store: Store, target: Path, skip_missing: bool) -> dict[str, str]:
+def _generate(plan: Plan, results: Path, target: Path, skip_missing: bool) -> dict[str, str]:
     """Build every asset into `target`; returns its content hash, or why it was not built."""
     hashes = {}
     for rel, (generate, _) in ASSETS.items():
         out = target / rel
         out.parent.mkdir(parents=True, exist_ok=True)
         try:
-            generate(plan, store, out)
+            generate(plan, results, out)
             hashes[rel] = _sha(out)
         except FileNotFoundError as err:
             if not skip_missing:
@@ -77,25 +76,25 @@ def _write_manifest(target: Path, hashes: dict[str, str]) -> None:
     (target / "MANIFEST.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 
-def stage(plan: Plan, store: Store) -> None:
+def stage(plan: Plan, results: Path) -> None:
     """Into paper_assets/ only; an asset whose inputs are missing is reported and skipped."""
-    hashes = _generate(plan, store, STAGING, skip_missing=True)
+    hashes = _generate(plan, results, STAGING, skip_missing=True)
     _write_manifest(STAGING, hashes)
     built = sum(not h.startswith("not built") for h in hashes.values())
     print(f"staged {built} of {len(ASSETS)} assets in {STAGING}")
 
 
-def export(plan: Plan, store: Store) -> None:
-    hashes = _generate(plan, store, STAGING, skip_missing=False)
+def export(plan: Plan, results: Path) -> None:
+    hashes = _generate(plan, results, STAGING, skip_missing=False)
     _write_manifest(STAGING, hashes)
     shutil.copytree(STAGING, _paper_dir(), dirs_exist_ok=True)
     print(f"exported {len(ASSETS)} assets to {_paper_dir()}")
 
 
-def check(plan: Plan, store: Store) -> None:
+def check(plan: Plan, results: Path) -> None:
     dest = _paper_dir()
     with tempfile.TemporaryDirectory() as tmp:
-        fresh = _generate(plan, store, Path(tmp), skip_missing=False)
+        fresh = _generate(plan, results, Path(tmp), skip_missing=False)
     stale = [rel for rel, h in fresh.items() if not (dest / rel).exists() or _sha(dest / rel) != h]
     orphans = [p.relative_to(dest).as_posix() for p in dest.rglob("*")
                if p.is_file() and p.suffix != ".csv" and p.name != "MANIFEST.md"

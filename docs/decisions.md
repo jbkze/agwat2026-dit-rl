@@ -45,11 +45,11 @@ The manifest of `results/runs/2026-09-24_e1_benchmark` says `git_dirty: true`. T
 **Why:** a choice made on the test years makes the reported yields optimistic; the same rule for all methods keeps the comparisons fair. This replaces the entry of 2026-09-24 on model selection.
 
 ## 2026-10-09: Ablation in steps, with four budget handlings
-**Decision:** the ablation starts with the four variants agreed with the co-author (step A) and grows to the full 2 x 4 x 2 design (steps B to D). Budget handling has four levels: mask, cut, reject (0 mm, no penalty) and penalty (reject, and 1 subtracted from that step's reward).
-**Why:** step A is the agreed minimum; the later steps answer the question of interactions without repeating a run.
+**Decision:** the ablation starts with the four variants agreed with the co-author and grows to the full 2 x 4 x 2 design in three further parts. Budget handling has four levels: mask, cut, reject (0 mm, no penalty) and penalty (reject, and 1 subtracted from that step's reward).
+**Why:** the agreed part is the minimum; the later parts answer the question of interactions without repeating a run.
 
 ## 2026-10-09: One plan file, one folder per job
-**Decision:** sites, methods, experiments and analysis settings live in `config/plan.yaml`. Every job writes into `results/jobs/<experiment>/<job id>/`, and a job counts as done when its `result.json` exists. The command line selects stages or experiments and splits them into shards.
+**Decision:** sites, methods, experiments and analysis settings live in `config/plan.yaml`. Every job writes into its own folder `<runs>/jobs/<experiment>/<job id>/`, and a job counts as done when its `result.json` exists. The command line selects stages or experiments and splits them into shards.
 **Why:** the job list depends only on the plan, so any number of machines can each run a shard and their result folders merge by copying. A check on 47 reference jobs (all methods, both sites, the oracle) gave results identical to the last digit with the code before the change.
 
 ## 2026-10-09: Season starts are copied, not rebuilt
@@ -59,4 +59,8 @@ The manifest of `results/runs/2026-09-24_e1_benchmark` says `git_dirty: true`. T
 
 ## 2026-10-09: No unit tests in this repository
 **Decision:** the earlier `tests/test_core.py` was removed at the researcher's request. Correctness of a code change is checked by rerunning reference jobs and comparing them with the previous results.
+
+## 2026-10-09: Result tables in git, raw runs outside
+**Decision:** raw job folders (models, logs, about 1 MB per training) stay in `runs/` and in the server archive; `ditrl export` turns them into tables per experiment in `results/<experiment>/`, which are committed and pushed with every batch of results. Every job result records the commit of the code that produced it. Experiment names are descriptive (for example `ablation_one_change` instead of a step letter), and tables and figures name the methods by their design choices.
+**Why:** the researcher wants every incoming result in the repository in a structured form; the models of about 3,000 trainings would make the repository several GB large, the tables do not.
 

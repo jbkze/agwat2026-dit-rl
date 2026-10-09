@@ -5,6 +5,9 @@ __pycache__/
 scratch/
 .env
 config/paths.local.yaml
-# Results hold models and logs; they are archived on Zenodo, not in git. The tables are regenerable.
-results/
+# Raw job folders (models, logs) are archived on Zenodo, not in git; results/ holds their tables.
+runs/
+# Until the merge of fetched job folders is done, these stay local.
+results/fetched/
+results/jobs/
 paper_assets/

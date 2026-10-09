@@ -1,12 +1,11 @@
-"""Where results live, and how they are written.
+"""Where raw job results live, and how they are written.
 
-    <root>/jobs/<experiment>/<job id>/   one folder per job, written only by that job
-    <root>/manifests/                    one file per call of `ditrl run`: code, packages, machine
-    <root>/tables/                       flat tables built by `ditrl collect` (regenerable)
+    <runs>/jobs/<experiment>/<job id>/   one folder per job, written only by that job
+    <runs>/manifests/                    one file per call of `ditrl run`: code, packages, machine
 
 A job is done when its `result.json` exists; it is written last and atomically, so a half-finished
-job never counts as done and is simply run again. Because jobs never share a folder, result roots
-of several machines merge by copying their `jobs/` trees into one.
+job never counts as done and is simply run again. Because jobs never share a folder, the runs of
+several machines merge by copying their `jobs/` and `manifests/` folders into one.
 """
 
 from __future__ import annotations
@@ -26,7 +25,6 @@ class Store:
         self.root = Path(root)
         self.jobs = self.root / "jobs"
         self.manifests = self.root / "manifests"
-        self.tables = self.root / "tables"
 
     def job_dir(self, job: Job | str, job_id: str | None = None) -> Path:
         """Folder of a job, given as a Job or as experiment name and job id."""
@@ -36,6 +34,12 @@ class Store:
 
     def done(self, job: Job) -> bool:
         return (self.job_dir(job) / RESULT).exists()
+
+    def finished(self, experiment: str):
+        """Folders of the finished jobs of an experiment, sorted by job id."""
+        root = self.jobs / experiment
+        folders = sorted(root.iterdir()) if root.exists() else []
+        return [folder for folder in folders if (folder / RESULT).exists()]
 
 
 def write_json(path: Path, obj) -> None:
@@ -49,7 +53,7 @@ def read_json(path: Path):
     return json.loads(path.read_text(encoding="utf-8"))
 
 
-def write_csv(path: Path, rows: list[dict]) -> None:
+def write_csv(path: Path, rows: list[dict] | pd.DataFrame) -> None:
     pd.DataFrame(rows).to_csv(path, index=False)
 
 

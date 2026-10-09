@@ -8,14 +8,15 @@ Answer the reviewer requests with new experiments: ablation (E2), rules under th
 
 ## Entry points
 
-- `ditrl list|run <stage or experiment> [--shard I/N] [--workers N] [--results DIR]`
-- `ditrl collect`, `ditrl assets stage|export|check`
+- `ditrl list|run <stage or experiment> [--shard I/N] [--workers N]` (raw results in `runs/`, or `--runs DIR`)
+- `ditrl export <selection>` (tables in `results/<experiment>/`, committed and pushed), `ditrl assets stage|export|check`
 - `make install`, `make image`
 
 ## Conventions (enforced)
 
 - Every parameter lives in `config/plan.yaml`; code holds no unnamed numbers. A variant is a new method or experiment entry, never a code copy.
-- A job writes only into its own folder `results/jobs/<experiment>/<job id>/`; never edit a finished job folder.
+- A job writes only into its own folder `runs/jobs/<experiment>/<job id>/`; never edit a finished job folder. Every result that comes in is exported to `results/`, committed and pushed.
+- Experiment and method names stay inside the plan and the code; documents, tables and figures use descriptive names (`analysis/data.py: method_label`).
 - No unit tests (researcher's decision). A code change is checked by rerunning reference jobs and comparing them with the previous results number by number.
 - One-offs go to `scratch/` (not committed).
 - Paper numbers, figures and tables only through the asset registry `src/ditrl/analysis/assets.py`. Plots use `src/ditrl/analysis/style.py`; no heatmaps, no waterfalls.

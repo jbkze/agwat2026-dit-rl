@@ -45,7 +45,7 @@ def manifest(selection: list[str], shard: str | None, workers: int) -> dict:
         "shard": shard,
         "workers": workers,
         "commit": git("rev-parse", "HEAD") or os.environ.get(COMMIT_VARIABLE, "unknown"),
-        "uncommitted_changes": bool(git("status", "--porcelain")),
+        "uncommitted_changes": bool(git("status", "--porcelain", "--untracked-files=no")),
         "command": " ".join(sys.argv),
         "python": sys.version,
         "platform": platform.platform(),
@@ -71,8 +71,9 @@ def _keep_awake() -> None:
         ctypes.windll.kernel32.SetThreadExecutionState(continuous | system_required)
 
 
-def run_job(job: Job, plan: Plan, store: Store) -> tuple[str, str]:
-    """Worker process: run one job and write its result.json, or error.txt if it fails."""
+def run_job(job: Job, plan: Plan, store: Store, commit: str) -> tuple[str, str]:
+    """Worker process: run one job and write its result.json (with the code version that
+    produced it), or error.txt if it fails."""
     from ditrl.tasks import TASKS
 
     _single_thread()
@@ -89,6 +90,7 @@ def run_job(job: Job, plan: Plan, store: Store) -> tuple[str, str]:
         log.info("start %s/%s", job.experiment, job.id)
         result = TASKS[job.kind](job, plan, out, store)
         result["seconds"] = round(time.time() - start, 1)
+        result["commit"] = commit
         write_json(out / RESULT, result)
         log.info("done in %.0f s", result["seconds"])
         return job.id, "ok"
@@ -114,7 +116,7 @@ def run(jobs: list[Job], plan: Plan, store: Store, workers: int, selection: list
     _keep_awake()
     failed = 0
     with ProcessPoolExecutor(max_workers=workers) as pool:
-        futures = [pool.submit(run_job, job, plan, store) for job in pending]
+        futures = [pool.submit(run_job, job, plan, store, info["commit"]) for job in pending]
         for i, future in enumerate(as_completed(futures), 1):
             job_id, status = future.result()
             failed += status == "failed"

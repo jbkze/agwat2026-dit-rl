@@ -1,10 +1,5 @@
-"""Job folders -> flat tables in <results>/tables/ (regenerable, never edited by hand).
-
-For every table named in the plan (`analysis.tables`) three files are built from the finished
-jobs of its experiments: <name>_seasons.csv (one row per evaluated season), <name>_decisions.csv
-(one row per decision in a test season) and <name>_learning.csv (validation curves). In addition,
-oracle_ds.csv and oracle_ss.csv hold the oracle reference values.
-"""
+"""The result tables of results/<experiment>/, combined as the analysis needs them, and readable
+names for the methods."""
 
 from __future__ import annotations
 
@@ -12,113 +7,80 @@ from pathlib import Path
 
 import pandas as pd
 
+from ditrl.analysis import style
 from ditrl.paths import REPO
 from ditrl.plan import Plan
-from ditrl.store import RESULT, Store, read_csv, read_json
+from ditrl.store import read_csv
 
-# Method settings copied into every row, so that tables can be grouped by design choice.
-LABELS = ("observation", "constraint", "reward", "depths", "interval")
-NO_DECISIONS = {"robustness"}   # noisy re-evaluations: yields are enough
-ORACLE_MODES = {"ds": "oracle_ds", "ss": "oracle_ss"}   # mode -> experiment of the own oracle
+ORACLE_EXPERIMENTS = {"ds": "oracle_ds", "ss": "oracle_ss"}
 
 
-def finished(store: Store, experiments: list[str]):
-    """(job, folder) of every finished job of the experiments."""
-    for experiment in experiments:
-        root = store.jobs / experiment
-        for folder in sorted(root.glob("*")) if root.exists() else []:
-            if (folder / RESULT).exists():
-                yield read_json(folder / "job.json"), folder
+def _part(results: Path, experiment: str, part: str) -> pd.DataFrame | None:
+    for path in (results / experiment / f"{part}.csv", results / experiment / f"{part}.csv.gz"):
+        if path.exists():
+            return read_csv(path).assign(experiment=experiment)
+    return None
 
 
-def describe(job: dict) -> dict:
-    """The columns that identify a job in the tables."""
-    cfg = job["config"]
-    noise = cfg.get("noise") or {}
-    return {"experiment": job["experiment"], "job": job["id"], "kind": job["kind"],
-            "site": job["site"], "budget_mm": job["budget"], "seed": job["seed"],
-            "method": job["method"], **{label: str(cfg.get(label)) for label in LABELS},
-            "trained_on_year": (job["train_years"] or [None])[0],
-            "noise_sd": next(iter(noise.values()), None)}
+def table(plan: Plan, results: Path, name: str, part: str) -> pd.DataFrame:
+    """One part (jobs, seasons, learning, decisions, hyperparameters) of every experiment that
+    feeds the analysis table `name` in the plan; fails with a hint if none has results yet."""
+    found = (_part(results, experiment, part) for experiment in plan.analysis["tables"][name])
+    frames = [frame for frame in found if frame is not None]
+    if not frames:
+        raise FileNotFoundError(f"no {part} for {name!r} in {results}: "
+                                "run and export its experiments")
+    return pd.concat(frames, ignore_index=True)
 
 
-def table(store: Store, experiments: list[str], filename: str) -> pd.DataFrame:
-    """One file of every finished job, with the job's columns in front."""
-    frames = []
-    for job, folder in finished(store, experiments):
-        if (folder / filename).exists():
-            frame = read_csv(folder / filename)
-            frames.append(frame.assign(**describe(job))[list(describe(job)) + list(frame.columns)])
-    return pd.concat(frames, ignore_index=True) if frames else pd.DataFrame()
-
-
-def oracle_restarts(store: Store, experiment: str) -> pd.DataFrame:
-    rows = []
-    for job, folder in finished(store, [experiment]):
-        r = read_json(folder / RESULT)
-        single_year = job["years"][0] if len(job["years"]) == 1 else None
-        rows.append({"site": job["site"], "year": single_year,
-                     "budget_mm": job["budget"], "events": job["config"]["events"],
-                     "seed": job["seed"], "yield_t_ha": r["objective"], "used_mm": r["used_mm"],
-                     "generations": r["generations"], "stopped_by": r["stopped_by"]})
-    return pd.DataFrame(rows)
+def test_seasons(plan: Plan, results: Path, name: str) -> pd.DataFrame:
+    seasons = table(plan, results, name, "seasons")
+    return seasons[seasons["split"] == "test"]
 
 
 def best_restarts(restarts: pd.DataFrame, tolerance: float) -> pd.DataFrame:
-    """Best restart per case. A case is converged if the two best restarts differ by less than
-    `tolerance` t/ha and the best one stopped because it stalled, not at the generation cap."""
+    """Best oracle restart per case. A case is converged if the two best restarts differ by less
+    than `tolerance` t/ha and the best one stopped because it stalled, not at the generation cap."""
     def best(g: pd.DataFrame) -> pd.Series:
-        g = g.sort_values("yield_t_ha", ascending=False)
-        gap = g["yield_t_ha"].iloc[0] - g["yield_t_ha"].iloc[1] if len(g) > 1 else float("nan")
-        return pd.Series({"yield_t_ha": g["yield_t_ha"].iloc[0], "used_mm": g["used_mm"].iloc[0],
+        g = g.sort_values("objective", ascending=False)
+        gap = g["objective"].iloc[0] - g["objective"].iloc[1] if len(g) > 1 else float("nan")
+        return pd.Series({"yield_t_ha": g["objective"].iloc[0], "used_mm": g["used_mm"].iloc[0],
                           "restarts": len(g), "top2_gap": gap,
                           "converged": bool(gap < tolerance
                                             and g["stopped_by"].iloc[0] == "stall")})
-    return restarts.groupby(["site", "year", "budget_mm"], dropna=False).apply(best).reset_index()
+    cases = restarts.rename(columns={"oracle_year": "year"})
+    return cases.groupby(["site", "year", "budget_mm"], dropna=False).apply(best).reset_index()
 
 
-def oracle(plan: Plan, store: Store, mode: str) -> pd.DataFrame:
-    """EA-DS or EA-SS reference values (site, [year,] budget_mm, yield_t_ha) from the source
-    named in the plan."""
+def oracle(plan: Plan, results: Path, mode: str) -> pd.DataFrame:
+    """EA-DS ("ds") or EA-SS ("ss") reference values: site, [year,] budget_mm, yield_t_ha, from
+    the source named in the plan."""
     cfg = plan.analysis
     if cfg["oracle_source"] == "getoptis":
         return pd.read_csv(REPO / cfg["getoptis"][mode])
-    restarts = oracle_restarts(store, ORACLE_MODES[mode])
-    if restarts.empty:
-        return restarts
+    restarts = _part(results, ORACLE_EXPERIMENTS[mode], "jobs")
+    if restarts is None:
+        raise FileNotFoundError(f"no results of {ORACLE_EXPERIMENTS[mode]} yet")
     best = best_restarts(restarts, cfg["oracle_converged_within"])
     if not best["converged"].all():
         print(f"warning: {(~best['converged']).sum()} oracle {mode} cases are not converged")
     return best
 
 
-def collect(plan: Plan, store: Store) -> None:
-    store.tables.mkdir(parents=True, exist_ok=True)
-    files = {"seasons": "seasons.csv", "decisions": "decisions.csv", "learning": "learning.csv"}
-    for name, experiments in plan.analysis["tables"].items():
-        for part, filename in files.items():
-            if part == "decisions" and name in NO_DECISIONS:
-                continue
-            frame = table(store, experiments, filename)
-            if not frame.empty:
-                frame.to_csv(store.tables / f"{name}_{part}.csv", index=False)
-        print(f"{name}: {len(list(finished(store, experiments)))} finished jobs")
-    for mode in ORACLE_MODES:
-        values = oracle(plan, store, mode)
-        if not values.empty:
-            values.to_csv(store.tables / f"oracle_{mode}.csv", index=False)
-            print(f"oracle_{mode}: {len(values)} cases ({plan.analysis['oracle_source']})")
-
-
-def read(store: Store, name: str) -> pd.DataFrame:
-    """A table built by `collect`; fails with a hint if it is missing."""
-    path: Path = store.tables / f"{name}.csv"
-    if not path.exists():
-        raise FileNotFoundError(f"{path} is missing: run the experiments behind it, "
-                                "then ditrl collect")
-    return read_csv(path)
-
-
-def test_seasons(store: Store, name: str) -> pd.DataFrame:
-    df = read(store, f"{name}_seasons")
-    return df[df["split"] == "test"]
+def method_label(plan: Plan, method: str) -> str:
+    """A readable name: the fixed name of a main method, or DRL1 plus what the variant changes."""
+    if method in style.METHODS:
+        return style.METHODS[method][0]
+    reference = plan.analysis["ablation_reference"]
+    site = next(iter(plan.sites))
+    cfg, base = plan.method(method, site), plan.method(reference, site)
+    changes = [names[str(cfg[f])] for f, names in plan.analysis["ablation_factors"].items()
+               if str(cfg[f]) != str(base[f])]
+    if cfg["depths"] != base["depths"]:
+        changes.append(f"doses up to {max(cfg['depths']):g} mm")
+    if cfg["interval"] != base["interval"]:
+        changes.append("daily decisions" if cfg["interval"] == 1
+                       else f"decisions every {cfg['interval']} days")
+    if cfg.get("normalize") != base.get("normalize"):
+        changes.append("scaled observations")
+    return ", ".join([style.label(reference), *changes])
