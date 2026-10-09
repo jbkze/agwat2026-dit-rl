@@ -34,6 +34,18 @@ def test_mask_and_budget_cut():
     assert np.isclose(env.used, 40.0) and env.remaining == 0.0
 
 
+def test_reject_applies_nothing():
+    site = load_sites()["sites"]["tunis"]
+    cfg = agent_config("drl1_reject", "tunis")
+    env = IrrigationEnv(EnvSpec(site=site, budget=40.0, years=[1980], observation="DRL1",
+                                depths=cfg["depths"], interval=5, constraint=cfg["constraint"]))
+    env.reset(options={"year": 1980})
+    env.step(cfg["depths"].index(34))  # fits: applied in full
+    env.step(cfg["depths"].index(8))   # 6 mm left: rejected, not cut to 6 mm
+    assert np.isclose(env.used, 34.0)
+    assert env.decisions[-1]["proposed_mm"] == 8.0 and env.decisions[-1]["applied_mm"] == 0.0
+
+
 def test_holm():
     assert np.allclose(holm([0.01, 0.04, 0.03]), [0.03, 0.06, 0.06])
 

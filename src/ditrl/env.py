@@ -35,6 +35,8 @@ class EnvSpec:
     interval: int = 5                    # days between decisions
     constraint: str = "mask"             # "mask": infeasible depths cannot be chosen
                                          # "clip": depth is cut to the remaining budget
+                                         # "reject": a depth above the remaining budget
+                                         # is not applied at all (0 mm), without penalty
     reward: str = "dense"                # "dense" | "terminal" | "profit"
     prices: dict = field(default_factory=dict)
     noise: dict = field(default_factory=dict)  # feature -> relative sd of observation noise
@@ -96,7 +98,8 @@ class IrrigationEnv(gym.Env):
 
     def step(self, action):
         proposed = self._depth(action)
-        self.step_mm(proposed)
+        rejected = self.spec_.constraint == "reject" and proposed > self.remaining + 1e-9
+        self.step_mm(0.0 if rejected else proposed)
         reward = self._reward() * self.spec_.reward_scale
         self.decisions[-1].update(proposed_mm=proposed, step_reward=reward)
         info = season_result(self.model) if self.done else {}
