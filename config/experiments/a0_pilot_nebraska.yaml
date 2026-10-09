@@ -1,0 +1,12 @@
+# Pilot of the four-variant ablation: one run per variant and case, to check every code path and
+# measure the runtime before the 60 runs (4 variants x 3 cases x seeds 0-4). Seed 100 keeps the
+# pilot apart from those seeds. Variants change one component of DRL1 each: 18 variables,
+# reject instead of mask, terminal reward only. The final policy is evaluated, not the best
+# checkpoint. Nebraska is evaluated on years 71-100 of the synthetic series.
+name: a0_pilot_nebraska
+kind: methods
+agents: [drl1, drl1_obs, drl1_reject, drl1_terminal]
+overrides: {select: final}
+budgets:
+  nebraska: [75]
+seeds: [100, 100]

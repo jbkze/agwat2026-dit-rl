@@ -1,0 +1,10 @@
+# A few minutes: every variant of the ablation pilot at both sites with a short training, to test
+# the container image before the pilot is queued.
+name: a0_pilot_smoke
+kind: methods
+agents: [drl1, drl1_obs, drl1_reject, drl1_terminal]
+overrides: {select: final, timesteps: 1024, eval_every: 512}
+budgets:
+  tunis: [300]
+  nebraska: [75]
+seeds: [100, 100]

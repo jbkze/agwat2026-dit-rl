@@ -5,11 +5,13 @@
 #   observation   feature set (DRL1, KELLY, DRL1_FORECAST) or explicit list, see observations.py
 #   depths        discrete action set in mm; or max_depth for a continuous action 0..max_depth
 #   interval      days between decisions
-#   constraint    mask: infeasible depths cannot be chosen; clip: cut to the remaining budget
+#   constraint    mask: infeasible depths cannot be chosen; clip: cut to the remaining budget;
+#                 reject: a depth above the remaining budget is not applied (0 mm), no penalty
 #   reward        dense: relative ET per step + yield at the end; terminal: yield at the end;
 #                 profit: profit at the end
 #   normalize     fixed mean/std scaling from random seasons on the training years
 #   ppo           keyword arguments for PPO; empty = library defaults
+#   select        best (default): checkpoint with the best validation score; final: last policy
 # Heuristic keys
 #   rule, interval, params (fixed), grid (tuned on the training years), budget: null = unlimited
 
@@ -92,6 +94,9 @@ drl1_obs_clip:   {base: drl1, observation: KELLY, constraint: clip}
 drl1_obs_term:   {base: drl1, observation: KELLY, reward: terminal}
 drl1_clip_term:  {base: drl1, constraint: clip, reward: terminal}
 drl1_all_three:  {base: drl1, observation: KELLY, constraint: clip, reward: terminal}
+
+# Variant 3 of the four-variant ablation (config/experiments/a0_pilot_*.yaml): reject instead of mask.
+drl1_reject:     {base: drl1, constraint: reject}
 
 # Low-budget diagnosis (E4): larger doses and/or daily decisions on top of DRL1.
 drl1_large_doses: {base: drl1, depths: [0, 5, 13, 21, 34, 55, 89]}
