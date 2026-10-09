@@ -1,77 +1,73 @@
 # DIT-RL revision experiments
 
-Experiments for the major revision of *Benchmarking deep reinforcement learning strategies for
-the optimal scheduling of deficit irrigation systems* (Schütze, Kunze, Grové; Agricultural Water
-Management, manuscript AGWAT-D-26-00823). All methods schedule maize irrigation in AquaCrop-OSPy
-under a hard seasonal water budget: two DRL configurations (DRL1 and the reference DRL2 of
-Kelly et al. 2024), simple rules, and an optimizer with perfect weather foresight (the oracle).
+Experiments for the major revision of *Benchmarking deep reinforcement learning strategies for the optimal scheduling of deficit irrigation systems* (Schütze, Kunze, Grové; Agricultural Water Management, manuscript AGWAT-D-26-00823). All methods schedule maize irrigation in AquaCrop-OSPy under a hard seasonal water budget: two DRL configurations (DRL1 and the reference DRL2 of Kelly et al. 2024), simple rules, and an optimizer with perfect weather foresight (the oracle).
 
-The experiment plan, with the reviewer comment each experiment answers, is in
-[`docs/experiment-plan.md`](docs/experiment-plan.md). Design decisions are in
-[`docs/decisions.md`](docs/decisions.md).
+## Where things are
+
+| Path | Content |
+|---|---|
+| `config/plan.yaml` | the whole experiment plan: sites, methods, experiments by stage, analysis settings. Every number lives here |
+| `docs/experiment-plan.md` | why each experiment exists and which reviewer comment it answers |
+| `docs/decisions.md` | design decisions with date and reason |
+| `src/ditrl/` | the experiment code (below) |
+| `src/ditrl/analysis/` | tables, statistics, figures and LaTeX macros for the paper |
+| `data/` | Nebraska weather and external results (`data/README.md`) |
+| `results/` | job folders, manifests and tables; not in git |
+
+| Module | Role |
+|---|---|
+| `plan.py` | reads the plan and expands experiments into jobs |
+| `sites.py` | weather, soil and crop of a site; AquaCrop model of one season |
+| `env.py`, `observations.py` | the gymnasium environment shared by DRL agents and rules |
+| `drl.py`, `rules.py`, `oracle.py` | PPO training and evaluation, the scheduling rules, the genetic-algorithm oracle |
+| `tasks.py` | what one job does and which files it writes |
+| `runner.py`, `store.py` | parallel execution, manifests, the result layout |
+| `cli.py` | the `ditrl` command |
 
 ## Setup
 
 ```bash
-make install          # uv venv with Python 3.10 + all pinned dependencies (CPU torch)
-make smoke            # all code paths end to end in a few minutes
-make test             # minimal checks of budget handling and statistics
+make install
 ```
 
-Training runs on CPU. The GPU does not help: the crop model is sequential Python, and one job
-uses one core (threads are pinned). On the 64-core h200 server, `WORKERS=60` is a good value.
+This creates `.venv` with Python 3.10 and every dependency at a pinned version, including the AquaCrop fork at a fixed commit. On Windows the command is then `.venv/Scripts/ditrl`, on Linux `.venv/bin/ditrl`. Training runs on CPU: the crop model is sequential Python, so a GPU does not help.
 
-## Running an experiment
+## Running experiments
 
 ```bash
-make stage   STAGE=1 WORKERS=60                              # a whole stage, resumable
-make dry-run CONFIG=config/experiments/s1_ablation.yaml     # list the jobs of one experiment
-make run     CONFIG=config/experiments/s1_ablation.yaml WORKERS=60
-# one experiment after an interruption:
-.venv/bin/python scripts/run.py config/experiments/s1_ablation.yaml \
-    --resume results/runs/2026-09-30_s1_ablation
+ditrl list stage1                      # the jobs of stage 1 and how many are done
+ditrl run smoke smoke_oracle           # every code path in a few minutes
+ditrl run stage1                       # stage 1 on all cores but two
+ditrl run ablation_a --workers 8       # one experiment
 ```
 
-Each run writes `results/runs/<date>_<experiment>/` with a copy of all configs, a manifest (git
-commit, package versions, machine), a log, and one folder per job with its log, results, the
-trained model and the training curves. See the docstring of `src/ditrl/runner.py`.
+A selection is any mix of stages (`stage1`, `stage2`, `stage3`) and experiment names from `config/plan.yaml`. Finished jobs are skipped, so any command can be repeated after an interruption.
 
-The experiments are grouped in three stages (`docs/experiment-plan.md`): stage 1 is the
-minimum for the revision, stages 2 and 3 add to it. `make stage STAGE=1` runs stage 1;
-`STAGE=2` runs everything of stages 1 and 2 that is still missing, and so on.
+**On several machines.** `--shard I/N` runs part I of N equal parts of the job list. The job list depends only on the plan, so every machine derives the same parts. Each machine writes into its own result root (`--results DIR`); the roots merge by copying their `jobs/` folders into one, because no two jobs share a folder. The container image runs the same command:
 
-| Stage | Configs (`config/experiments/`) | DRL trainings |
-|---|---|---|
-| 1 | `s1_benchmark`, `s1_ablation` | 200 |
-| 2 | `s2_benchmark_seeds`, `s2_ablation_seeds`, `s2_ablation_interactions`, `s2_benchmark_budgets`, `s2_low_budget`, `s2_robustness` | 780 |
-| 3 | `s3_forecast`, `s3_test_year`, `s3_obs_scaled`, `s3_oracle_ds`, `s3_oracle_ss` | 480 + oracle |
+```bash
+make image
+docker run --rm -v "$PWD/results:/results" ditrl:<commit> --results /results run stage1 --shard 1/2 --workers 8
+```
 
-Checks and diagnoses that are already done: `check_*` (comparison with the published Tunis
-values) and `diag_drl2_*` (cause of the weak published DRL2 values, `docs/diagnosis-drl2.md`).
-
-## From runs to the paper
-
-1. `config/analysis.yaml` lists which runs feed each derived table; runs that do not exist yet
-   are skipped, so the analysis works after every stage.
-2. `make collect` builds flat tables in `results/derived/`.
-3. `make stage-assets` regenerates all figures, tables and `macros.tex` into `paper_assets/`
-   (registry: `analysis/assets.py`); assets whose inputs are missing are skipped.
-4. `make paper-assets` does the same and copies them into `generated/` of the paper repo (path in
-   `config/paths.local.yaml`); `make check-drift` before submission.
-
-**Oracle source.** The oracle values come from `data/external/getoptis_ea_*.csv`, which hold the
-published GET-OPTIS values of the manuscript tables. New GET-OPTIS results replace these files;
-the own pymoo oracle of stage 3 is used with `oracle.source: pymoo` in `config/analysis.yaml`.
-
-## Layout
+## Results
 
 ```
-config/          sites, methods, experiments, analysis (all parameters live here)
-src/ditrl/       sites.py (AquaCrop setup), env.py, observations.py, drl.py, heuristics.py,
-                 oracle.py, config.py (job expansion), jobs.py, runner.py
-scripts/run.py   command line entry point
-analysis/        collect.py, stats.py, fig_*.py, tables.py, macros.py, assets.py
-data/            Nebraska weather; external results
-results/         runs/ (immutable, not in git), derived/ (regenerable)
-docs/            experiment plan, decision log
+results/
+  jobs/<experiment>/<job id>/   one folder per job
+  manifests/                    one file per `ditrl run`: commit, packages, machine, selection, shard
+  tables/                       flat tables built by `ditrl collect`
 ```
+
+A job folder holds `job.json` (the full job: method settings, site, budget, seed), `job.log`, `result.json` (a summary; written last, so its presence marks the job as done) and, depending on the kind of job, `seasons.csv`, `decisions.csv`, `learning.csv`, `model.zip`, `hyperparameters.json`, `grid.csv` or `history.csv` (see `src/ditrl/tasks.py`). Seeds fix every random draw, so a job run again on the same code gives the same numbers.
+
+## From results to the paper
+
+```bash
+ditrl collect            # results/tables/: seasons, decisions and learning curves per table of the plan
+ditrl assets stage       # figures, tables and macros.tex into paper_assets/
+ditrl assets export      # the same, copied into generated/ of the paper repo (path in config/paths.local.yaml)
+ditrl assets check       # before submission: do the paper's assets match the current results?
+```
+
+`src/ditrl/analysis/assets.py` is the registry of everything that flows into the paper. The oracle reference values come from `data/external/getoptis_ea_*.csv` (published GET-OPTIS values) or from the own oracle, as set in `config/plan.yaml` (`analysis.oracle_source`).
