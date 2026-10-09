@@ -1,8 +1,0 @@
-# Stage 2 (standard). Seeds 5-9 for the stage-1 benchmark, 10 seeds in total.
-name: s2_benchmark_seeds
-kind: methods
-agents: [drl1, drl2]
-budgets:
-  tunis: [150, 200, 300, 400, 600]
-  nebraska: [75, 100, 125]
-seeds: [5, 9]

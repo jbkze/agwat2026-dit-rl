@@ -1,9 +1,0 @@
-# Ablation step C: the nine cells that complete the 2 x 4 x 2 design on the cases of step A.
-name: a3_factorial
-kind: methods
-agents: [drl1_obs_clip, drl1_obs_term, drl1_clip_term, drl1_obs_reject, drl1_obs_penalty,
-         drl1_reject_term, drl1_penalty_term, drl1_obs_reject_term, drl1_obs_penalty_term]
-budgets:
-  tunis: [300, 500]
-  nebraska: [75]
-seeds: 5

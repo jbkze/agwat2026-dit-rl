@@ -1,47 +1,35 @@
-"""Running an experiment: run folder, manifest, parallel jobs, resume.
+"""Running jobs in parallel, one process per job, and recording how they were run.
 
-Layout of one run:
-
-    results/runs/<YYYY-MM-DD>_<experiment>/
-        experiment.yaml        copy of the experiment config
-        config_snapshot/       copies of sites.yaml and agents.yaml at start
-        manifest.json          git commit, dirty flag, package versions, machine, command
-        jobs.jsonl             every job of the experiment, one JSON object per line
-        run.log                progress of the whole run
-        jobs/<job id>/         job.log, result.json and the files of that job
-
-A job counts as done when its `result.json` exists. Restarting with `--resume` skips done jobs,
-so an interrupted campaign continues where it stopped. A failed job writes `error.txt` and does
-not stop the others. Run folders are never overwritten.
+Jobs that are already done are skipped, so calling `run` again after an interruption continues
+where it stopped. A failed job writes `error.txt` and does not stop the others.
 """
 
 from __future__ import annotations
 
 import datetime as dt
-import json
 import logging
 import os
 import platform
-import shutil
 import subprocess
 import sys
 import time
 import traceback
 from concurrent.futures import ProcessPoolExecutor, as_completed
 from importlib import metadata
-from pathlib import Path
 
-from ditrl.config import CONFIG, expand, load_yaml
-from ditrl.sites import REPO
+from ditrl.paths import REPO
+from ditrl.plan import Job, Plan
+from ditrl.store import RESULT, Store, write_json
 
 log = logging.getLogger("ditrl")
+LOG_FORMAT = "%(asctime)s %(levelname)s %(name)s: %(message)s"
 PACKAGES = ("aquacrop", "numpy", "pandas", "gymnasium", "stable-baselines3", "sb3-contrib",
             "torch", "pymoo")
-FORMAT = "%(asctime)s %(levelname)s %(name)s: %(message)s"
+COMMIT_VARIABLE = "DITRL_COMMIT"   # set by the container build, which has no .git
 
 
-def _git(*args: str) -> str:
-    """Output of a git command, or "" where there is no git (the container image)."""
+def git(*args: str) -> str:
+    """Output of a git command in the repository, or "" where there is no git."""
     try:
         out = subprocess.run(["git", *args], cwd=REPO, capture_output=True, text=True)
     except FileNotFoundError:
@@ -49,112 +37,87 @@ def _git(*args: str) -> str:
     return out.stdout.strip()
 
 
-def manifest() -> dict:
+def manifest(selection: list[str], shard: str | None, workers: int) -> dict:
+    """Everything needed to tell how a set of results was produced."""
     return {
         "started": dt.datetime.now().isoformat(timespec="seconds"),
-        # The image has no .git; its build sets DITRL_COMMIT to the commit it was built from.
-        "git_commit": _git("rev-parse", "HEAD") or os.environ.get("DITRL_COMMIT", "unknown"),
-        "git_dirty": bool(_git("status", "--porcelain")),
+        "selection": selection,
+        "shard": shard,
+        "workers": workers,
+        "commit": git("rev-parse", "HEAD") or os.environ.get(COMMIT_VARIABLE, "unknown"),
+        "uncommitted_changes": bool(git("status", "--porcelain")),
         "command": " ".join(sys.argv),
         "python": sys.version,
         "platform": platform.platform(),
         "host": platform.node(),
         "cpu_count": os.cpu_count(),
-        "packages": {p: _version(p) for p in PACKAGES},
+        "packages": {p: metadata.version(p) for p in PACKAGES},
     }
 
 
-def _version(package: str) -> str:
-    try:
-        return metadata.version(package)
-    except metadata.PackageNotFoundError:
-        return "not installed"
-
-
-def _pin_threads() -> None:
-    """One job uses one core. Without this, every PyTorch process starts one thread per core
-    and parallel jobs slow each other down."""
+def _single_thread() -> None:
+    """One torch thread per job: parallel jobs would otherwise compete for every core. The
+    thread variables of numpy are set by the command line before anything is imported."""
     import torch
     torch.set_num_threads(1)
 
 
-def keep_awake() -> None:
-    """Stop Windows from going to standby while the run is active (the check runs on
-    2026-09-24 stalled for more than two hours during standby). Closing the lid still suspends."""
+def _keep_awake() -> None:
+    """Stop Windows from going to standby during a run (a laptop run stalled for two hours on
+    2026-09-24). Closing the lid still suspends."""
     if sys.platform == "win32":
         import ctypes
-        es_continuous, es_system_required = 0x80000000, 0x00000001
-        ctypes.windll.kernel32.SetThreadExecutionState(es_continuous | es_system_required)
+        continuous, system_required = 0x80000000, 0x00000001
+        ctypes.windll.kernel32.SetThreadExecutionState(continuous | system_required)
 
 
-def run_job(job: dict, job_dir: str) -> tuple[str, str]:
-    """Worker process: run one job and write result.json (or error.txt)."""
-    from ditrl.jobs import HANDLERS
+def run_job(job: Job, plan: Plan, store: Store) -> tuple[str, str]:
+    """Worker process: run one job and write its result.json, or error.txt if it fails."""
+    from ditrl.tasks import TASKS
 
-    _pin_threads()
-    out = Path(job_dir)
+    _single_thread()
+    out = store.job_dir(job)
     out.mkdir(parents=True, exist_ok=True)
+    (out / "error.txt").unlink(missing_ok=True)
+    write_json(out / "job.json", job.to_dict())
     handler = logging.FileHandler(out / "job.log", encoding="utf-8")
-    handler.setFormatter(logging.Formatter(FORMAT))
-    root = logging.getLogger()
-    root.handlers = [handler]
-    root.setLevel(logging.INFO)
+    handler.setFormatter(logging.Formatter(LOG_FORMAT))
+    logging.getLogger().handlers = [handler]
+    logging.getLogger().setLevel(logging.INFO)
     start = time.time()
     try:
-        log.info("start job %s", job["id"])
-        result = HANDLERS[job["kind"]](job, out)
+        log.info("start %s/%s", job.experiment, job.id)
+        result = TASKS[job.kind](job, plan, out, store)
         result["seconds"] = round(time.time() - start, 1)
-        tmp = out / "result.json.tmp"
-        tmp.write_text(json.dumps(result, indent=1, default=float))
-        tmp.replace(out / "result.json")  # atomic: a half-written result never counts as done
+        write_json(out / RESULT, result)
         log.info("done in %.0f s", result["seconds"])
-        return job["id"], "ok"
+        return job.id, "ok"
     except Exception:
-        (out / "error.txt").write_text(traceback.format_exc())
+        (out / "error.txt").write_text(traceback.format_exc(), encoding="utf-8")
         log.exception("job failed")
-        return job["id"], "failed"
+        return job.id, "failed"
 
 
-def run(experiment: Path, workers: int, resume: Path | None = None, limit: int | None = None,
-        tag: str = "", runs_dir: Path | None = None):
-    exp = load_yaml(experiment)
-    if resume is None:
-        runs_dir = runs_dir or REPO / "results" / "runs"
-        run_dir = runs_dir / f"{dt.date.today():%Y-%m-%d}_{exp['name']}{tag}"
-        if run_dir.exists():
-            raise FileExistsError(f"{run_dir} exists; use --resume to continue it")
-        run_dir.mkdir(parents=True)
-        shutil.copy(experiment, run_dir / "experiment.yaml")
-        (run_dir / "config_snapshot").mkdir()
-        for name in ("sites.yaml", "agents.yaml"):
-            shutil.copy(CONFIG / name, run_dir / "config_snapshot" / name)
-        (run_dir / "manifest.json").write_text(json.dumps(manifest(), indent=1))
-        jobs = expand(exp)
-        with open(run_dir / "jobs.jsonl", "w") as f:
-            f.writelines(json.dumps(j) + "\n" for j in jobs)
-    else:
-        run_dir = resume
-        jobs = [json.loads(line) for line in (run_dir / "jobs.jsonl").read_text().splitlines()]
-        with open(run_dir / "manifest_resumes.jsonl", "a") as f:
-            f.write(json.dumps(manifest()) + "\n")
-
-    logging.basicConfig(level=logging.INFO, format=FORMAT, handlers=[
-        logging.StreamHandler(), logging.FileHandler(run_dir / "run.log", encoding="utf-8")])
-    pending = [j for j in jobs if not (run_dir / "jobs" / j["id"] / "result.json").exists()]
-    n_done = len(jobs) - len(pending)
-    pending = pending[:limit] if limit else pending
-    log.info("%s: %d jobs, %d done, %d to run with %d workers", run_dir.name, len(jobs), n_done,
+def run(jobs: list[Job], plan: Plan, store: Store, workers: int, selection: list[str],
+        shard: str | None) -> int:
+    """Run the jobs that are not done yet; returns the number of failed jobs."""
+    store.manifests.mkdir(parents=True, exist_ok=True)
+    info = manifest(selection, shard, workers)
+    stamp = info["started"].replace(":", "")
+    write_json(store.manifests / f"{stamp}_{info['host']}_{os.getpid()}.json", info)
+    logging.basicConfig(level=logging.INFO, format=LOG_FORMAT, force=True)
+    pending = [job for job in jobs if not store.done(job)]
+    log.info("%d jobs, %d done, %d to run with %d workers", len(jobs), len(jobs) - len(pending),
              len(pending), workers)
-    if _git("status", "--porcelain"):
-        log.warning("working tree has uncommitted changes; results are not tied to a commit")
-
-    keep_awake()
+    if info["uncommitted_changes"]:
+        log.warning("uncommitted changes: these results are not tied to a commit")
+    _keep_awake()
     failed = 0
     with ProcessPoolExecutor(max_workers=workers) as pool:
-        futures = [pool.submit(run_job, j, str(run_dir / "jobs" / j["id"])) for j in pending]
-        for i, fut in enumerate(as_completed(futures), 1):
-            job_id, status = fut.result()
+        futures = [pool.submit(run_job, job, plan, store) for job in pending]
+        for i, future in enumerate(as_completed(futures), 1):
+            job_id, status = future.result()
             failed += status == "failed"
             log.info("[%d/%d] %s %s", i, len(pending), job_id, status)
-    log.info("finished: %d jobs ok, %d failed", len(pending) - failed, failed)
-    return run_dir
+    log.info("finished: %d ok, %d failed", len(pending) - failed, failed)
+    return failed

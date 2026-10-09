@@ -1,7 +1,0 @@
-# Stage 2 (standard). Low-budget diagnosis in Tunis (E4). DRL1 itself comes from the benchmark runs.
-name: s2_low_budget
-kind: methods
-agents: [drl1_large_doses, drl1_daily, drl1_large_daily]
-budgets:
-  tunis: [100, 125, 150, 200]
-seeds: 10

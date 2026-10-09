@@ -1,8 +1,0 @@
-# Stage 2 (standard). The remaining Tunis budgets of the crop water production function.
-# 0 mm needs no run: without rain and with the soil at wilting point, yield is 0 for every method.
-name: s2_benchmark_budgets
-kind: methods
-agents: [drl1, drl2, threshold, fixed_interval]
-budgets:
-  tunis: [100, 125, 500, 700, 725, 750, 800]
-seeds: 10

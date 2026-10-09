@@ -1,40 +1,38 @@
-"""Site setup: weather, soil, crop and the AquaCrop model for one season.
+"""Sites and the AquaCrop model of one season.
 
-All methods build their model through `new_model`, so DRL agents, heuristics and the
-oracle solve exactly the same simulation problem.
+Every method builds its model here, so DRL agents, rules and the oracle solve exactly the same
+simulation problem.
 """
 
 from __future__ import annotations
 
+import copy
 import os
-
-os.environ.setdefault("DEVELOPMENT", "DEVELOPMENT")  # the fork runs in plain Python/numba JIT mode
-# The fork creates numba AOT build objects at import time, which checks for a C compiler. In JIT
-# mode nothing is ever compiled ahead of time, so the check is skipped: Windows machines have no
-# MSVC, and the slim container image has no complete C toolchain.
-import numba.pycc.platform as _pycc_platform  # noqa: E402
-_pycc_platform.external_compiler_works = lambda: True
-
-import warnings
 from dataclasses import dataclass
-from functools import lru_cache
-from pathlib import Path
+from functools import cache
 
+import numba.pycc.platform
 import numpy as np
 import pandas as pd
 
-warnings.simplefilter("ignore", FutureWarning)
+from ditrl.paths import REPO
 
-from aquacrop import AquaCropModel, Crop, InitialWaterContent, IrrigationManagement, Soil  # noqa: E402
+# The AquaCrop fork imports the Python source of its solver functions in DEVELOPMENT mode.
+# Without it, the fork expects ahead-of-time compiled modules that it does not ship.
+os.environ.setdefault("DEVELOPMENT", "DEVELOPMENT")
+# At import time the fork still creates numba's ahead-of-time build objects, which look for a
+# C compiler. Nothing is compiled ahead of time in DEVELOPMENT mode, so the check is skipped.
+numba.pycc.platform.external_compiler_works = lambda: True
+
+from aquacrop import AquaCropModel, Crop, InitialWaterContent, IrrigationManagement, Soil  # noqa: E402, I001
 from aquacrop.utils import get_filepath, prepare_weather  # noqa: E402
 
-REPO = Path(__file__).resolve().parents[2]
-
-
-def year_range(bounds: list[int]) -> list[int]:
-    """Expand an inclusive range [first, last] from the config into a list of years."""
-    first, last = bounds
-    return list(range(first, last + 1))
+PACKAGED_WEATHER = "aquacrop:"  # prefix of weather files shipped with AquaCrop-OSPy
+# Irrigation method 5 applies whatever depth the caller sets for the next day; the cap on a single
+# application must not bind, because the caller already limits it.
+DEPTH_SET_BY_CALLER = 5
+NO_SINGLE_DEPTH_CAP_MM = 1000.0
+SCHEDULE = 3  # irrigation method: a fixed table of dates and depths
 
 
 @dataclass(frozen=True)
@@ -54,27 +52,35 @@ class Site:
 
     @classmethod
     def from_config(cls, name: str, cfg: dict) -> Site:
-        years = {k: year_range(cfg[k]) for k in ("train_years", "val_years", "test_years")}
-        rest = {k: v for k, v in cfg.items() if k not in years}
-        return cls(name=name, **rest, **years)
+        years = {k: inclusive_range(cfg[k]) for k in ("train_years", "val_years", "test_years")}
+        return cls(name=name, **{**cfg, **years})
+
+    def years(self, split: str) -> list[int]:
+        """Years of a split: train, val, test, or train_val."""
+        if split == "train_val":
+            return self.train_years + self.val_years
+        return getattr(self, f"{split}_years")
 
 
-@lru_cache(maxsize=None)
+def inclusive_range(bounds: list[int]) -> list[int]:
+    """The inclusive range [first, last] of the config (years or seeds) as a list."""
+    first, last = bounds
+    return list(range(first, last + 1))
+
+
+@cache
 def load_weather(source: str, rain: bool) -> pd.DataFrame:
-    """Read the daily weather once per process. Without rain, precipitation is set to 0."""
-    if source.startswith("aquacrop:"):
-        df = prepare_weather(get_filepath(source.removeprefix("aquacrop:")))
+    """Daily weather, read once per process. Without rain, precipitation is set to 0."""
+    if source.startswith(PACKAGED_WEATHER):
+        df = prepare_weather(get_filepath(source.removeprefix(PACKAGED_WEATHER)))
     else:
-        df = pd.read_csv(REPO / source)
-        df["Date"] = pd.to_datetime(df["Date"])
+        df = pd.read_csv(REPO / source, parse_dates=["Date"])
         df = df[["MinTemp", "MaxTemp", "Precipitation", "ReferenceET", "Date"]]
-    if not rain:
-        df = df.assign(Precipitation=0.0)
-    return df
+    return df if rain else df.assign(Precipitation=0.0)
 
 
 def new_model(site: Site, year: int, irrigation: IrrigationManagement) -> AquaCropModel:
-    """Create an AquaCrop model for one season of `site` in `year` (not yet started)."""
+    """AquaCrop model of one season of `site` in `year`, not started yet."""
     return AquaCropModel(
         sim_start_time=f"{year}/{site.planting_date}",
         sim_end_time=f"{year}/{site.season_end}",
@@ -84,6 +90,38 @@ def new_model(site: Site, year: int, irrigation: IrrigationManagement) -> AquaCr
         initial_water_content=InitialWaterContent(**site.initial_water_content),
         irrigation_management=irrigation,
     )
+
+
+class SeasonStarts:
+    """Started season models whose daily irrigation depth is set by the caller.
+
+    Building and initializing a model takes about 20 times longer than copying a started one, so
+    the first season of each year is kept as a template and every later one is a deep copy of it.
+    The copy starts from exactly the same state; the weather table is shared, not copied."""
+
+    def __init__(self, site: Site):
+        self.site = site
+        self._templates: dict[int, AquaCropModel] = {}
+
+    def __call__(self, year: int) -> AquaCropModel:
+        if year not in self._templates:
+            irrigation = IrrigationManagement(irrigation_method=DEPTH_SET_BY_CALLER,
+                                              MaxIrr=NO_SINGLE_DEPTH_CAP_MM)
+            model = new_model(self.site, year, irrigation)
+            model.run_model(num_steps=1, initialize_model=True)
+            self._templates[year] = model
+        template = self._templates[year]
+        return copy.deepcopy(template, {id(template.weather_df): template.weather_df})
+
+
+_STARTS: dict[str, SeasonStarts] = {}
+
+
+def season_starts(site: Site) -> SeasonStarts:
+    """The season starts of a site, shared by every environment in this process."""
+    if site.name not in _STARTS:
+        _STARTS[site.name] = SeasonStarts(site)
+    return _STARTS[site.name]
 
 
 def season_result(model: AquaCropModel) -> dict:
@@ -97,16 +135,10 @@ def season_result(model: AquaCropModel) -> dict:
 
 
 def simulate_schedule(site: Site, year: int, daily_depths: np.ndarray) -> dict:
-    """Run a whole season with a fixed daily irrigation schedule (mm per day from planting)."""
+    """A whole season with a fixed irrigation schedule (mm per day from planting)."""
     dates = pd.date_range(f"{year}/{site.planting_date}", periods=len(daily_depths))
     schedule = pd.DataFrame({"Date": dates, "Depth": np.asarray(daily_depths, float)})
-    model = new_model(site, year, IrrigationManagement(irrigation_method=3, Schedule=schedule))
+    irrigation = IrrigationManagement(irrigation_method=SCHEDULE, Schedule=schedule)
+    model = new_model(site, year, irrigation)
     model.run_model(till_termination=True)
     return season_result(model)
-
-
-def season_length(site: Site, year: int) -> int:
-    """Number of simulated days from planting to the configured season end."""
-    start = pd.Timestamp(f"{year}/{site.planting_date}")
-    end = pd.Timestamp(f"{year}/{site.season_end}")
-    return (end - start).days + 1

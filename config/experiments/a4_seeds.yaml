@@ -1,8 +1,0 @@
-# Ablation step D, part 1: seeds 5-9 for all 16 cells on the cases of steps A-C.
-name: a4_seeds
-kind: methods
-agents: [drl1, drl1_obs, drl1_reject, drl1_terminal, drl1_clip, drl1_penalty, drl1_all_three, drl1_obs_clip, drl1_obs_term, drl1_clip_term, drl1_obs_reject, drl1_obs_penalty, drl1_reject_term, drl1_penalty_term, drl1_obs_reject_term, drl1_obs_penalty_term]
-budgets:
-  tunis: [300, 500]
-  nebraska: [75]
-seeds: [5, 9]

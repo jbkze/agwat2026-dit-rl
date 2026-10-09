@@ -1,8 +1,0 @@
-# Stage 1 (minimum). DRL1, DRL2 and the rules under the same budget. 5 seeds.
-name: s1_benchmark
-kind: methods
-agents: [drl1, drl2, threshold, fixed_interval, full_irrigation]
-budgets:
-  tunis: [150, 200, 300, 400, 600]
-  nebraska: [75, 100, 125]
-seeds: 5

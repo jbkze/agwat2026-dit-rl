@@ -1,9 +1,0 @@
-# Stage 2 (standard). Benchmark models on the test years with noisy observations (E5).
-# source_runs: run folders or experiment names (then the newest run of that experiment).
-name: s2_robustness
-kind: evaluate
-source_runs: [s1_benchmark, s2_benchmark_seeds]
-noise:
-  features: [root_zone_water, deep_percolation]
-  sd: [0.05, 0.1, 0.2]        # relative standard deviation of Gaussian noise
-  seeds: 10

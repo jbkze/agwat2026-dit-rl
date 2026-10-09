@@ -1,9 +1,0 @@
-# Quick check of the oracle pipeline: one restart with a tiny population. Run with: make smoke
-name: smoke_oracle
-kind: oracle
-mode: ds
-years: test
-budgets: {tunis: [300]}
-restarts: {n_events: [6], seeds: [0]}
-window_days: {tunis: 134}
-ga: {pop_size: 8, tol: 0.001, period: 2, max_gen: 3, max_event_mm: 60, seeded_share: 0.5}

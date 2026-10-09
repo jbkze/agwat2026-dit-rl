@@ -1,23 +1,23 @@
 """Training and evaluation of PPO agents.
 
-With `constraint: mask` the agent is a MaskablePPO from sb3-contrib; otherwise it is a plain
-PPO from stable-baselines3. Hyperparameters are the library defaults unless the agent config
-sets them under `ppo`. The values actually used are written to `hyperparameters.json`.
+With `constraint: mask` the agent is a MaskablePPO from sb3-contrib, which applies the action mask
+both when sampling and in the policy update; otherwise it is a plain PPO from stable-baselines3.
+Hyperparameters are the library defaults unless the method sets them under `ppo`; the values
+actually used are written to `hyperparameters.json`.
 
-During training the policy is evaluated on the validation years every `eval_every` steps. The
-checkpoint with the highest mean validation yield is kept and later evaluated on the test years.
-With `select: final` the validation curve is still logged, but the policy after the last
-training step is evaluated instead (ablation: no selection on data that may be the test years).
+The policy after the last training step is the one that is tested; nothing is selected on
+evaluation data. Every `eval_every` steps the policy is also run on the validation years, only to
+record the learning curve.
 """
 
 from __future__ import annotations
 
 import json
-import logging
 from pathlib import Path
 
 import numpy as np
 from sb3_contrib import MaskablePPO
+from sb3_contrib.common.wrappers import ActionMasker
 from stable_baselines3 import PPO
 from stable_baselines3.common.callbacks import BaseCallback
 from stable_baselines3.common.logger import configure
@@ -26,14 +26,17 @@ from stable_baselines3.common.utils import set_random_seed
 
 from ditrl.env import EnvSpec, IrrigationEnv, profit
 
-log = logging.getLogger(__name__)
-
 HYPERPARAMETERS = ("learning_rate", "n_steps", "batch_size", "n_epochs", "gamma", "gae_lambda",
                    "clip_range", "ent_coef", "vf_coef", "max_grad_norm", "policy_kwargs", "seed")
+DEVICE = "cpu"   # the crop model is sequential Python; a GPU does not help
+
+
+def algorithm(spec: EnvSpec):
+    return MaskablePPO if spec.constraint == "mask" else PPO
 
 
 def run_policy(model, env: IrrigationEnv, year: int) -> dict:
-    """One deterministic season. Returns yield, water use and the decision log."""
+    """One season with deterministic actions (the most probable feasible depth)."""
     obs, _ = env.reset(options={"year": year})
     masked = isinstance(model, MaskablePPO)
     done, info = False, {}
@@ -48,46 +51,37 @@ def evaluate(model, spec: EnvSpec, years: list[int], seed: int | None = None) ->
     """Deterministic seasons for all `years`. `seed` fixes the observation noise, if any."""
     env = IrrigationEnv(spec)
     env.reset(seed=seed)
-    return [run_policy(model, env, y) for y in years]
+    return [run_policy(model, env, year) for year in years]
 
 
-class ValidationCallback(BaseCallback):
-    """Evaluates on the validation years, logs the curve and saves the best checkpoint.
-    The checkpoint is selected by the quantity the agent is trained on: mean profit for the
-    profit reward (as in Kelly's code), mean yield otherwise."""
+class LearningCurve(BaseCallback):
+    """Mean and lowest validation yield (and mean profit) every `every` training steps."""
 
-    def __init__(self, spec: EnvSpec, years: list[int], every: int, out: Path):
+    def __init__(self, spec: EnvSpec, every: int):
         super().__init__()
-        self.spec, self.years, self.every, self.out = spec, years, every, out
-        self.best = -np.inf
-        self.curve: list[dict] = []
+        self.spec, self.every = spec, every
+        self.points: list[dict] = []
 
     def _on_step(self) -> bool:
         if self.n_calls % self.every == 0:
-            self._check()
+            self._record()
         return True
 
     def _on_training_end(self) -> None:
-        self._check()
+        self._record()
 
-    def _check(self) -> None:
-        seasons = evaluate(self.model, self.spec, self.years)
-        yields = [r["yield_t_ha"] for r in seasons]
-        profits = [profit(r, self.spec.prices) for r in seasons] if self.spec.prices else [np.nan]
-        score = float(np.mean(profits if self.spec.reward == "profit" else yields))
-        self.curve.append({"step": self.num_timesteps, "val_mean_yield": float(np.mean(yields)),
-                           "val_min_yield": float(np.min(yields)),
-                           "val_mean_profit": float(np.mean(profits)), "selection_score": score})
-        if score > self.best:
-            self.best = score
-            self.model.save(self.out / "best_model.zip")
-        log.info("step %d: mean validation yield %.3f t/ha, selection score %.3f (best %.3f)",
-                 self.num_timesteps, float(np.mean(yields)), score, self.best)
+    def _record(self) -> None:
+        seasons = evaluate(self.model, self.spec, self.spec.years)
+        yields = [s["yield_t_ha"] for s in seasons]
+        profits = [profit(s, self.spec.prices) for s in seasons]
+        self.points.append({"step": self.num_timesteps, "val_mean_yield": float(np.mean(yields)),
+                            "val_min_yield": float(np.min(yields)),
+                            "val_mean_profit": float(np.mean(profits))})
 
 
 def observation_scale(spec: EnvSpec, seasons: int, seed: int) -> dict:
-    """Mean and standard deviation of each observation value under random decisions on the
-    training years (the normalization of Kelly et al.). Values are then fixed for the run."""
+    """Mean and standard deviation of every observation value under random decisions on the
+    training years (the normalization of Kelly et al.), fixed for the whole run."""
     env = IrrigationEnv(spec)
     env.action_space.seed(seed)
     rows = []
@@ -102,26 +96,28 @@ def observation_scale(spec: EnvSpec, seasons: int, seed: int) -> dict:
     return {"mean": rows.mean(axis=0).tolist(), "std": np.where(std > 0, std, 1.0).tolist()}
 
 
-def train(train_spec: EnvSpec, val_spec: EnvSpec, agent: dict, seed: int, out: Path):
-    """Train one agent and return the best checkpoint (by validation yield), or the final
-    policy with `select: final`."""
+def train(train_spec: EnvSpec, val_spec: EnvSpec, cfg: dict, seed: int, out: Path):
+    """Train one agent; returns the policy after the last step and its learning curve."""
     set_random_seed(seed)
-    env = Monitor(IrrigationEnv(train_spec), filename=str(out / "monitor"))
+    env = Monitor(IrrigationEnv(train_spec), filename=str(out / "training"))
+    algo = algorithm(train_spec)
+    if algo is MaskablePPO:
+        # The mask is read from the environment itself rather than through the Monitor wrapper.
+        env = ActionMasker(env, lambda e: e.unwrapped.action_masks())
     env.reset(seed=seed)
-    algo = MaskablePPO if train_spec.constraint == "mask" else PPO
-    model = algo("MlpPolicy", env, seed=seed, device="cpu", verbose=0, **agent.get("ppo", {}))
-    model.set_logger(configure(str(out), ["csv"]))  # training statistics -> progress.csv
+    model = algo("MlpPolicy", env, seed=seed, device=DEVICE, verbose=0, **cfg.get("ppo", {}))
+    model.set_logger(configure(str(out), ["csv"]))   # training statistics -> progress.csv
     params = {k: getattr(model, k, None) for k in HYPERPARAMETERS}
-    params["clip_range"] = model.clip_range(1.0)  # stored as a schedule; the value is constant
+    params["clip_range"] = model.clip_range(1.0)     # stored as a schedule; the value is constant
     params["algorithm"] = algo.__name__
     params["net_arch"] = str(model.policy.net_arch)
-    (out / "hyperparameters.json").write_text(json.dumps(params, indent=2, default=str))
+    (out / "hyperparameters.json").write_text(json.dumps(params, indent=1, default=str))
 
-    callback = ValidationCallback(val_spec, val_spec.years, agent["eval_every"], out)
-    model.learn(total_timesteps=agent["timesteps"], callback=callback)
-    with open(out / "validation_curve.json", "w") as f:
-        json.dump(callback.curve, f, indent=1)
-    if agent.get("select", "best") == "final":
-        model.save(out / "final_model.zip")
-        return model
-    return algo.load(out / "best_model.zip", device="cpu")
+    curve = LearningCurve(val_spec, cfg["eval_every"])
+    model.learn(total_timesteps=cfg["timesteps"], callback=curve)
+    model.save(out / "model.zip")
+    return model, curve.points
+
+
+def load(spec: EnvSpec, path: Path):
+    return algorithm(spec).load(path, device=DEVICE)

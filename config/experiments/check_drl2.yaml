@@ -1,7 +1,0 @@
-# Check of the re-implemented DRL2 after scaling its continuous action (docs/decisions.md,
-# 2026-09-24). Published Tunis values, 1980: 0.5 / 6.7 / 11.9 t/ha at 300 / 400 / 600 mm.
-name: check_drl2
-kind: methods
-agents: [drl2]
-budgets: {tunis: [300, 400, 600]}
-seeds: 1
