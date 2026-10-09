@@ -1,6 +1,6 @@
 # Experiment plan for the DIT-RL revision
 
-Status: 2026-10-09 (ablation rebuilt in steps A to D around the four variants agreed with the co-author, and every DRL method now evaluates its last policy). Every number of this plan (sites, budgets, seeds, methods, settings) is defined in `config/plan.yaml`; this document says why each experiment exists. The plan is built in three stages. Stage 1 contains the minimum the revision needs; stages 2 and 3 add to it without repeating anything. Each stage ends with a complete set of results, so the campaign can stop after any stage, depending on the time left.
+Status: 2026-10-09 (ablation rebuilt around the variants agreed with the co-author, growing to the full design, and every DRL method now evaluates its last policy). Every number of this plan (sites, budgets, seeds, methods, settings) is defined in `config/plan.yaml`; this document says why each experiment exists. The plan is built in three stages. Stage 1 contains the minimum the revision needs; stages 2 and 3 add to it without repeating anything. Each stage ends with a complete set of results, so the campaign can stop after any stage, depending on the time left.
 
 It covers every experiment that the reviewers ask for, directly or through the to-do notes in the response letter (version of 2026-09-22). Three items are out of scope because no reviewer asks for them: stress tests under a shifted climate, a second crop model or crop, and extracting a readable rule from a trained policy.
 
@@ -34,8 +34,8 @@ The DRL2 settings above follow the manuscript text and the Tunis code that produ
 
 | Stage | What it adds | DRL trainings | Laptop (14 workers) | Two servers, 8 cores each |
 |---|---|---|---|---|
-| 1 Minimum | benchmark at 8 budgets, rules, 5 seeds; ablation step A (four variants, three cases) with its pilot | 140 (+ 12 in the pilot) | about 17 h | about 6 h |
-| 2 Standard | 10 seeds, all Tunis budgets, low-budget diagnosis, noise; ablation steps B to D up to the full 2 x 4 x 2 design | 1,720 | about 8 days | about 2.5 days |
+| 1 Minimum | benchmark at 8 budgets, rules, 5 seeds; the agreed ablation (DRL1 and three variants, three cases) with its pilot | 140 (+ 12 in the pilot) | about 17 h | about 6 h |
+| 2 Standard | 10 seeds, all Tunis budgets, low-budget diagnosis, noise; the rest of the ablation up to the full 2 x 4 x 2 design | 1,720 | about 8 days | about 2.5 days |
 | 3 Complete | value of weather information, scaling check, own pymoo oracle | 480 + 972 oracle restarts | about 5 days | about 15 h |
 
 Training times are measured: on the laptop, 14 parallel trainings of 300,000 steps take about 100 minutes, i.e. about 8 trainings per hour; measured in the pilot of the ablation on 2026-10-09 with all runs of a job side by side on a server with 8 cores per job: 30 to 35 minutes per Tunis training (8 at once) and 24 to 27 minutes per Nebraska training (4 at once), so two such servers manage about 27 trainings per hour. The code was about 25 % faster per training after that measurement (season starts copied instead of rebuilt), which the table does not count yet. The oracle times in stage 3 are a rough estimate from about 0.1 to 0.15 seconds per simulated season. Rules and evaluations take minutes and are left out of the table.
@@ -51,8 +51,8 @@ Enough to answer the requests that the reviewers share: ablation, simple rules, 
 | Experiment | Content | Jobs |
 |---|---|---|
 | `benchmark` | DRL1, DRL2, threshold rule, fixed-interval rule, full irrigation; Tunis 150, 200, 300, 400, 600 mm; Nebraska 75, 100, 125 mm; 5 seeds | 80 DRL + 18 rules |
-| `ablation_pilot` | pilot of ablation step A: every variant once per case, seed 100, to check the code and measure the runtime (done on 2026-10-09; not part of a stage) | 12 DRL |
-| `ablation_a` | ablation step A (E2): four variants, Tunis 300 and 500 mm, Nebraska 75 mm, seeds 0-4 | 60 DRL |
+| `ablation_pilot` | pilot of the agreed ablation: every variant once per case, seed 100, to check the code and measure the runtime (done on 2026-10-09; not part of a stage) | 12 DRL |
+| `ablation_one_change` | the agreed ablation (E2): DRL1 and three variants that change one design choice each, Tunis 300 and 500 mm, Nebraska 75 mm, seeds 0-4 | 60 DRL |
 
 Without extra runs, stage 1 also gives: the hyperparameter table (R2#3), the masking pseudocode (R3#6), the actions chosen at 150 and 200 mm (first part of R3#3), per-year yields and the lower tail in Nebraska (first part of R1#4), learning curves (E6) and the ex post profit (E7). The diagnosis runs for DRL2 are done (`docs/diagnosis-drl2.md`).
 
@@ -65,12 +65,12 @@ Makes stage 1 statistically solid and complete across budgets.
 | Experiment | Content | Jobs |
 |---|---|---|
 | `benchmark_seeds` | seeds 5-9 for DRL1 and DRL2 of stage 1 | 80 DRL |
-| `ablation_b` | ablation step B (E2): cut and penalty as further budget handling, and the full Kelly cell | 45 DRL |
-| `ablation_c` | ablation step C (E2): the nine cells that complete the 2 x 4 x 2 design | 135 DRL |
+| `ablation_budget_handling` | ablation (E2): cut and penalty as further budget handling, and the full Kelly cell | 45 DRL |
+| `ablation_interactions` | ablation (E2): the nine cells that complete the 2 x 4 x 2 design | 135 DRL |
 | `benchmark_budgets` | the remaining Tunis budgets 100, 125, 500, 700, 725, 750, 800 mm (0 mm gives 0 t/ha for every method and needs no run); 10 seeds | 140 DRL + 14 rules |
 | `low_budget` | E4 below, 10 seeds | 120 DRL |
 | `robustness` | benchmark models of stages 1 and 2 with noisy observations | evaluation only |
-| `ablation_d_seeds`, `ablation_d_budgets` | ablation step D (E2): seeds 5-9 for all 16 cells, then all 16 cells at the other budgets of the ablation | 240 + 960 DRL |
+| `ablation_more_seeds`, `ablation_more_budgets` | ablation (E2): seeds 5-9 for all 16 cells, then all 16 cells at the other budgets of the ablation | 240 + 960 DRL |
 
 Answers in addition: R1#4 and R2#5 (noise), R3#3 (why DRL fails at low budgets), and the full crop water production function of RQ (i).
 
@@ -119,9 +119,9 @@ Output: crop water production function per site with the spread over seeds, yiel
 
 Answers: R1#5 (simple heuristics), R3#3 (together with E4), RQ (i).
 
-### E2: Ablation of the three design choices (step A in stage 1, steps B to D in stage 2)
+### E2: Ablation of the three design choices (agreed part in stage 1, the rest in stage 2)
 
-The ablation grows in four steps. Step A is the part agreed with the co-author and is required. Every later step adds cells, seeds or budgets without repeating anything, so the ablation can stop after any step. Action set and decision interval stay at the DRL1 values throughout, so that masking is possible in every cell.
+The ablation grows in four parts. The first is the part agreed with the co-author and is required. Every later part adds cells, seeds or budgets without repeating anything, so the ablation can stop after any step. Action set and decision interval stay at the DRL1 values throughout, so that masking is possible in every cell.
 
 | Factor | Levels |
 |---|---|
@@ -135,17 +135,17 @@ With reject and penalty the policy proposes a depth u_t and the simulator applie
 
 The mask follows Huang and Ontañón (2022, FLAIRS-35): masked depths get probability 0 when an action is sampled, and the masks are stored with each transition and applied again when the PPO update computes log-probabilities, ratios and entropy (MaskablePPO, sb3-contrib 2.3.0). At evaluation the agent takes the most probable feasible depth. The remaining budget is also part of the observation. If a masked depth ever reached the simulator, the environment stops with an error instead of cutting it, so DRL1 cannot turn into the cut variant unnoticed. In the terms of Krasowski et al. (2023, TMLR) the four budget handlings are masking, projection (cut), replacement by 0 mm (reject), and replacement with a penalty.
 
-| Step | Experiment | Cells | Cases | Seeds | Runs |
+| Part | Experiment | Cells | Cases | Seeds | Runs |
 |---|---|---|---|---|---|
-| Pilot | `ablation_pilot` | the four of step A | as in step A | 100 | 12 |
-| A (required) | `ablation_a` | DRL1; 18 variables; reject; reward at the end only | Tunis 300 mm, Tunis 500 mm (test season 1980), Nebraska 75 mm (test years 71-100) | 0-4 | 60 |
-| B | `ablation_b` | cut; penalty; the full Kelly cell (18 variables, cut, reward at the end) | as in step A | 0-4 | 45 |
-| C | `ablation_c` | the nine cells that complete the 2 x 4 x 2 design | as in step A | 0-4 | 135 |
-| D | `ablation_d_seeds`, `ablation_d_budgets` | all 16 cells | as in step A, then Tunis 150, 200, 400, 600 mm and Nebraska 100, 125 mm | 5-9, then 0-9 | 1,200 |
+| Pilot | `ablation_pilot` | the four of the agreed part | as in the agreed part | 100 | 12 |
+| Agreed, required | `ablation_one_change` | DRL1; 18 variables; reject; reward at the end only | Tunis 300 mm, Tunis 500 mm (test season 1980), Nebraska 75 mm (test years 71-100) | 0-4 | 60 |
+| Budget handling | `ablation_budget_handling` | cut; penalty; the full Kelly cell (18 variables, cut, reward at the end) | as in the agreed part | 0-4 | 45 |
+| Interactions | `ablation_interactions` | the nine cells that complete the 2 x 4 x 2 design | as in the agreed part | 0-4 | 135 |
+| More seeds and budgets | `ablation_more_seeds`, `ablation_more_budgets` | all 16 cells | as in the agreed part, then Tunis 150, 200, 400, 600 mm and Nebraska 100, 125 mm | 5-9, then 0-9 | 1,200 |
 
-Before step A runs: the training budget, PPO hyperparameters, network, reward scaling, discounting, normalization and software versions are written into the configuration table from the run folders (`hyperparameters.json`, `manifest.json`), and the pilot gives the runtime. A run that fails is restarted with the same seed and reported. A seed is never replaced by another one.
+Before the agreed part runs: the training budget, PPO hyperparameters, network, reward scaling, discounting, normalization and software versions are written into the configuration table from the run folders (`hyperparameters.json`, `manifest.json`), and the pilot gives the runtime. A run that fails is restarted with the same seed and reported. A seed is never replaced by another one.
 
-Evaluation per run: mean test yield (1 season in Tunis, 30 in Nebraska) of the final policy with deterministic actions. Per variant and case, the paired difference to DRL1 over the same seed; positive values mean that the change costs yield. Nebraska in addition: the 10 % quantile of yield per trained policy (for 30 years the fourth-lowest value, as in the main analysis), then summarized across seeds. Years and seeds are not pooled into one distribution. From step C on, the main effect of each factor is paired over the other factors, with a bootstrap interval, a Wilcoxon signed-rank test and Holm correction over all factors, sites and budgets (`analysis/stats.py`).
+Evaluation per run: mean test yield (1 season in Tunis, 30 in Nebraska) of the final policy with deterministic actions. Per variant and case, the paired difference to DRL1 over the same seed; positive values mean that the change costs yield. Nebraska in addition: the 10 % quantile of yield per trained policy (for 30 years the fourth-lowest value, as in the main analysis), then summarized across seeds. Years and seeds are not pooled into one distribution. Once the interactions have run, the main effect of each factor is paired over the other factors, with a bootstrap interval, a Wilcoxon signed-rank test and Holm correction over all factors, sites and budgets (`src/ditrl/analysis/stats.py`).
 
 Reporting: configuration table, result table over all cells and cases, and a plot of the paired differences per comparison. The spread across seeds is always shown.
 

@@ -3,9 +3,9 @@
 #
 #   ditrl list  <selection>                       jobs of a selection and how many are done
 #   ditrl run   <selection> [--shard I/N]         run them (resumable), on any number of machines
-#   ditrl collect                                 tables for the analysis
+#   ditrl export <selection>                      result tables in results/<experiment>/
 #
-# A selection is a stage ("stage1"), an experiment name ("ablation_a"), or several of them.
+# A selection is a stage ("stage1"), an experiment name ("ablation_one_change"), or several of them.
 
 # --- Sites -----------------------------------------------------------------------------------------
 # Every method (DRL, rules, oracle) builds its AquaCrop model from these entries, so all methods
@@ -183,27 +183,28 @@ experiments:
     budgets: {tunis: [150, 200, 300, 400, 600], nebraska: all}
     seeds: [0, 4]
 
-  ablation_pilot:              # runtime check before step A; seed 100 stays apart from 0-9
+  ablation_pilot:              # runtime check before the required part; seed 100 stays apart from 0-9
     kind: methods
     methods: [drl1, drl1_obs, drl1_reject, drl1_terminal]
     budgets: {tunis: [300, 500], nebraska: [75]}
     seeds: [100, 100]
 
-  ablation_a:                  # required: the four variants agreed with the co-author
+  ablation_one_change:         # required: DRL1 and the three variants agreed with the co-author,
+                               # each changing one design choice
     stage: 1
     kind: methods
     methods: [drl1, drl1_obs, drl1_reject, drl1_terminal]
     budgets: {tunis: [300, 500], nebraska: [75]}
     seeds: [0, 4]
 
-  ablation_b:                  # the other budget handlings and the full Kelly cell
+  ablation_budget_handling:    # the other budget handlings, and the full Kelly cell
     stage: 2
     kind: methods
     methods: [drl1_clip, drl1_penalty, drl1_obs_clip_terminal]
     budgets: {tunis: [300, 500], nebraska: [75]}
     seeds: [0, 4]
 
-  ablation_c:                  # the cells that complete the 2 x 4 x 2 design
+  ablation_interactions:       # the cells that complete the 2 x 4 x 2 design
     stage: 2
     kind: methods
     methods: [drl1_obs_reject, drl1_obs_clip, drl1_obs_penalty, drl1_obs_terminal,
@@ -241,10 +242,10 @@ experiments:
     noise_sd: [0.05, 0.1, 0.2]    # relative standard deviation of Gaussian noise
     seeds: [0, 9]
 
-  ablation_d_seeds:            # seeds 5-9 for all 16 cells on the cases of steps A-C
+  ablation_more_seeds:         # seeds 5-9 for all 16 cells on the same three cases
     stage: 2
     kind: methods
-    methods: &ablation_cells [drl1, drl1_obs, drl1_reject, drl1_clip, drl1_penalty, drl1_terminal,
+    methods: &all_ablation_cells [drl1, drl1_obs, drl1_reject, drl1_clip, drl1_penalty, drl1_terminal,
                               drl1_obs_reject, drl1_obs_clip, drl1_obs_penalty, drl1_obs_terminal,
                               drl1_reject_terminal, drl1_clip_terminal, drl1_penalty_terminal,
                               drl1_obs_reject_terminal, drl1_obs_clip_terminal,
@@ -252,10 +253,10 @@ experiments:
     budgets: {tunis: [300, 500], nebraska: [75]}
     seeds: [5, 9]
 
-  ablation_d_budgets:          # all 16 cells at the other budgets of the ablation
+  ablation_more_budgets:       # all 16 cells at the other budgets of the ablation
     stage: 2
     kind: methods
-    methods: *ablation_cells
+    methods: *all_ablation_cells
     budgets: {tunis: [150, 200, 400, 600], nebraska: [100, 125]}
     seeds: [0, 9]
 
@@ -319,10 +320,11 @@ experiments:
 
 # --- Analysis --------------------------------------------------------------------------------------
 analysis:
-  # Which experiments feed each table in results/tables/; experiments without results are skipped.
+  # Which experiments feed each analysis table; experiments without results are skipped.
   tables:
     benchmark: [benchmark, benchmark_seeds, benchmark_budgets]
-    ablation: [ablation_a, ablation_b, ablation_c, ablation_d_seeds, ablation_d_budgets, obs_scaled]
+    ablation: [ablation_one_change, ablation_budget_handling, ablation_interactions,
+               ablation_more_seeds, ablation_more_budgets, obs_scaled]
     low_budget: [benchmark, benchmark_seeds, benchmark_budgets, low_budget]
     robustness: [robustness]
     forecast: [forecast]
