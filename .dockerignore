@@ -1,0 +1,13 @@
+.venv
+.git
+results
+paper_assets
+scratch
+analysis
+tests
+docs
+**/__pycache__
+*.egg-info
+config/paths.local.yaml
+.env
+tmp-results

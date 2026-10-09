@@ -9,3 +9,4 @@ config/paths.local.yaml
 results/runs/
 paper_assets/
 results/*.log
+tmp-results/
