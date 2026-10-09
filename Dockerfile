@@ -1,5 +1,5 @@
 # Image for running a shard of the plan anywhere, e.g. as a CPU-only job on a shared server.
-#   docker build --build-arg COMMIT=$(git rev-parse --short HEAD) -t ditrl .
+#   make image          (builds the committed code: git archive HEAD | docker build -)
 #   docker run --rm -v "$PWD/results:/results" ditrl --results /results run smoke --workers 4
 FROM python:3.10.15-slim
 # git: pip installs the AquaCrop fork from GitHub.
