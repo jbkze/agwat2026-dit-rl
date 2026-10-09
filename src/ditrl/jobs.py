@@ -108,7 +108,8 @@ def run_evaluate(job: dict, out: Path) -> dict:
     if (src_dir / "scale.json").exists():
         spec = replace(spec, scale=json.loads((src_dir / "scale.json").read_text()))
     algo = drl.MaskablePPO if spec.constraint == "mask" else drl.PPO
-    model = algo.load(src_dir / "best_model.zip", device="cpu")
+    checkpoint = "final_model.zip" if src["config"].get("select") == "final" else "best_model.zip"
+    model = algo.load(src_dir / checkpoint, device="cpu")
     test = drl.evaluate(model, spec, test_years, seed=job["seed"])
     _dump(out / "seasons.json", {"test": test})
     return {"test": _summary(test)}

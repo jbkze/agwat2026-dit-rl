@@ -6,12 +6,14 @@
 #   depths        discrete action set in mm; or max_depth for a continuous action 0..max_depth
 #   interval      days between decisions
 #   constraint    mask: infeasible depths cannot be chosen; clip: cut to the remaining budget;
-#                 reject: a depth above the remaining budget is not applied (0 mm), no penalty
+#                 reject: a depth above the remaining budget is not applied (0 mm), no penalty;
+#                 penalty: as reject, and 1 is subtracted from the reward of that step
 #   reward        dense: relative ET per step + yield at the end; terminal: yield at the end;
 #                 profit: profit at the end
 #   normalize     fixed mean/std scaling from random seasons on the training years
 #   ppo           keyword arguments for PPO; empty = library defaults
-#   select        best (default): checkpoint with the best validation score; final: last policy
+#   select        final: last policy (both methods since 2026-10-09); best: checkpoint with the
+#                 best validation score (the runs before that date)
 # Heuristic keys
 #   rule, interval, params (fixed), grid (tuned on the training years), budget: null = unlimited
 
@@ -24,6 +26,7 @@ drl1:
   normalize: false
   timesteps: 300000
   eval_every: 10000
+  select: final              # evaluate the last policy, no selection on evaluation data
   ppo: {}
 
 drl2:
@@ -35,6 +38,7 @@ drl2:
   normalize: true
   timesteps: 300000
   eval_every: 10000
+  select: final
   # Kelly et al. trained with Ray RLlib 1.13 (aquacrop-gym, ppo_example.ipynb). These are the
   # SB3 equivalents of that config and of the RLlib PPO defaults it relies on. The adaptive
   # KL penalty of RLlib has no SB3 counterpart and is left out.
@@ -97,6 +101,7 @@ drl1_all_three:  {base: drl1, observation: KELLY, constraint: clip, reward: term
 
 # Variant 3 of the four-variant ablation (config/experiments/a0_pilot_*.yaml): reject instead of mask.
 drl1_reject:     {base: drl1, constraint: reject}
+drl1_penalty:    {base: drl1, constraint: penalty}
 
 # Low-budget diagnosis (E4): larger doses and/or daily decisions on top of DRL1.
 drl1_large_doses: {base: drl1, depths: [0, 5, 13, 21, 34, 55, 89]}
