@@ -1,0 +1,25 @@
+{
+ "started": "2026-10-09T12:55:51",
+ "selection": [
+  "ablation_a"
+ ],
+ "shard": "2/2",
+ "workers": 8,
+ "commit": "a3d247b",
+ "uncommitted_changes": false,
+ "command": "/usr/local/bin/ditrl --results /results run ablation_a --shard 2/2 --workers 8",
+ "python": "3.10.15 (main, Dec  3 2024, 02:23:13) [GCC 12.2.0]",
+ "platform": "Linux-6.8.0-142-generic-x86_64-with-glibc2.36",
+ "host": "9f3fb1493d45",
+ "cpu_count": 64,
+ "packages": {
+  "aquacrop": "3.0.8",
+  "numpy": "1.26.4",
+  "pandas": "2.2.2",
+  "gymnasium": "0.29.1",
+  "stable-baselines3": "2.3.2",
+  "sb3-contrib": "2.3.0",
+  "torch": "2.4.1+cpu",
+  "pymoo": "0.6.1.3"
+ }
+}
