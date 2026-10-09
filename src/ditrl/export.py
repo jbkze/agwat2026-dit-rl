@@ -1,9 +1,10 @@
 """Raw job folders -> result tables per experiment in results/<experiment>/ (kept in git).
 
     jobs.csv              one row per finished job: what was run, with which seed and code,
-                          how long it took, and its summary numbers
+                          how long and how many steps it trained, and its summary numbers
     seasons.csv           one row per evaluated season: split, year, yield, water, crop death
     learning.csv          DRL: validation yield over training steps
+    convergence.csv       DRL: mean yield of the training seasons per block (stopping rule)
     decisions.csv.gz      one row per decision in a test season (compressed: the largest table)
     hyperparameters.csv   DRL: the PPO settings actually used, one row per job
 
@@ -26,7 +27,7 @@ from ditrl.store import RESULT, Store, read_csv, read_json
 # Method settings copied into every row, so that tables can be grouped by design choice.
 LABELS = ("observation", "constraint", "reward", "depths", "interval")
 PER_JOB_FILES = {"seasons.csv": "seasons.csv", "learning.csv": "learning.csv",
-                 "decisions.csv": "decisions.csv.gz"}
+                 "convergence.csv": "convergence.csv", "decisions.csv": "decisions.csv.gz"}
 
 
 def describe(job: dict) -> dict:

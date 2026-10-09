@@ -6,6 +6,7 @@ Files of a job folder (besides job.json, job.log and result.json):
     seasons.csv          one row per evaluated season: split, year, yield, water, crop death
     decisions.csv        one row per decision in the test seasons: day, budget, depths, reward
     learning.csv         DRL: validation yield over training steps
+    convergence.csv      DRL: mean yield of the training seasons per block (stopping rule)
     model.zip            DRL: the trained policy; hyperparameters.json, progress.csv and
                          training.monitor.csv from stable-baselines3; scale.json if normalized
     grid.csv             rules: training yield of every parameter value
@@ -23,7 +24,7 @@ import numpy as np
 from ditrl import drl, oracle, rules
 from ditrl.env import EnvSpec, IrrigationEnv
 from ditrl.plan import Job, Plan
-from ditrl.store import Store, read_json, write_csv, write_json
+from ditrl.store import Store, read_csv, read_json, write_csv, write_json
 
 
 def env_spec(job: Job, plan: Plan, years: list[int]) -> EnvSpec:
@@ -48,16 +49,25 @@ def year_split(job: Job, plan: Plan) -> tuple[list[int], list[int], list[int]]:
 def run_drl(job: Job, plan: Plan, out: Path, store: Store) -> dict:
     train_years, val_years, test_years = year_split(job, plan)
     spec = env_spec(job, plan, train_years)
-    if job.config.get("normalize"):
+    resume = store.resumable(job)
+    if resume and (resume / "scale.json").exists():
+        spec = replace(spec, scale=read_json(resume / "scale.json"))
+    elif job.config.get("normalize"):
         spec = replace(spec, scale=drl.observation_scale(spec, job.config["normalize_seasons"],
                                                          job.seed))
+    if spec.scale is not None:
         write_json(out / "scale.json", spec.scale)
-    model, curve = drl.train(spec, replace(spec, years=val_years), job.config, job.seed, out)
+    model, curve, blocks, training = drl.train(spec, replace(spec, years=val_years), job.config,
+                                               job.seed, out, resume)
+    if resume and (resume / "learning.csv").exists():   # the earlier round's curve comes first
+        earlier = read_csv(resume / "learning.csv").drop_duplicates("step", keep="last")
+        curve = earlier.to_dict("records") + curve
     write_csv(out / "learning.csv", curve)
+    write_csv(out / "convergence.csv", blocks)
     seasons = {"test": drl.evaluate(model, spec, test_years),
                "val": drl.evaluate(model, spec, val_years)}
     write_seasons(out, seasons)
-    return summary(seasons)
+    return {**training, **summary(seasons)}
 
 
 def run_rule(job: Job, plan: Plan, out: Path, store: Store) -> dict:

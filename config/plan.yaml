@@ -60,7 +60,8 @@ prices:
 #                     profit: profit at the end
 #   normalize         fixed mean/std scaling of the observation, estimated from
 #                     `normalize_seasons` seasons of random decisions on the training years
-#   timesteps         training length in environment steps
+#   training          when training stops: it runs until the mean yield of the training seasons
+#                     stops rising (see drl.py); evaluation data play no part in it
 #   eval_every        steps between two evaluations on the validation years (learning curves)
 #   ppo               keyword arguments for PPO; empty = library defaults
 # Rule keys
@@ -79,7 +80,12 @@ methods:
     constraint: mask
     reward: dense
     normalize: false
-    timesteps: 300000
+    training: &until_converged    # train until the yield of the training seasons stops rising
+      block_steps: 50000          # the training seasons of each block of steps are averaged
+      tolerance: 0.1              # t/ha: a block counts as a gain if it beats the best earlier one by more
+      patience: 3                 # blocks in a row without a gain end the training
+      min_steps: 300000
+      max_steps: 3000000          # safeguard; a run that reaches it is reported as not converged
     eval_every: 10000
     ppo: {}
 
@@ -91,7 +97,7 @@ methods:
     reward: terminal
     normalize: true
     normalize_seasons: 20
-    timesteps: 300000
+    training: *until_converged
     eval_every: 10000
     # Kelly et al. trained with Ray RLlib 1.13 (aquacrop-gym, ppo_example.ipynb). These are the
     # stable-baselines3 equivalents of that config and of the RLlib defaults it relies on. The
@@ -305,7 +311,8 @@ experiments:
     kind: methods
     methods: [drl1, drl1_obs, drl1_reject, drl1_penalty, drl1_terminal, drl2, threshold,
               full_irrigation]
-    overrides: {timesteps: 1024, eval_every: 512}
+    overrides: {eval_every: 512, training: {block_steps: 512, tolerance: 0.1, patience: 1,
+                                            min_steps: 512, max_steps: 2048}}
     budgets: {tunis: [300], nebraska: [75]}
     seeds: [0, 0]
 
