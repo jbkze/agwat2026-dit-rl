@@ -52,13 +52,13 @@ describes.
 
 | Stage | What it adds | DRL trainings | Laptop (14 workers) | Job queue, h200 and gpu01 |
 |---|---|---|---|---|
-| 1 Minimum | benchmark at 8 budgets, rules, 5 seeds; ablation step A (four variants, three cases) with its pilot | 152 | about 17 h | to be measured by the pilot |
-| 2 Standard | 10 seeds, all Tunis budgets, low-budget diagnosis, noise; ablation steps B to D up to the full 2 x 4 x 2 design | 1,720 | about 8 days | to be measured by the pilot |
+| 1 Minimum | benchmark at 8 budgets, rules, 5 seeds; ablation step A (four variants, three cases) with its pilot | 152 | about 17 h | about 6 h |
+| 2 Standard | 10 seeds, all Tunis budgets, low-budget diagnosis, noise; ablation steps B to D up to the full 2 x 4 x 2 design | 1,720 | about 8 days | about 2.5 days |
 | 3 Complete | value of weather information, scaling check, own pymoo oracle | 480 + 972 oracle restarts | about 5 days | about 15 h |
 
 Training times are measured: on the laptop, 14 parallel trainings of 300,000 steps take about
 100 minutes, i.e. about 8 trainings per hour; on h200 one training takes about 21 minutes on one
-core (July 2026). A job on the WSE job queue gets 8 cores, so h200 should manage about 23 trainings per hour; the pilot of the ablation measures this and gpu01. The oracle times in stage 3 are a rough estimate from about 0.1 to 0.15 seconds
+core (July 2026). A job on the WSE job queue gets 8 cores. Measured in the pilot of the ablation on 2026-10-09 with all runs of a job side by side: 30 to 35 minutes per Tunis training on h200 (8 at once) and 24 to 27 minutes per Nebraska training on gpu01 (4 at once), so both servers together manage about 27 trainings per hour. A queue job holds its server's queue slot for its whole duration, so long campaigns go in pieces of a few hours. The oracle times in stage 3 are a rough estimate from about 0.1 to 0.15 seconds
 per simulated season. Rules and evaluations take minutes and are left out of the table.
 
 Run a stage with `make stage STAGE=1` (or `scripts/run_all.py --stage 1`). A higher stage runs
