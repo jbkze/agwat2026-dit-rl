@@ -3,8 +3,8 @@
 #   docker run --rm -v "$PWD/tmp-results:/results" ditrl:local \
 #       config/experiments/a0_pilot_smoke.yaml --workers 4 --runs-dir /results
 FROM python:3.10.15-slim
-# git: pip installs the AquaCrop fork from GitHub. gcc: the fork checks for a C compiler at import.
-RUN apt-get update && apt-get install -y --no-install-recommends git gcc \
+# git: pip installs the AquaCrop fork from GitHub.
+RUN apt-get update && apt-get install -y --no-install-recommends git \
     && rm -rf /var/lib/apt/lists/*
 WORKDIR /work
 COPY pyproject.toml ./

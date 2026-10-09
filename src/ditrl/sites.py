@@ -7,15 +7,13 @@ oracle solve exactly the same simulation problem.
 from __future__ import annotations
 
 import os
-import sys
 
 os.environ.setdefault("DEVELOPMENT", "DEVELOPMENT")  # the fork runs in plain Python/numba JIT mode
-if sys.platform == "win32":
-    # The fork creates numba AOT build objects at import time, which checks for a C compiler.
-    # In JIT mode nothing is ever compiled ahead of time, so the check is skipped on Windows
-    # machines without MSVC. Linux (h200) has gcc and does not need this.
-    import numba.pycc.platform as _pycc_platform
-    _pycc_platform.external_compiler_works = lambda: True
+# The fork creates numba AOT build objects at import time, which checks for a C compiler. In JIT
+# mode nothing is ever compiled ahead of time, so the check is skipped: Windows machines have no
+# MSVC, and the slim container image has no complete C toolchain.
+import numba.pycc.platform as _pycc_platform  # noqa: E402
+_pycc_platform.external_compiler_works = lambda: True
 
 import warnings
 from dataclasses import dataclass
