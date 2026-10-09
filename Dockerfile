@@ -7,9 +7,11 @@ FROM python:3.10.15-slim
 RUN apt-get update && apt-get install -y --no-install-recommends git \
     && rm -rf /var/lib/apt/lists/*
 WORKDIR /work
+# Dependencies first, with only the package init, so that a code change does not reinstall them.
 COPY pyproject.toml ./
-COPY src ./src
+COPY src/ditrl/__init__.py ./src/ditrl/
 RUN pip install --no-cache-dir -e . --extra-index-url https://download.pytorch.org/whl/cpu
+COPY src ./src
 COPY config ./config
 COPY scripts ./scripts
 COPY data/nebraska_weather.csv ./data/
