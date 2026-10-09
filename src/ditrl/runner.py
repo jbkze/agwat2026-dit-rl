@@ -41,14 +41,19 @@ FORMAT = "%(asctime)s %(levelname)s %(name)s: %(message)s"
 
 
 def _git(*args: str) -> str:
-    out = subprocess.run(["git", *args], cwd=REPO, capture_output=True, text=True)
+    """Output of a git command, or "" where there is no git (the container image)."""
+    try:
+        out = subprocess.run(["git", *args], cwd=REPO, capture_output=True, text=True)
+    except FileNotFoundError:
+        return ""
     return out.stdout.strip()
 
 
 def manifest() -> dict:
     return {
         "started": dt.datetime.now().isoformat(timespec="seconds"),
-        "git_commit": _git("rev-parse", "HEAD"),
+        # The image has no .git; its build sets DITRL_COMMIT to the commit it was built from.
+        "git_commit": _git("rev-parse", "HEAD") or os.environ.get("DITRL_COMMIT", "unknown"),
         "git_dirty": bool(_git("status", "--porcelain")),
         "command": " ".join(sys.argv),
         "python": sys.version,
@@ -111,10 +116,11 @@ def run_job(job: dict, job_dir: str) -> tuple[str, str]:
 
 
 def run(experiment: Path, workers: int, resume: Path | None = None, limit: int | None = None,
-        tag: str = ""):
+        tag: str = "", runs_dir: Path | None = None):
     exp = load_yaml(experiment)
     if resume is None:
-        run_dir = REPO / "results" / "runs" / f"{dt.date.today():%Y-%m-%d}_{exp['name']}{tag}"
+        runs_dir = runs_dir or REPO / "results" / "runs"
+        run_dir = runs_dir / f"{dt.date.today():%Y-%m-%d}_{exp['name']}{tag}"
         if run_dir.exists():
             raise FileExistsError(f"{run_dir} exists; use --resume to continue it")
         run_dir.mkdir(parents=True)

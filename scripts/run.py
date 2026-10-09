@@ -27,6 +27,8 @@ def main() -> None:
     ap.add_argument("--resume", type=Path, help="continue an existing run folder")
     ap.add_argument("--limit", type=int, help="run only the first N pending jobs")
     ap.add_argument("--tag", default="", help="suffix for the run folder name")
+    ap.add_argument("--runs-dir", type=Path,
+                    help="parent of the run folder (default results/runs; a queue job: /results)")
     ap.add_argument("--dry-run", action="store_true", help="list the jobs and stop")
     args = ap.parse_args()
 
@@ -37,7 +39,7 @@ def main() -> None:
         for j in jobs[:5]:
             print("  e.g.", j["id"])
         return
-    run(args.experiment, args.workers, args.resume, args.limit, args.tag)
+    run(args.experiment, args.workers, args.resume, args.limit, args.tag, args.runs_dir)
 
 
 if __name__ == "__main__":
