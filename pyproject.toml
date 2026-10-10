@@ -20,6 +20,7 @@ dependencies = [
     "pyyaml==6.0.3",
     "matplotlib==3.10.9",
     "scipy==1.15.3",
+    "SciencePlots==2.1.1",  # figure style of every figure in reports/ and the paper
     "setuptools==84.0.0",    # numba.pycc imports it at runtime (AquaCrop imports numba.pycc)
 ]
 

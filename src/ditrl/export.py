@@ -5,6 +5,7 @@
     seasons.csv           one row per evaluated season: split, year, yield, water, crop death
     learning.csv          DRL: validation yield over training steps
     convergence.csv       DRL: mean yield of the training seasons per block (stopping rule)
+    training.csv.gz       DRL: training statistics of PPO about every TRAINING_STEP steps
     decisions.csv.gz      one row per decision in a test season (compressed: the largest table)
     hyperparameters.csv   DRL: the PPO settings actually used, one row per job
 
@@ -28,6 +29,21 @@ from ditrl.store import RESULT, Store, read_csv, read_json
 LABELS = ("observation", "constraint", "reward", "depths", "interval")
 PER_JOB_FILES = {"seasons.csv": "seasons.csv", "learning.csv": "learning.csv",
                  "convergence.csv": "convergence.csv", "decisions.csv": "decisions.csv.gz"}
+TRAINING_STEP = 10_000   # steps between two kept rows of the PPO statistics
+# gzip without a time stamp, so that an unchanged table stays byte for byte the same in git
+STABLE_GZIP = {"method": "gzip", "mtime": 0}
+# stable-baselines3 column -> name in training.csv.gz
+TRAINING_COLUMNS = {
+    "time/total_timesteps": "step",
+    "rollout/ep_rew_mean": "episode_reward",       # mean return of the last 100 episodes
+    "rollout/ep_len_mean": "episode_length",
+    "train/entropy_loss": "entropy_loss",
+    "train/value_loss": "value_loss",
+    "train/policy_gradient_loss": "policy_loss",
+    "train/approx_kl": "approx_kl",
+    "train/clip_fraction": "clip_fraction",
+    "train/explained_variance": "explained_variance",
+}
 
 
 def describe(job: dict) -> dict:
@@ -49,13 +65,21 @@ def _flat(result: dict) -> dict:
     return {k: json.dumps(v) if isinstance(v, (list, dict)) else v for k, v in result.items()}
 
 
+def training_statistics(path: Path) -> pd.DataFrame:
+    """The PPO statistics of one run, thinned to about one row per TRAINING_STEP steps."""
+    raw = read_csv(path)
+    frame = raw[[c for c in TRAINING_COLUMNS if c in raw]].rename(columns=TRAINING_COLUMNS)
+    frame = frame.dropna(subset=["step"])
+    return frame.groupby(frame["step"] // TRAINING_STEP).tail(1).reset_index(drop=True)
+
+
 def export_experiment(store: Store, experiment: str, out: Path) -> int:
     """Rebuild the tables of one experiment; returns the number of finished jobs."""
     folders = store.finished(experiment)
     if not folders:
         return 0
     out.mkdir(parents=True, exist_ok=True)
-    jobs, parts, settings = [], {name: [] for name in PER_JOB_FILES}, []
+    jobs, parts, settings, training = [], {name: [] for name in PER_JOB_FILES}, [], []
     for folder in folders:
         job = describe(read_json(folder / "job.json"))
         jobs.append({**job, **_flat(read_json(folder / RESULT))})
@@ -65,12 +89,20 @@ def export_experiment(store: Store, experiment: str, out: Path) -> int:
                 parts[name].append(frame.assign(**job)[list(job) + list(frame.columns)])
         if (folder / "hyperparameters.json").exists():
             settings.append({**job, **_flat(read_json(folder / "hyperparameters.json"))})
+        if (folder / "progress.csv").exists():
+            frame = training_statistics(folder / "progress.csv")
+            training.append(frame.assign(**job)[list(job) + list(frame.columns)])
     pd.DataFrame(jobs).to_csv(out / "jobs.csv", index=False)
     for name, target in PER_JOB_FILES.items():
         if parts[name]:
-            pd.concat(parts[name], ignore_index=True).to_csv(out / target, index=False)
+            pd.concat(parts[name], ignore_index=True).to_csv(
+                out / target, index=False,
+                compression=STABLE_GZIP if target.endswith(".gz") else None)
     if settings:
         pd.DataFrame(settings).to_csv(out / "hyperparameters.csv", index=False)
+    if training:
+        pd.concat(training, ignore_index=True).to_csv(out / "training.csv.gz", index=False,
+                                                      compression=STABLE_GZIP)
     return len(folders)
 
 
