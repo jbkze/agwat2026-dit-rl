@@ -56,7 +56,7 @@ def cwpf(plan: Plan, results: Path, out: Path) -> None:
     axes[0].legend(frameon=False)
     fig.tight_layout()
     per_seed.to_csv(out.with_suffix(".csv"), index=False)
-    style.save_pdf(fig, out)
+    style.save(fig, out.with_suffix(""))
 
 
 def ablation(plan: Plan, results: Path, out: Path) -> None:
@@ -86,7 +86,7 @@ def ablation(plan: Plan, results: Path, out: Path) -> None:
     axes[0][0].set_ylabel(f"Yield of {reference} minus variant (t/ha)")
     fig.tight_layout()
     diffs.to_csv(out.with_suffix(".csv"), index=False)
-    style.save_pdf(fig, out)
+    style.save(fig, out.with_suffix(""))
 
 
 def actions_low_budget(plan: Plan, results: Path, out: Path) -> None:
@@ -117,7 +117,7 @@ def actions_low_budget(plan: Plan, results: Path, out: Path) -> None:
     axes[1, 0].set_ylabel("Remaining budget (mm)")
     axes[0, 0].legend(frameon=False, fontsize=7)
     fig.tight_layout()
-    style.save_pdf(fig, out)
+    style.save(fig, out.with_suffix(""))
 
 
 def learning_curves(plan: Plan, results: Path, out: Path) -> None:
@@ -142,4 +142,4 @@ def learning_curves(plan: Plan, results: Path, out: Path) -> None:
     axes[0][0].set_ylabel("Validation yield (t/ha)")
     axes[0][0].legend(frameon=False)
     fig.tight_layout()
-    style.save_pdf(fig, out)
+    style.save(fig, out.with_suffix(""))

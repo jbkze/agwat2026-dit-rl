@@ -1,5 +1,6 @@
-"""Figure style: embedded TrueType fonts, font sizes, a light dashed grid, the Tableau 10 colours,
-fixed method names and colours, and a deterministic PDF writer."""
+"""Figure style for every figure of the repository: SciencePlots (`science` without LaTeX), Paul
+Tol's colour-blind safe "bright" palette, fixed names and colours per method, and writers that
+produce files without a creation date, so that unchanged figures stay unchanged in git."""
 
 from __future__ import annotations
 
@@ -9,39 +10,40 @@ from pathlib import Path
 import matplotlib
 
 matplotlib.use("Agg")
+import matplotlib.pyplot as plt  # noqa: E402
+import scienceplots  # noqa: E402, F401  (registers the styles)
+
+plt.style.use(["science", "no-latex"])
+plt.rcParams.update({"pdf.fonttype": 42, "ps.fonttype": 42, "savefig.dpi": 300,
+                     "figure.dpi": 150, "axes.grid": True, "grid.alpha": 0.3,
+                     "grid.linestyle": "--", "grid.linewidth": 0.5})
 # The AquaCrop fork sets the root logger to INFO, which would print every font subsetting step.
 logging.getLogger("fontTools").setLevel(logging.WARNING)
-import matplotlib.pyplot as plt  # noqa: E402
 
-plt.rcParams.update({
-    "pdf.fonttype": 42, "ps.fonttype": 42,
-    "font.size": 11, "axes.titlesize": 12, "axes.labelsize": 11,
-    "xtick.labelsize": 9, "ytick.labelsize": 9, "legend.fontsize": 9,
-    "figure.dpi": 150,
-})
-
+BRIGHT = {"blue": "#4477AA", "cyan": "#66CCEE", "green": "#228833", "yellow": "#CCBB44",
+          "red": "#EE6677", "purple": "#AA3377", "grey": "#BBBBBB"}
+TAB10 = BRIGHT   # name kept for the generators that ask for a palette by colour name
 GRID = dict(linestyle="--", linewidth=0.5, color="gray", alpha=0.3)
 BAND_ALPHA = 0.2
-PANEL_WIDTH = 4.2   # inches per site panel
-PANEL_HEIGHT = 3.4
-SMALL_PANEL = 2.8   # inches, width and height of one panel in a row of many
-TALL_PANEL = (3.2, 5.2)   # inches, width and height of a column with two stacked panels
+PANEL_WIDTH = 3.3    # inches per panel
+PANEL_HEIGHT = 2.6
+SMALL_PANEL = 2.4
+TALL_PANEL = (3.0, 4.6)
 DOT_ALPHA = 0.7
-MEAN_BAR_HALF_WIDTH = 0.25   # in units of the categorical x axis
-TICK_ROTATION = 60
-
-TAB10 = {"blue": "#4e79a7", "orange": "#f28e2b", "red": "#e15759", "teal": "#76b7b2",
-         "green": "#59a14f", "purple": "#b07aa1", "brown": "#9c755f", "pink": "#ff9da7",
-         "yellow": "#edc948", "gray": "#bab0ac"}
+MEAN_BAR_HALF_WIDTH = 0.25   # in units of a categorical x axis
+TICK_ROTATION = 45
 
 METHODS = {   # name -> (label, colour), in the order of the legends
-    "drl1": ("DRL1", TAB10["blue"]),
-    "drl2": ("DRL2", TAB10["orange"]),
-    "threshold": ("Threshold rule", TAB10["green"]),
-    "fixed_interval": ("Fixed interval", TAB10["purple"]),
-    "full_irrigation": ("Full irrigation", TAB10["gray"]),
-    "drl1_forecast": ("DRL1 + 7-day forecast", TAB10["teal"]),
+    "drl1": ("DRL1", BRIGHT["blue"]),
+    "drl2": ("DRL2", BRIGHT["red"]),
+    "threshold": ("Threshold rule", BRIGHT["green"]),
+    "fixed_interval": ("Fixed interval", BRIGHT["purple"]),
+    "full_irrigation": ("Full irrigation", BRIGHT["grey"]),
+    "drl1_forecast": ("DRL1 + 7-day forecast", BRIGHT["cyan"]),
 }
+# Colours of the variants agreed for the ablation, in plotting order.
+AGREED = {"drl1": BRIGHT["blue"], "drl1_obs": BRIGHT["green"], "drl1_reject": BRIGHT["red"],
+          "drl1_terminal": BRIGHT["yellow"]}
 
 
 def label(method: str) -> str:
@@ -52,3 +54,10 @@ def save_pdf(fig, out: Path) -> None:
     """PDF without a creation date, so that the drift check can compare file hashes."""
     fig.savefig(out, bbox_inches="tight", metadata={"CreationDate": None, "ModDate": None})
     plt.close(fig)
+
+
+def save(fig, stem: Path) -> None:
+    """The figure as PNG (for the README) and PDF (for the paper), both without dates."""
+    stem.parent.mkdir(parents=True, exist_ok=True)
+    fig.savefig(stem.with_suffix(".png"), bbox_inches="tight", metadata={"Software": None})
+    save_pdf(fig, stem.with_suffix(".pdf"))

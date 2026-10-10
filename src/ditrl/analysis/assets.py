@@ -97,7 +97,7 @@ def check(plan: Plan, results: Path) -> None:
         fresh = _generate(plan, results, Path(tmp), skip_missing=False)
     stale = [rel for rel, h in fresh.items() if not (dest / rel).exists() or _sha(dest / rel) != h]
     orphans = [p.relative_to(dest).as_posix() for p in dest.rglob("*")
-               if p.is_file() and p.suffix != ".csv" and p.name != "MANIFEST.md"
+               if p.is_file() and p.suffix not in (".csv", ".png") and p.name != "MANIFEST.md"
                and p.relative_to(dest).as_posix() not in ASSETS]
     for rel in stale:
         print(f"STALE:  {rel}  (regenerate with ditrl assets export)")
