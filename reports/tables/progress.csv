@@ -1,0 +1,16 @@
+Stage,Experiment,Kind,Jobs,Done,Share
+1,benchmark,methods,98,0,0 %
+1,ablation_one_change,methods,60,60,100 %
+2,ablation_budget_handling,methods,45,45,100 %
+2,ablation_interactions,methods,135,135,100 %
+2,benchmark_seeds,methods,80,0,0 %
+2,benchmark_budgets,methods,154,0,0 %
+2,low_budget,methods,120,0,0 %
+2,robustness,evaluate,4800,0,0 %
+2,ablation_more_seeds,methods,240,240,100 %
+2,ablation_more_budgets,methods,960,300,31 %
+3,forecast,methods,80,0,0 %
+3,test_year,methods,320,0,0 %
+3,obs_scaled,methods,80,0,0 %
+3,oracle_ds,oracle,927,0,0 %
+3,oracle_ss,oracle,45,0,0 %
