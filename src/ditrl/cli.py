@@ -4,6 +4,7 @@
     ditrl run     stage1 --workers 8           run them; resumable
     ditrl run     stage1 --shard 2/3           one of three equal parts, e.g. one per machine
     ditrl export  stage1                       result tables of the finished jobs -> results/
+    ditrl report                               figures, tables and README block from results/
     ditrl assets  stage | export | check       paper figures, tables and macros from results/
 
 A selection is any mix of stages ("stage1") and experiment names from config/plan.yaml.
@@ -64,6 +65,11 @@ def cmd_export(args) -> None:
     export(plan, Store(args.runs), plan.select(args.selection), args.results)
 
 
+def cmd_report(args) -> None:
+    from ditrl.report import build
+    build(Plan.load(args.plan), args.results)
+
+
 def cmd_assets(args) -> None:
     from ditrl.analysis import assets
     getattr(assets, args.action)(Plan.load(args.plan), args.results)
@@ -92,6 +98,8 @@ def main() -> None:
             sub.add_argument("--resume-from", type=Path, metavar="RUNS",
                              help="runs of an earlier round: continue their trained models")
 
+    commands.add_parser("report", help="rebuild reports/ and the README block").set_defaults(
+        func=cmd_report)
     assets = commands.add_parser("assets", help="paper figures, tables and macros")
     assets.add_argument("action", choices=["stage", "export", "check"])
     assets.set_defaults(func=cmd_assets)
