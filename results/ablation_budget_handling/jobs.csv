@@ -1,0 +1,24 @@
+job,kind,method,site,budget_mm,seed,observation,constraint,reward,depths,interval,trained_on_year,oracle_year,oracle_years,oracle_events,noise_sd,steps_trained,stopped_by,resumed_at,test_mean_yield_t_ha,val_mean_yield_t_ha,seconds,commit
+nebraska_B75_drl1_clip_s0,drl,drl1_clip,nebraska,75,0,DRL1,clip,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,,,,,,501056,converged,301056,10.726702918279413,10.726702918279413,739.9,204693f
+nebraska_B75_drl1_clip_s2,drl,drl1_clip,nebraska,75,2,DRL1,clip,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,,,,,,601056,converged,301056,10.920154813764793,10.920154813764793,1084.1,204693f
+nebraska_B75_drl1_clip_s4,drl,drl1_clip,nebraska,75,4,DRL1,clip,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,,,,,,501056,converged,301056,11.153554969366914,11.153554969366914,736.1,204693f
+nebraska_B75_drl1_obs_clip_terminal_s0,drl,drl1_obs_clip_terminal,nebraska,75,0,KELLY,clip,terminal,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,,,,,,551056,converged,301056,12.194987912560775,12.194987912560775,935.2,204693f
+nebraska_B75_drl1_obs_clip_terminal_s2,drl,drl1_obs_clip_terminal,nebraska,75,2,KELLY,clip,terminal,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,,,,,,551056,converged,301056,12.299456164856906,12.299456164856906,934.5,204693f
+nebraska_B75_drl1_obs_clip_terminal_s4,drl,drl1_obs_clip_terminal,nebraska,75,4,KELLY,clip,terminal,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,,,,,,501056,converged,301056,11.928257203604264,11.928257203604264,753.3,204693f
+nebraska_B75_drl1_penalty_s1,drl,drl1_penalty,nebraska,75,1,DRL1,penalty,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,,,,,,801056,converged,301056,10.444683424464843,10.444683424464843,1838.9,204693f
+nebraska_B75_drl1_penalty_s3,drl,drl1_penalty,nebraska,75,3,DRL1,penalty,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,,,,,,501056,converged,301056,10.11579874095723,10.11579874095723,735.4,204693f
+tunis_B300_drl1_clip_s0,drl,drl1_clip,tunis,300,0,DRL1,clip,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,,,,,,551056,converged,301056,2.2959658784211388,1.9757893186090734,1001.7,204693f
+tunis_B300_drl1_clip_s2,drl,drl1_clip,tunis,300,2,DRL1,clip,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,,,,,,601056,converged,301056,2.2165483296455806,1.9715240588959062,1181.8,204693f
+tunis_B300_drl1_clip_s4,drl,drl1_clip,tunis,300,4,DRL1,clip,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,,,,,,551056,converged,301056,2.2959658784211388,1.9757893186090734,1008.7,204693f
+tunis_B300_drl1_obs_clip_terminal_s0,drl,drl1_obs_clip_terminal,tunis,300,0,KELLY,clip,terminal,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,,,,,,501056,converged,301056,4.388322739455831,4.229056415911984,857.3,204693f
+tunis_B300_drl1_obs_clip_terminal_s2,drl,drl1_obs_clip_terminal,tunis,300,2,KELLY,clip,terminal,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,,,,,,501056,converged,301056,4.281279125442542,4.411012310224285,858.2,204693f
+tunis_B300_drl1_obs_clip_terminal_s4,drl,drl1_obs_clip_terminal,tunis,300,4,KELLY,clip,terminal,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,,,,,,501056,converged,301056,4.58726121449591,4.215808933229503,850.4,204693f
+tunis_B300_drl1_penalty_s0,drl,drl1_penalty,tunis,300,0,DRL1,penalty,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,,,,,,651056,converged,301056,3.479336097571745,3.2673495094945766,1409.6,204693f
+tunis_B300_drl1_penalty_s2,drl,drl1_penalty,tunis,300,2,DRL1,penalty,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,,,,,,651056,converged,301056,3.539933943842831,3.336855321975521,1415.4,204693f
+tunis_B300_drl1_penalty_s4,drl,drl1_penalty,tunis,300,4,DRL1,penalty,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,,,,,,601056,converged,301056,3.678470342835402,3.458415486118438,1215.3,204693f
+tunis_B500_drl1_clip_s1,drl,drl1_clip,tunis,500,1,DRL1,clip,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,,,,,,551056,converged,301056,6.022555040729338,4.779876918418811,906.5,204693f
+tunis_B500_drl1_clip_s3,drl,drl1_clip,tunis,500,3,DRL1,clip,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,,,,,,551056,converged,301056,10.318730000224715,9.176103349116115,888.3,204693f
+tunis_B500_drl1_obs_clip_terminal_s1,drl,drl1_obs_clip_terminal,tunis,500,1,KELLY,clip,terminal,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,,,,,,501056,converged,301056,10.159126886531448,9.027039546639879,745.8,204693f
+tunis_B500_drl1_obs_clip_terminal_s3,drl,drl1_obs_clip_terminal,tunis,500,3,KELLY,clip,terminal,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,,,,,,501056,converged,301056,10.125180191347079,8.091259999948306,742.3,204693f
+tunis_B500_drl1_penalty_s1,drl,drl1_penalty,tunis,500,1,DRL1,penalty,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,,,,,,551056,converged,301056,7.097799448061087,6.4635697678716,915.3,204693f
+tunis_B500_drl1_penalty_s3,drl,drl1_penalty,tunis,500,3,DRL1,penalty,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,,,,,,501056,converged,301056,10.161858921726058,9.204841223011519,710.9,204693f
