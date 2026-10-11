@@ -8,3 +8,6 @@ config/paths.local.yaml
 # Raw job folders (models, logs) are archived on Zenodo, not in git; results/ holds their tables.
 runs/
 paper_assets/
+
+# notes for the coding assistant, kept local
+CLAUDE.md
