@@ -72,6 +72,9 @@ def results(ctx: Context, seasons: pd.DataFrame) -> pd.DataFrame:
                 "lowest": d["mean_difference"].min() if len(d) else None,
                 "highest": d["mean_difference"].max() if len(d) else None,
                 f"{q:.0%} quantile (t/ha)": p["low_yield"].mean() if several_years else None,
+                "Note": ", ".join(n for n in (
+                    "reference (no difference)" if method == VARIANTS[0] else "",
+                    "one test year (no quantile over years)" if not several_years else "") if n),
             })
     return pd.DataFrame(rows)
 

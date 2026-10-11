@@ -31,7 +31,7 @@ Setup and details: [docs/usage.md](docs/usage.md).
 <!-- report:start -->
 ## Status
 
-Filled in by `ditrl report` after every batch of results (last on 2026-10-11 18:09).
+Filled in by `ditrl report` after every batch of results (last on 2026-10-11 18:18).
 
 | Stage | Experiment | What it tests | Runs | Results |
 |---|---|---|---|---|
