@@ -9,7 +9,7 @@
 | 2 | low_budget | methods | 120 | 0 | 0 % |
 | 2 | robustness | evaluate | 4800 | 0 | 0 % |
 | 2 | ablation_more_seeds | methods | 240 | 240 | 100 % |
-| 2 | ablation_more_budgets | methods | 960 | 720 | 75 % |
+| 2 | ablation_more_budgets | methods | 960 | 780 | 81 % |
 | 3 | forecast | methods | 80 | 0 | 0 % |
 | 3 | test_year | methods | 320 | 0 | 0 % |
 | 3 | obs_scaled | methods | 80 | 0 | 0 % |
