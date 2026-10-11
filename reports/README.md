@@ -11,3 +11,6 @@ Built by `ditrl report` from `results/`. Figures as PNG and PDF, tables as Markd
 | [tables/core_ablation_configuration.md](tables/core_ablation_configuration.md) | Design choices, PPO settings actually used, training and evaluation of the four variants. |
 | [tables/core_ablation_results.md](tables/core_ablation_results.md) | Test yield per case and variant over all seeds, and the paired difference to DRL1 per seed. |
 | [figures/core_ablation.png](figures/core_ablation.png) | Mean test yield of DRL1 minus that of each variant, one dot per seed (10 seeds), bar at the mean. Above zero: the change costs yield; below zero: the variant is better than DRL1. |
+| [figures/paper_cwpf.png](figures/paper_cwpf.png) | Mean test yield over the seasonal budget for every method. For DRL the line is the median over seeds and the band runs from the worst to the best seed. Dashed: the oracle. |
+| [figures/paper_actions_low_budget.png](figures/paper_actions_low_budget.png) | Which depths DRL1 and its low-budget variants apply in Tunis at 100 to 200 mm, and how the remaining budget falls. |
+| [figures/paper_learning_curves.png](figures/paper_learning_curves.png) | Validation yield of DRL1 and DRL2 over the training steps. |

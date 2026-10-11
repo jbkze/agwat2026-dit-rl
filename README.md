@@ -31,11 +31,11 @@ Setup and details: [docs/usage.md](docs/usage.md).
 <!-- report:start -->
 ## Status
 
-Filled in by `ditrl report` after every batch of results (last on 2026-10-11 18:24).
+Filled in by `ditrl report` after every batch of results (last on 2026-10-11 19:23).
 
 | Stage | Experiment | What it tests | Runs | Results |
 |---|---|---|---|---|
-| 1 | `benchmark` | DRL1, DRL2 and the rules over the budgets, 5 seeds | 0 of 98 | pending |
+| 1 | `benchmark` | DRL1, DRL2 and the rules over the budgets, 5 seeds | 49 of 98 | [results/benchmark/](results/benchmark/) |
 | 1 | `ablation_one_change` | core part: DRL1 and three variants that each change one design choice | 60 of 60 | [results/ablation_one_change/](results/ablation_one_change/) |
 | 2 | `ablation_budget_handling` | the other two budget limits, and all three settings of Kelly et al. at once | 45 of 45 | [results/ablation_budget_handling/](results/ablation_budget_handling/) |
 | 2 | `ablation_interactions` | the remaining cells of the 2 x 4 x 2 design | 135 of 135 | [results/ablation_interactions/](results/ablation_interactions/) |

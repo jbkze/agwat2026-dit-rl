@@ -1,0 +1,50 @@
+job,kind,method,site,budget_mm,seed,observation,constraint,reward,depths,interval,trained_on_year,oracle_year,oracle_years,oracle_events,noise_sd,steps_trained,stopped_by,resumed_at,test_mean_yield_t_ha,val_mean_yield_t_ha,seconds,commit,params
+nebraska_B100_drl1_s0,drl,drl1,nebraska,100.0,0,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,,,,,,350000.0,converged,0.0,12.239286317954528,12.239286317954528,1353.7,204693f,
+nebraska_B100_drl1_s2,drl,drl1,nebraska,100.0,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,,,,,,450000.0,converged,0.0,10.287530422868794,10.287530422868794,1729.5,204693f,
+nebraska_B100_drl1_s4,drl,drl1,nebraska,100.0,4,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,,,,,,300000.0,converged,0.0,10.120074600118507,10.120074600118507,1144.3,204693f,
+nebraska_B100_drl2_s1,drl,drl2,nebraska,100.0,1,KELLY,clip,profit,None,1,,,,,,300000.0,converged,0.0,12.70247787702403,12.70247787702403,693.0,204693f,
+nebraska_B100_drl2_s3,drl,drl2,nebraska,100.0,3,KELLY,clip,profit,None,1,,,,,,350000.0,converged,0.0,12.85375750250234,12.85375750250234,798.7,204693f,
+nebraska_B100_threshold_s0,rule,threshold,nebraska,100.0,0,None,None,None,None,1,,,,,,,,,12.734145208540523,,47.3,204693f,"{""depletion_fraction"": 0.6}"
+nebraska_B125_drl1_s1,drl,drl1,nebraska,125.0,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,,,,,,300000.0,converged,0.0,11.511086629622822,11.511086629622822,1143.5,204693f,
+nebraska_B125_drl1_s3,drl,drl1,nebraska,125.0,3,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,,,,,,300000.0,converged,0.0,12.591908231991875,12.591908231991875,1134.4,204693f,
+nebraska_B125_drl2_s0,drl,drl2,nebraska,125.0,0,KELLY,clip,profit,None,1,,,,,,350000.0,converged,0.0,13.103226283925435,13.103226283925435,806.8,204693f,
+nebraska_B125_drl2_s2,drl,drl2,nebraska,125.0,2,KELLY,clip,profit,None,1,,,,,,500000.0,converged,0.0,13.23150409716177,13.23150409716177,1152.9,204693f,
+nebraska_B125_drl2_s4,drl,drl2,nebraska,125.0,4,KELLY,clip,profit,None,1,,,,,,450000.0,converged,0.0,13.233950992411842,13.233950992411842,1033.0,204693f,
+nebraska_B125_fixed_interval_s0,rule,fixed_interval,nebraska,125.0,0,None,None,None,None,1,,,,,,,,,13.273896243964481,,42.4,204693f,"{""n_doses"": 1}"
+nebraska_B75_drl1_s1,drl,drl1,nebraska,75.0,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,,,,,,300000.0,converged,0.0,10.133403725099926,10.133403725099926,1168.5,204693f,
+nebraska_B75_drl1_s3,drl,drl1,nebraska,75.0,3,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,,,,,,300000.0,converged,0.0,11.843842340933469,11.843842340933469,1165.4,204693f,
+nebraska_B75_drl2_s0,drl,drl2,nebraska,75.0,0,KELLY,clip,profit,None,1,,,,,,350000.0,converged,0.0,12.147575835719785,12.147575835719785,811.6,204693f,
+nebraska_B75_drl2_s2,drl,drl2,nebraska,75.0,2,KELLY,clip,profit,None,1,,,,,,500000.0,converged,0.0,12.344081720014486,12.344081720014486,1144.5,204693f,
+nebraska_B75_drl2_s4,drl,drl2,nebraska,75.0,4,KELLY,clip,profit,None,1,,,,,,300000.0,converged,0.0,12.067746786726817,12.067746786726817,696.4,204693f,
+nebraska_B75_fixed_interval_s0,rule,fixed_interval,nebraska,75.0,0,None,None,None,None,1,,,,,,,,,12.27494051556453,,43.5,204693f,"{""n_doses"": 1}"
+tunis_B150_drl1_s0,drl,drl1,tunis,150.0,0,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,,,,,,300000.0,converged,0.0,0.0,0.0,1284.5,204693f,
+tunis_B150_drl1_s2,drl,drl1,tunis,150.0,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,,,,,,300000.0,converged,0.0,0.0,0.0,1300.8,204693f,
+tunis_B150_drl1_s4,drl,drl1,tunis,150.0,4,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,,,,,,300000.0,converged,0.0,0.0,0.0,1311.1,204693f,
+tunis_B150_drl2_s1,drl,drl2,tunis,150.0,1,DRL1,clip,terminal,None,5,,,,,,350000.0,converged,0.0,1.1468775108672289,0.32658391144790244,1559.6,204693f,
+tunis_B150_drl2_s3,drl,drl2,tunis,150.0,3,DRL1,clip,terminal,None,5,,,,,,300000.0,converged,0.0,1.559808020525831,0.3607244353362702,1329.8,204693f,
+tunis_B150_threshold_s0,rule,threshold,tunis,150.0,0,None,None,None,None,1,,,,,,,,,4.920552165384889e-06,,7.4,204693f,"{""depletion_fraction"": 1.0}"
+tunis_B200_drl1_s1,drl,drl1,tunis,200.0,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,,,,,,300000.0,converged,0.0,0.0,0.0,1258.6,204693f,
+tunis_B200_drl1_s3,drl,drl1,tunis,200.0,3,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,,,,,,300000.0,converged,0.0,0.0,0.0,1269.8,204693f,
+tunis_B200_drl2_s0,drl,drl2,tunis,200.0,0,DRL1,clip,terminal,None,5,,,,,,450000.0,converged,0.0,2.8640068912977616,1.1971918684864151,2007.5,204693f,
+tunis_B200_drl2_s2,drl,drl2,tunis,200.0,2,DRL1,clip,terminal,None,5,,,,,,350000.0,converged,0.0,2.8640068912977616,1.4099070858315417,1552.4,204693f,
+tunis_B200_drl2_s4,drl,drl2,tunis,200.0,4,DRL1,clip,terminal,None,5,,,,,,350000.0,converged,0.0,2.7336638927289516,1.4244609919966824,1552.9,204693f,
+tunis_B200_fixed_interval_s0,rule,fixed_interval,tunis,200.0,0,None,None,None,None,1,,,,,,,,,1.7124831652126884,,10.9,204693f,"{""n_doses"": 6}"
+tunis_B300_drl1_s0,drl,drl1,tunis,300.0,0,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,,,,,,300000.0,converged,0.0,1.0382398166512263,0.473388594669942,1207.7,204693f,
+tunis_B300_drl1_s2,drl,drl1,tunis,300.0,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,,,,,,500000.0,converged,0.0,2.4709438676834554,2.2489950347210383,2113.2,204693f,
+tunis_B300_drl1_s4,drl,drl1,tunis,300.0,4,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,,,,,,350000.0,converged,0.0,1.2317355396035836,1.7158473327099482,1461.5,204693f,
+tunis_B300_drl2_s1,drl,drl2,tunis,300.0,1,DRL1,clip,terminal,None,5,,,,,,500000.0,converged,0.0,4.082652774344358,3.803494678315836,2213.9,204693f,
+tunis_B300_drl2_s3,drl,drl2,tunis,300.0,3,DRL1,clip,terminal,None,5,,,,,,300000.0,converged,0.0,4.391526620150572,3.918522362372465,1324.3,204693f,
+tunis_B300_threshold_s0,rule,threshold,tunis,300.0,0,None,None,None,None,1,,,,,,,,,1.9861166272640887,,9.1,204693f,"{""depletion_fraction"": 1.0}"
+tunis_B400_drl1_s1,drl,drl1,tunis,400.0,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,,,,,,550000.0,converged,0.0,5.812184822079229,5.261537081452379,2233.7,204693f,
+tunis_B400_drl1_s3,drl,drl1,tunis,400.0,3,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,,,,,,600000.0,converged,0.0,6.025798954428339,4.072852302717276,2429.5,204693f,
+tunis_B400_drl2_s0,drl,drl2,tunis,400.0,0,DRL1,clip,terminal,None,5,,,,,,350000.0,converged,0.0,7.160436250794999,6.001915077549143,1476.1,204693f,
+tunis_B400_drl2_s2,drl,drl2,tunis,400.0,2,DRL1,clip,terminal,None,5,,,,,,350000.0,converged,0.0,7.135952624964918,6.492945916004298,1459.9,204693f,
+tunis_B400_drl2_s4,drl,drl2,tunis,400.0,4,DRL1,clip,terminal,None,5,,,,,,350000.0,converged,0.0,7.419127332407767,6.059954622958825,1467.9,204693f,
+tunis_B400_fixed_interval_s0,rule,fixed_interval,tunis,400.0,0,None,None,None,None,1,,,,,,,,,5.644011612500995,,11.1,204693f,"{""n_doses"": 5}"
+tunis_B600_drl1_s0,drl,drl1,tunis,600.0,0,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,,,,,,350000.0,converged,0.0,10.781243174121016,10.38226549201438,1306.2,204693f,
+tunis_B600_drl1_s2,drl,drl1,tunis,600.0,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,,,,,,350000.0,converged,0.0,12.950184762373793,11.765922795410901,1304.5,204693f,
+tunis_B600_drl1_s4,drl,drl1,tunis,600.0,4,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,,,,,,500000.0,converged,0.0,12.994164514961724,11.87524532449973,1858.0,204693f,
+tunis_B600_drl2_s1,drl,drl2,tunis,600.0,1,DRL1,clip,terminal,None,5,,,,,,400000.0,converged,0.0,13.677789246273871,12.571111578402338,1463.9,204693f,
+tunis_B600_drl2_s3,drl,drl2,tunis,600.0,3,DRL1,clip,terminal,None,5,,,,,,450000.0,converged,0.0,13.646830651518627,12.656041980630835,1645.3,204693f,
+tunis_B600_threshold_s0,rule,threshold,tunis,600.0,0,None,None,None,None,1,,,,,,,,,12.072901636533437,,11.5,204693f,"{""depletion_fraction"": 0.8}"
+tunis_unlimited_full_irrigation_s0,rule,full_irrigation,tunis,,0,None,None,None,None,1,,,,,,,,,14.038994395163341,,1.0,204693f,{}
