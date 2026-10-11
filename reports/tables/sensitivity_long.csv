@@ -1,22 +1,22 @@
 site,budget_mm,planned,done,units,effect,ci_low,ci_high,question,group,change,kind
 nebraska,75,10.0,10.0,10.0,1.047139020686312,0.6542403362125482,1.4270860742120315,obs,Observation,18 variables instead of 5,effect
-nebraska,100,10.0,5.0,5.0,1.3145202323708534,0.31704630042082144,2.3119941643208852,obs,Observation,18 variables instead of 5,effect
+nebraska,100,10.0,6.0,6.0,1.5012824599330477,0.6106166527130997,2.3429643310280723,obs,Observation,18 variables instead of 5,effect
 nebraska,125,10.0,8.0,4.0,1.2547100866545982,1.1447000488499262,1.3660421479258114,obs,Observation,18 variables instead of 5,effect
-tunis,150,10.0,3.0,2.0,,,,obs,Observation,18 variables instead of 5,effect
-tunis,200,10.0,7.0,1.0,,,,obs,Observation,18 variables instead of 5,effect
+tunis,150,10.0,4.0,4.0,0.0,0.0,0.0,obs,Observation,18 variables instead of 5,effect
+tunis,200,10.0,8.0,2.0,,,,obs,Observation,18 variables instead of 5,effect
 tunis,300,10.0,10.0,10.0,-0.008995549281214543,-1.3950042344516744,1.41640786955411,obs,Observation,18 variables instead of 5,effect
-tunis,400,10.0,6.0,1.0,,,,obs,Observation,18 variables instead of 5,effect
+tunis,400,10.0,6.0,2.0,,,,obs,Observation,18 variables instead of 5,effect
 tunis,500,10.0,10.0,10.0,-1.4672596418200565,-2.1416633710706616,-0.5566464884356958,obs,Observation,18 variables instead of 5,effect
-tunis,600,10.0,3.0,1.0,,,,obs,Observation,18 variables instead of 5,effect
+tunis,600,10.0,4.0,2.0,,,,obs,Observation,18 variables instead of 5,effect
 nebraska,75,,,80.0,0.6414146268932595,0.48052125619975505,0.8077876538015069,obs,Observation,18 variables instead of 5,check
-nebraska,100,,,36.0,0.7501866072668252,0.4531789473295044,1.0591784049801751,obs,Observation,18 variables instead of 5,check
-nebraska,125,,,34.0,0.6354263118313517,0.39106630438949125,0.9069271666653234,obs,Observation,18 variables instead of 5,check
-tunis,150,,,32.0,0.12034365479287687,0.04047282094552881,0.20814046842332795,obs,Observation,18 variables instead of 5,check
-tunis,200,,,26.0,0.0985981889821072,-0.056895785526284874,0.27201267913427474,obs,Observation,18 variables instead of 5,check
+nebraska,100,,,42.0,0.7541988840505005,0.4690673849361366,1.0478413700773097,obs,Observation,18 variables instead of 5,check
+nebraska,125,,,38.0,0.6656229821837739,0.4131675708295846,0.9342453328166264,obs,Observation,18 variables instead of 5,check
+tunis,150,,,44.0,0.05414222657656605,-0.03684304306468336,0.1429514076875413,obs,Observation,18 variables instead of 5,check
+tunis,200,,,32.0,0.08896032560095657,-0.05706030859718326,0.2463971955927939,obs,Observation,18 variables instead of 5,check
 tunis,300,,,80.0,0.4579635276338685,0.12556608311233924,0.7852775025822327,obs,Observation,18 variables instead of 5,check
-tunis,400,,,26.0,-0.3853906402871393,-0.849597660454373,0.01469174122863882,obs,Observation,18 variables instead of 5,check
+tunis,400,,,32.0,-0.45866526646874084,-0.9341499390816361,-0.028214374419138964,obs,Observation,18 variables instead of 5,check
 tunis,500,,,80.0,-0.48180614704306846,-0.7829513080585008,-0.17365375199988378,obs,Observation,18 variables instead of 5,check
-tunis,600,,,26.0,0.42813026396225035,0.06913067727568831,0.786273436014157,obs,Observation,18 variables instead of 5,check
+tunis,600,,,32.0,0.48917829251625133,0.1653372054552532,0.8122288346861126,obs,Observation,18 variables instead of 5,check
 nebraska,75,10.0,0.0,,,,,obs_scaled,Observation,"18 variables, scaled",effect
 nebraska,100,10.0,0.0,,,,,obs_scaled,Observation,"18 variables, scaled",effect
 nebraska,125,10.0,0.0,,,,,obs_scaled,Observation,"18 variables, scaled",effect
@@ -26,77 +26,77 @@ tunis,300,10.0,0.0,,,,,obs_scaled,Observation,"18 variables, scaled",effect
 tunis,400,10.0,0.0,,,,,obs_scaled,Observation,"18 variables, scaled",effect
 tunis,600,10.0,0.0,,,,,obs_scaled,Observation,"18 variables, scaled",effect
 nebraska,75,10.0,10.0,10.0,-0.14537699424121175,-0.8025603160245572,0.4954888378529756,reject,Budget handling,reject instead of mask,effect
-nebraska,100,10.0,3.0,2.0,,,,reject,Budget handling,reject instead of mask,effect
-nebraska,125,10.0,7.0,1.0,,,,reject,Budget handling,reject instead of mask,effect
-tunis,150,10.0,9.0,9.0,0.0,0.0,0.0,reject,Budget handling,reject instead of mask,effect
+nebraska,100,10.0,4.0,4.0,0.09569935978158678,-0.6912358027739552,0.7564479411025795,reject,Budget handling,reject instead of mask,effect
+nebraska,125,10.0,8.0,2.0,,,,reject,Budget handling,reject instead of mask,effect
+tunis,150,10.0,10.0,10.0,0.0,0.0,0.0,reject,Budget handling,reject instead of mask,effect
 tunis,200,10.0,4.0,4.0,0.0,0.0,0.0,reject,Budget handling,reject instead of mask,effect
 tunis,300,10.0,10.0,10.0,0.19118390511227293,-0.8187137452101854,1.2609297899753122,reject,Budget handling,reject instead of mask,effect
-tunis,400,10.0,5.0,5.0,0.07965507771318023,-0.10962488220392182,0.26333638345000593,reject,Budget handling,reject instead of mask,effect
+tunis,400,10.0,6.0,6.0,0.5793598415129962,-0.047464614781474346,1.6088654078446545,reject,Budget handling,reject instead of mask,effect
 tunis,500,10.0,10.0,10.0,-0.030943248716400706,-0.7741308498670636,0.6063735863747713,reject,Budget handling,reject instead of mask,effect
 tunis,600,10.0,8.0,8.0,-1.0001265641305617,-2.140952742576437,0.38558718645427936,reject,Budget handling,reject instead of mask,effect
 nebraska,75,,,40.0,-0.06445686348991711,-0.2651516294693977,0.1336482873841289,reject,Budget handling,reject instead of mask,check
-nebraska,100,,,9.0,0.03327719653334103,-0.29208283834793825,0.3310758981272444,reject,Budget handling,reject instead of mask,check
-nebraska,125,,,19.0,-0.006659854018667394,-0.10299135914861887,0.13764064700949638,reject,Budget handling,reject instead of mask,check
-tunis,150,,,16.0,-0.08766010744731781,-0.182796923161702,-0.0009596046008356202,reject,Budget handling,reject instead of mask,check
-tunis,200,,,13.0,0.03592910534138619,-0.24166271232382888,0.2964735232865728,reject,Budget handling,reject instead of mask,check
+nebraska,100,,,14.0,0.04024286717111837,-0.21815960645711285,0.30146077859038545,reject,Budget handling,reject instead of mask,check
+nebraska,125,,,22.0,-0.014903080288608945,-0.10003163466120106,0.10700161832599706,reject,Budget handling,reject instead of mask,check
+tunis,150,,,22.0,-0.05084100412485379,-0.14599241984314573,0.048235273506068974,reject,Budget handling,reject instead of mask,check
+tunis,200,,,16.0,0.016937224958950718,-0.21364200433249433,0.23593950657074694,reject,Budget handling,reject instead of mask,check
 tunis,300,,,40.0,0.2945195401619751,-0.12020468613212514,0.7245125829328062,reject,Budget handling,reject instead of mask,check
-tunis,400,,,13.0,0.05203739130556599,-0.3127049489354375,0.517355497001767,reject,Budget handling,reject instead of mask,check
+tunis,400,,,16.0,0.09825756519890172,-0.4953519219048078,0.7250935043523392,reject,Budget handling,reject instead of mask,check
 tunis,500,,,40.0,0.02289138917101883,-0.23404993342501115,0.2799313391074531,reject,Budget handling,reject instead of mask,check
-tunis,600,,,13.0,-0.7713347238425532,-1.538957837204915,0.13218333125476786,reject,Budget handling,reject instead of mask,check
+tunis,600,,,16.0,-0.637270242493688,-1.3091289626132634,0.08613385700883137,reject,Budget handling,reject instead of mask,check
 nebraska,75,10.0,10.0,10.0,0.12397664516527121,-0.30535721194186916,0.5576799214419138,clip,Budget handling,cut to the remaining budget,effect
-nebraska,100,10.0,6.0,5.0,0.35172790402832,-1.26334396428669,1.7633978901269416,clip,Budget handling,cut to the remaining budget,effect
-nebraska,125,10.0,3.0,,,,,clip,Budget handling,cut to the remaining budget,effect
-tunis,150,10.0,3.0,2.0,,,,clip,Budget handling,cut to the remaining budget,effect
-tunis,200,10.0,7.0,1.0,,,,clip,Budget handling,cut to the remaining budget,effect
+nebraska,100,10.0,6.0,6.0,0.39796416828945147,-0.94792905530639,1.5297605230188405,clip,Budget handling,cut to the remaining budget,effect
+nebraska,125,10.0,4.0,,,,,clip,Budget handling,cut to the remaining budget,effect
+tunis,150,10.0,4.0,4.0,0.0,0.0,0.0,clip,Budget handling,cut to the remaining budget,effect
+tunis,200,10.0,8.0,2.0,,,,clip,Budget handling,cut to the remaining budget,effect
 tunis,300,10.0,10.0,10.0,0.2659124579511799,-0.47739126106707475,0.9905193942539171,clip,Budget handling,cut to the remaining budget,effect
-tunis,400,10.0,6.0,1.0,,,,clip,Budget handling,cut to the remaining budget,effect
+tunis,400,10.0,6.0,2.0,,,,clip,Budget handling,cut to the remaining budget,effect
 tunis,500,10.0,10.0,10.0,0.06526935858876053,-0.48813189295220066,0.527460855313284,clip,Budget handling,cut to the remaining budget,effect
-tunis,600,10.0,3.0,1.0,,,,clip,Budget handling,cut to the remaining budget,effect
+tunis,600,10.0,4.0,2.0,,,,clip,Budget handling,cut to the remaining budget,effect
 nebraska,75,,,40.0,-0.1483261047633576,-0.36404539701631605,0.06133612073999394,clip,Budget handling,cut to the remaining budget,check
-nebraska,100,,,8.0,0.13109778639589942,-0.8474975226355475,1.0730972122864149,clip,Budget handling,cut to the remaining budget,check
-nebraska,125,,,7.0,0.07675819365435037,0.01166306406138784,0.1543144870204228,clip,Budget handling,cut to the remaining budget,check
-tunis,150,,,10.0,-0.07153227155303678,-0.2905685016649568,0.17424772173122585,clip,Budget handling,cut to the remaining budget,check
-tunis,200,,,16.0,-0.06468781050867796,-0.21741740183003042,0.035513908640172204,clip,Budget handling,cut to the remaining budget,check
+nebraska,100,,,12.0,0.10873493771385061,-0.5534003760042778,0.7567149823903127,clip,Budget handling,cut to the remaining budget,check
+nebraska,125,,,10.0,0.0539192189977384,0.0059146568060027,0.11543002267320461,clip,Budget handling,cut to the remaining budget,check
+tunis,150,,,16.0,-0.03527375377958759,-0.18291001489785577,0.12109482026943724,clip,Budget handling,cut to the remaining budget,check
+tunis,200,,,20.0,-0.1054755208708966,-0.28001586684485025,0.024204299880609317,clip,Budget handling,cut to the remaining budget,check
 tunis,300,,,40.0,0.724034880766172,0.18670107304355038,1.2445220708186648,clip,Budget handling,cut to the remaining budget,check
-tunis,400,,,14.0,1.2047996893337654,0.47188906343448667,2.048548410705137,clip,Budget handling,cut to the remaining budget,check
+tunis,400,,,16.0,1.1142905010745912,0.29604986159019253,1.9684124569722012,clip,Budget handling,cut to the remaining budget,check
 tunis,500,,,40.0,0.04206207643552924,-0.2343330349376655,0.3119203198747646,clip,Budget handling,cut to the remaining budget,check
-tunis,600,,,8.0,-0.2857465459945736,-0.586326160789395,-0.06504144688275865,clip,Budget handling,cut to the remaining budget,check
+tunis,600,,,12.0,-0.4234353101730653,-0.933955005836875,-0.05734963843860587,clip,Budget handling,cut to the remaining budget,check
 nebraska,75,10.0,10.0,10.0,-0.10405840387936731,-0.7985052075045089,0.5706816707442062,penalty,Budget handling,reject with penalty,effect
-nebraska,100,10.0,9.0,9.0,-0.18750313430487944,-1.0017876544076618,0.6108266784312095,penalty,Budget handling,reject with penalty,effect
+nebraska,100,10.0,10.0,10.0,-0.07371327102125035,-0.842512795156661,0.650986082384815,penalty,Budget handling,reject with penalty,effect
 nebraska,125,10.0,4.0,4.0,0.4582470095667339,-0.1243218428404585,0.9142361466779678,penalty,Budget handling,reject with penalty,effect
-tunis,150,10.0,9.0,9.0,0.0,0.0,0.0,penalty,Budget handling,reject with penalty,effect
+tunis,150,10.0,10.0,10.0,0.0,0.0,0.0,penalty,Budget handling,reject with penalty,effect
 tunis,200,10.0,4.0,4.0,0.0,0.0,0.0,penalty,Budget handling,reject with penalty,effect
 tunis,300,10.0,10.0,10.0,1.812025021725546,0.9519620400309883,2.61834555575027,penalty,Budget handling,reject with penalty,effect
-tunis,400,10.0,5.0,5.0,0.2944445097223694,-0.0656056260943588,0.6845499274047994,penalty,Budget handling,reject with penalty,effect
+tunis,400,10.0,6.0,6.0,0.703002706458249,0.0542302177798577,1.6217114282793037,penalty,Budget handling,reject with penalty,effect
 tunis,500,10.0,10.0,10.0,-0.5287850438190789,-1.3953545006635661,0.23294533627865577,penalty,Budget handling,reject with penalty,effect
 tunis,600,10.0,8.0,8.0,-1.1996248007061714,-1.9496165844448414,-0.4628673181186671,penalty,Budget handling,reject with penalty,effect
 nebraska,75,,,40.0,-0.2447829704380545,-0.4656991863618827,-0.027792574397786898,penalty,Budget handling,reject with penalty,check
-nebraska,100,,,20.0,-0.2910999782253456,-0.6660788213021578,0.08445021040666836,penalty,Budget handling,reject with penalty,check
-nebraska,125,,,13.0,-0.12814089078955831,-0.3881607207629028,0.16921078316568128,penalty,Budget handling,reject with penalty,check
-tunis,150,,,16.0,-0.3151317686042716,-0.6030087973209589,-0.07597968385938729,penalty,Budget handling,reject with penalty,check
-tunis,200,,,13.0,-0.0705874022382347,-0.3387770938428649,0.2204498116247004,penalty,Budget handling,reject with penalty,check
+nebraska,100,,,24.0,-0.2990322717872548,-0.6348457058354777,0.04636002791152091,penalty,Budget handling,reject with penalty,check
+nebraska,125,,,14.0,-0.14549358987619374,-0.38861376626353555,0.1296560541993664,penalty,Budget handling,reject with penalty,check
+tunis,150,,,22.0,-0.2567205955957746,-0.48005822986631635,-0.06578583708257037,penalty,Budget handling,reject with penalty,check
+tunis,200,,,16.0,-0.1650666872665042,-0.42026674237632194,0.10860942606558967,penalty,Budget handling,reject with penalty,check
 tunis,300,,,40.0,0.870816578834764,0.4142344293741512,1.345355809291191,penalty,Budget handling,reject with penalty,check
-tunis,400,,,13.0,0.04120856572412245,-0.39712071380235836,0.6242962900301563,penalty,Budget handling,reject with penalty,check
+tunis,400,,,16.0,0.3317305422289832,-0.1790406105564186,0.9179308721827779,penalty,Budget handling,reject with penalty,check
 tunis,500,,,40.0,-0.23156499805299213,-0.5549403328958348,0.06675292819666406,penalty,Budget handling,reject with penalty,check
-tunis,600,,,13.0,-1.2030198279884123,-1.7444377862438283,-0.6565218172836991,penalty,Budget handling,reject with penalty,check
+tunis,600,,,16.0,-1.053504303032112,-1.551488899244112,-0.5699221183652134,penalty,Budget handling,reject with penalty,check
 nebraska,75,10.0,10.0,10.0,1.0124035430558878,0.5505817457632886,1.4191912470320718,terminal,Reward,yield at the end only,effect
-nebraska,100,10.0,5.0,5.0,1.2591317870370518,0.14739551069244455,2.3453897979050202,terminal,Reward,yield at the end only,effect
+nebraska,100,10.0,6.0,6.0,1.4743858421331417,0.42886232079452297,2.407361793012936,terminal,Reward,yield at the end only,effect
 nebraska,125,10.0,8.0,4.0,1.3461206004857003,1.2330765013077518,1.5250349314023357,terminal,Reward,yield at the end only,effect
-tunis,150,10.0,3.0,2.0,,,,terminal,Reward,yield at the end only,effect
-tunis,200,10.0,7.0,1.0,,,,terminal,Reward,yield at the end only,effect
+tunis,150,10.0,4.0,4.0,1.2090756644382192,0.8142186812111121,1.508633175454765,terminal,Reward,yield at the end only,effect
+tunis,200,10.0,8.0,2.0,,,,terminal,Reward,yield at the end only,effect
 tunis,300,10.0,10.0,10.0,2.3949536366351483,1.5407351257557562,3.2661269406559557,terminal,Reward,yield at the end only,effect
-tunis,400,10.0,6.0,1.0,,,,terminal,Reward,yield at the end only,effect
+tunis,400,10.0,6.0,2.0,,,,terminal,Reward,yield at the end only,effect
 tunis,500,10.0,10.0,10.0,0.08473618841731305,-0.2993895962606077,0.5733161511430102,terminal,Reward,yield at the end only,effect
-tunis,600,10.0,3.0,1.0,,,,terminal,Reward,yield at the end only,effect
+tunis,600,10.0,4.0,2.0,,,,terminal,Reward,yield at the end only,effect
 nebraska,75,,,80.0,0.446514624752257,0.2828756126777176,0.6136143974575976,terminal,Reward,yield at the end only,check
-nebraska,100,,,36.0,0.7006795791233764,0.39179458184851945,1.0259626358826373,terminal,Reward,yield at the end only,check
-nebraska,125,,,34.0,0.7205142293454215,0.4730837225884222,0.9861978148257229,terminal,Reward,yield at the end only,check
-tunis,150,,,32.0,1.130709172070615,0.9876669005257945,1.2585979067888036,terminal,Reward,yield at the end only,check
-tunis,200,,,26.0,1.9977512649125067,1.790078929019936,2.1889363751755235,terminal,Reward,yield at the end only,check
+nebraska,100,,,42.0,0.7277224941195027,0.4347261258890834,1.0279867484141516,terminal,Reward,yield at the end only,check
+nebraska,125,,,38.0,0.7549816740888647,0.5079354854350102,1.014800149969093,terminal,Reward,yield at the end only,check
+tunis,150,,,44.0,1.1365802646355319,1.009690105814343,1.2525662016545074,terminal,Reward,yield at the end only,check
+tunis,200,,,32.0,2.0480751773759027,1.8604863332759622,2.2241918367025364,terminal,Reward,yield at the end only,check
 tunis,300,,,80.0,1.842605509500705,1.5019147876143966,2.184969255476973,terminal,Reward,yield at the end only,check
-tunis,400,,,26.0,1.4715108968598436,1.069021396307288,1.9474937224901603,terminal,Reward,yield at the end only,check
+tunis,400,,,32.0,1.5119187827599179,1.05133968495219,2.0101713866208932,terminal,Reward,yield at the end only,check
 tunis,500,,,80.0,0.8052544014048726,0.5133890857085228,1.1066900468021155,terminal,Reward,yield at the end only,check
-tunis,600,,,26.0,0.3386921188703979,-0.03523687428295495,0.7076462624037493,terminal,Reward,yield at the end only,check
+tunis,600,,,32.0,0.3527820478215969,0.009668198774222777,0.6741323655321101,terminal,Reward,yield at the end only,check
 tunis,100,10.0,0.0,,,,,large_doses,Actions,doses up to 89 mm,effect
 tunis,125,10.0,0.0,,,,,large_doses,Actions,doses up to 89 mm,effect
 tunis,150,10.0,0.0,,,,,large_doses,Actions,doses up to 89 mm,effect

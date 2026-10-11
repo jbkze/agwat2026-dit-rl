@@ -7,7 +7,7 @@ Experiments for the major revision of *Benchmarking deep reinforcement learning 
 <!-- report:start -->
 ## Current results
 
-Updated automatically on 2026-10-11 12:38 by `ditrl report`. 1020 of 2372 trainings and rule runs have results. 100% of 1020 ablation runs converged before the step limit; median training length 500k steps. [Progress per experiment](reports/tables/progress.md)
+Updated automatically on 2026-10-11 12:40 by `ditrl report`. 1080 of 2372 trainings and rule runs have results. 100% of 1080 ablation runs converged before the step limit; median training length 500k steps. [Progress per experiment](reports/tables/progress.md)
 
 ### Central findings
 
