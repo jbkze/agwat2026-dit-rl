@@ -1,7 +1,7 @@
-"""Overview of the experiments: the two sites, the decision loop of DRL1 with the design choices
-the study varies, and what DRL1 is compared with. Drawn in the visual style of the group's system
-figures: black on white, sans serif, framed regions with a bold title, white rounded boxes for
-steps, grey boxes for data, and a dial on every choice whose variants the study compares."""
+"""Overview of the experiments: the two sites and the decision loop of DRL1 with the design
+choices the study varies. Drawn in the visual style of the group's system figures: black on
+white, sans serif, framed regions with a bold title, white rounded boxes for steps, grey boxes
+for data, and a dial on every choice whose variants the study compares."""
 
 from __future__ import annotations
 
@@ -14,6 +14,7 @@ from ditrl.report.core import Context, Entry, Section
 FONT = {"font.family": "sans-serif", "font.sans-serif": ["Arial", "DejaVu Sans"],
         "font.size": 6, "axes.grid": False}
 WIDTH, HEIGHT = 17.1, 6.4           # drawing units (about cm at the printed width)
+BOTTOM = 2.05                       # lower edge of the drawing
 GREY = "0.94"
 FRAME = "0.45"
 NOTE = "0.35"
@@ -82,9 +83,9 @@ def _note(ax, x, y, text):
 
 def build(ctx: Context) -> Section:
     with plt.rc_context(FONT):
-        fig, ax = plt.subplots(figsize=(7.0, 7.0 * HEIGHT / WIDTH))
+        fig, ax = plt.subplots(figsize=(7.0, 7.0 * (HEIGHT - BOTTOM) / WIDTH))
         ax.set_axis_off()
-        ax.set(xlim=(0, WIDTH), ylim=(0, HEIGHT))
+        ax.set(xlim=(0, WIDTH), ylim=(BOTTOM, HEIGHT))
         fig.subplots_adjust(0, 0, 1, 1)
 
         # the two sites
@@ -104,7 +105,8 @@ def build(ctx: Context) -> Section:
         obs = _knob(ax, 9.6, 5.35, 2.9, 1.0, "Observation",
                     ["5 or 18 variables", "scaled, with a forecast"])
         reward = _knob(ax, 12.85, 5.35, 2.9, 1.0, "Reward", ["relative ET + yield", "or yield only"])
-        action = _knob(ax, 12.85, 2.95, 2.9, 1.0, "Dose and interval", ["0-34 mm, every 5 days", "or larger, or daily"])
+        action = _knob(ax, 12.85, 2.95, 2.9, 1.0, "Dose and interval",
+                       ["0-34 mm, every 5 days", "or larger, or daily"])
         budget = _knob(ax, 9.6, 2.95, 2.9, 1.0, "Budget limit", ["mask, reject, cut", "or penalty"])
         _line(ax, env["t"], (env["t"][0], obs["l"][1]), obs["l"])
         _line(ax, obs["r"], reward["l"])
@@ -117,17 +119,9 @@ def build(ctx: Context) -> Section:
         _note(ax, 11.2, 4.45, "observation x budget limit x reward: 2 x 4 x 2 design")
         _note(ax, 12.85, 2.35, "larger or daily doses: Tunis 100-200 mm")
 
-        # what DRL1 is compared with, and how
-        _region(ax, 0, 0, 10.6, 1.8, "Compared with")
-        _box(ax, 1.85, 0.75, 3.2, 0.75, "DRL2", ["setup of Kelly et al."])
-        _box(ax, 5.3, 0.75, 3.2, 0.75, "Rules", ["threshold, fixed interval"])
-        _box(ax, 8.75, 0.75, 3.2, 0.75, "Optimum", ["weather known in advance"])
-        _region(ax, 11.0, 0, 17.1, 1.8, "Evaluation")
-        _box(ax, 14.05, 0.8, 5.6, 1.0, "Test years", ["each variant paired with DRL1 of the same seed",
-                                                 "benchmark policies also with noisy observations"])
         path = ctx.figures / "overview"
         style.save(fig, path)
     return Section("Experiments", entries=[Entry(
         path, "The experiments",
         "The two sites, the decision loop of DRL1 with the four design choices the study varies "
-        "(dials), and what DRL1 is compared with.", __name__)])
+        "(dials).", __name__)])

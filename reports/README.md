@@ -4,7 +4,7 @@ Built by `ditrl report` from `results/`. Figures as PNG and PDF, tables as Markd
 
 | File | Shows |
 |---|---|
-| [figures/overview.png](figures/overview.png) | The two sites, the decision loop of DRL1 with the four design choices the study varies (dials), and what DRL1 is compared with. |
+| [figures/overview.png](figures/overview.png) | The two sites, the decision loop of DRL1 with the four design choices the study varies (dials). |
 | [tables/progress.md](tables/progress.md) | Every experiment of the plan with its finished runs. |
 | [figures/effects_over_budget.png](figures/effects_over_budget.png) | Test yield of the variant minus DRL1 with the same seed, mean over seeds with 95 % bootstrap band (solid), and the same change averaged over the other choices of the 2 x 4 x 2 design (dashed). Gaps: no results for that budget. |
 | [tables/sensitivity.md](tables/sensitivity.md) | Change of test yield in t/ha against DRL1 with the 95 % interval, per case. "(k of n)": k of the n planned runs have results. "pending": too few seeds have results yet. Empty: not planned. |
