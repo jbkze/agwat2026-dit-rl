@@ -1,6 +1,6 @@
 # Usage
 
-Details behind the quick start of the [README](../README.md).
+This page gives the details behind the quick start in the [README](../README.md).
 
 ## Running experiments
 
@@ -11,9 +11,9 @@ ditrl run stage1                       # stage 1 on all cores but two
 ditrl run ablation_one_change --workers 8
 ```
 
-A selection is any mix of stages (`stage1`, `stage2`, `stage3`) and experiment names from `config/plan.yaml`. Finished jobs are skipped, so any command can be repeated after an interruption. Every DRL run trains until it converges (`training` in the plan). `--resume-from DIR` continues the trained models of an earlier round found in `DIR/jobs/` instead of starting them anew.
+A selection is any mix of stages (`stage1`, `stage2`, `stage3`) and experiment names from `config/plan.yaml`. Finished jobs are skipped, so any command can be repeated after an interruption. Every DRL run trains until the yield of its training seasons stops rising (section `training` of the plan). The option `--resume-from DIR` continues training the models of an earlier round found in `DIR/jobs/` instead of starting them anew.
 
-**On several machines.** `--shard I/N` runs part I of N equal parts of the job list. The job list depends only on the plan, so every machine derives the same parts. Each machine writes into its own folder of raw results (`--runs DIR`); these folders merge by copying their `jobs/` and `manifests/` into one, because no two jobs share a folder. The container image runs the same command:
+**On several machines.** The option `--shard I/N` runs part I of N equal parts of the job list. The job list depends only on the plan, so every machine derives the same parts. Each machine writes into its own folder of raw results (option `--runs DIR`), and these folders can be merged by copying their folders `jobs/` and `manifests/` into one, because no two jobs share a folder. The container image runs the same command:
 
 ```bash
 make image
@@ -30,9 +30,9 @@ runs/
   manifests/                    one file per `ditrl run`: commit, packages, machine, selection, shard
 ```
 
-A job is done when its `result.json` exists; it is written last, together with the commit of the code that produced it. Seeds fix every random draw, so a job run again on the same code gives the same numbers.
+A job is done when its file `result.json` exists. This file is written last and records the commit of the code that produced it. Seeds fix every random draw, so a job run again on the same code gives the same numbers.
 
-`ditrl export <selection>` turns the finished jobs into the tables that are kept in git, and `ditrl report` rebuilds the figures and tables in `reports/` and the results block of the README from them. The questions of the sensitivity analysis are listed in `config/plan.yaml` (`analysis.sensitivity`), the central findings are written in `config/findings.md` with placeholders that the report fills in:
+The command `ditrl export <selection>` turns the finished jobs into the tables that are kept in git, and the command `ditrl report` rebuilds the figures and tables in `reports/` and the results block of the README from them. The questions of the sensitivity analysis are listed in the setting `analysis.sensitivity` of `config/plan.yaml`, and the central findings are written in `config/findings.md`, with placeholders that the report fills in.
 
 | File in `results/<experiment>/` | Content |
 |---|---|
@@ -42,9 +42,9 @@ A job is done when its `result.json` exists; it is written last, together with t
 | `decisions.csv.gz` | one row per decision in a test season: day, remaining budget, proposed and applied depth, reward |
 | `hyperparameters.csv` | DRL: the PPO settings actually used |
 | `convergence.csv` | DRL: mean yield of the training seasons per block of steps, the input of the stopping rule |
-| `training.csv.gz` | DRL: PPO statistics (episode return, entropy, losses, KL, explained variance) about every 10,000 steps |
+| `training.csv.gz` | DRL: PPO statistics (episode return, entropy, losses, KL divergence, explained variance) about every 10,000 steps |
 
-`results/manifests/` holds a copy of every run manifest.
+The folder `results/manifests/` holds a copy of every run manifest.
 
 ## From results to the paper
 
@@ -54,4 +54,4 @@ ditrl assets export      # the same, copied into generated/ of the paper repo (p
 ditrl assets check       # before submission: do the paper's assets match the current results?
 ```
 
-`src/ditrl/analysis/assets.py` is the registry of everything that flows into the paper. Which experiments feed which figure or table is set in `config/plan.yaml` (`analysis.tables`). The oracle reference values come from `data/external/getoptis_ea_*.csv` (published GET-OPTIS values) or from the own oracle (`analysis.oracle_source`).
+The file `src/ditrl/analysis/assets.py` lists everything that flows into the paper. The setting `analysis.tables` in `config/plan.yaml` defines which experiments feed which figure or table. The oracle reference values come from `data/external/getoptis_ea_*.csv` (published GET-OPTIS values) or from our own oracle, as the setting `analysis.oracle_source` chooses.
