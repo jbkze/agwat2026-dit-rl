@@ -32,7 +32,7 @@ runs/
 
 A job is done when its file `result.json` exists. This file is written last and records the commit of the code that produced it. Seeds fix every random draw, so a job run again on the same code gives the same numbers.
 
-The command `ditrl export <selection>` turns the finished jobs into the tables that are kept in git, and the command `ditrl report` rebuilds the figures and tables in `reports/` and the results block of the README from them. The questions of the sensitivity analysis are listed in the setting `analysis.sensitivity` of `config/plan.yaml`, and the central findings are written in `config/findings.md`, with placeholders that the report fills in.
+The command `ditrl export <selection>` turns the finished jobs into the tables that are kept in git, and the command `ditrl report` rebuilds the figures and tables in `reports/` and the results block of the README from them. The questions behind the first figure are listed in the setting `analysis.sensitivity` of `config/plan.yaml`.
 
 | File in `results/<experiment>/` | Content |
 |---|---|

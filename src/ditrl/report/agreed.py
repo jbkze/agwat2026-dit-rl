@@ -15,8 +15,6 @@ from ditrl.report.core import Context, Entry, Section, write_table
 EXPERIMENT = "ablation_one_change"
 EXTRA_SEEDS = "ablation_more_seeds"
 VARIANTS = list(style.AGREED)            # DRL1 first: the reference
-TERMINAL = "drl1_terminal"               # the variant rewarded with the yield at the end only
-TIMING_BIN_DAYS = 10
 PPO_SHOWN = ["algorithm", "learning_rate", "n_steps", "batch_size", "n_epochs", "gamma",
              "gae_lambda", "clip_range", "ent_coef", "net_arch"]
 
@@ -102,40 +100,10 @@ def paired_figure(ctx: Context, seasons: pd.DataFrame, name: str) -> Entry:
     axes[0][0].set_ylabel("DRL1 minus variant (t/ha)")
     path = ctx.figures / name
     style.save(fig, path)
-    return Entry(path, f"Agreed ablation, paired differences ({seeds} seeds)",
+    return Entry(path, f"Core ablation, paired differences ({seeds} seeds)",
                  f"Mean test yield of DRL1 minus that of each variant, one dot per seed "
                  f"({seeds} seeds), bar at the mean. Above zero: the change costs yield; below "
                  f"zero: the variant is better than DRL1.", __name__)
-
-
-def timing_figure(ctx: Context, decisions: pd.DataFrame, seasons: pd.DataFrame) -> Entry:
-    """When the water goes out: DRL1 (relative ET every step plus yield) against yield only."""
-    methods = [VARIANTS[0], TERMINAL]
-    decisions = decisions[decisions["method"].isin(methods)].assign(
-        day=lambda d: d["dap"] // TIMING_BIN_DAYS * TIMING_BIN_DAYS)
-    cases = decisions[["site", "budget_mm"]].drop_duplicates().sort_values(["site", "budget_mm"])
-    fig, axes = plt.subplots(1, len(cases), figsize=(2.3 * len(cases), 2.4), squeeze=False)
-    for ax, (_, case) in zip(axes[0], cases.iterrows(), strict=True):
-        here = (decisions["site"] == case["site"]) & (decisions["budget_mm"] == case["budget_mm"])
-        for method in methods:
-            d = decisions[here & (decisions["method"] == method)]
-            count = len(d[["job", "year"]].drop_duplicates())
-            water = d.groupby("day")["applied_mm"].sum().cumsum() / count
-            s = seasons[(seasons["site"] == case["site"]) & (seasons["budget_mm"] == case["budget_mm"])
-                        & (seasons["method"] == method)]
-            ax.step(water.index, water, where="post", color=style.AGREED[method],
-                    label=f"{method_label(ctx.plan, method)}, dies in {s['crop_dead'].mean():.0%}")
-        ax.axhline(case["budget_mm"], color="k", linewidth=0.6, linestyle=":")
-        ax.set_title(_case(case["site"], case["budget_mm"]), fontsize=8)
-        ax.set_xlabel("Days after planting")
-        ax.legend(frameon=False, fontsize=5, loc="upper left")
-    axes[0][0].set_ylabel("Water applied so far (mm)")
-    path = ctx.figures / "agreed_irrigation_timing"
-    style.save(fig, path)
-    return Entry(path, "When the water is applied, by reward",
-                 f"Mean cumulative irrigation over the season in the test years (all seeds), in "
-                 f"{TIMING_BIN_DAYS}-day steps; dotted line: budget. The legend gives the share of "
-                 f"test seasons in which the crop dies.", __name__)
 
 
 def build(ctx: Context) -> Section:
@@ -143,10 +111,10 @@ def build(ctx: Context) -> Section:
     if base is None:
         return Section()
     base = base[(base["split"] == "test") & base["method"].isin(VARIANTS)]
-    section = Section("Agreed ablation")
-    config_path = ctx.tables / "agreed_ablation_configuration.md"
+    section = Section("Core ablation")
+    config_path = ctx.tables / "core_ablation_configuration.md"
     write_table(configuration(ctx), config_path)
-    section.entries.append(Entry(config_path, "Agreed ablation, configuration",
+    section.entries.append(Entry(config_path, "Core ablation, configuration",
                                  "Design choices, PPO settings actually used, training and "
                                  "evaluation of the four variants.", __name__))
     seasons = base
@@ -155,13 +123,10 @@ def build(ctx: Context) -> Section:
         extra = extra[(extra["split"] == "test") & extra["method"].isin(VARIANTS)]
         seasons = pd.concat([base, extra], ignore_index=True).merge(
             base[["site", "budget_mm"]].drop_duplicates())
-    path = ctx.tables / "agreed_ablation_results.md"
+    path = ctx.tables / "core_ablation_results.md"
     write_table(results(ctx, seasons), path)
-    section.entries += [Entry(path, "Agreed ablation, results",
+    section.entries += [Entry(path, "Core ablation, results",
                               "Test yield per case and variant over all seeds, and the paired "
                               "difference to DRL1 per seed.", __name__),
-                        paired_figure(ctx, seasons, "agreed_ablation")]
-    decisions = ctx.tables_of([EXPERIMENT, EXTRA_SEEDS], "decisions")
-    if not decisions.empty:
-        section.entries.append(timing_figure(ctx, decisions, seasons))
+                        paired_figure(ctx, seasons, "core_ablation")]
     return section

@@ -1,55 +1,72 @@
 # DIT-RL revision experiments
 
-Experiments for the major revision of *Benchmarking deep reinforcement learning strategies for the optimal scheduling of deficit irrigation systems* (Schütze, Kunze, Grové; Agricultural Water Management, AGWAT-D-26-00823): maize irrigation in AquaCrop-OSPy under a hard seasonal water budget, scheduled by two DRL configurations (DRL1 and the reference DRL2 of Kelly et al. 2024), simple rules, and an optimizer with perfect weather foresight.
+Experiments for the revision of *Benchmarking deep reinforcement learning strategies for the optimal scheduling of deficit irrigation systems* (Agricultural Water Management, AGWAT-D-26-00823): maize irrigation in AquaCrop-OSPy under a hard seasonal water budget.
 
-![System overview](reports/figures/overview.png)
+![The experiments](reports/figures/overview.png)
+
+## Core deliverables: finished
+
+The core part of the ablation is complete: DRL1 and three variants that each change one design choice (18 observed variables, rejecting a dose above the remaining budget, rewarding only the yield at the end), in Tunis at 300 and 500 mm and in Nebraska at 75 mm, with 10 seeds each.
+
+| Deliverable | File |
+|---|---|
+| Configuration of the four variants (design choices, PPO settings, training, evaluation) | [reports/tables/core_ablation_configuration.md](reports/tables/core_ablation_configuration.md) |
+| Results per case and variant: mean and spread over seeds, paired difference to DRL1, 10 % quantile | [reports/tables/core_ablation_results.md](reports/tables/core_ablation_results.md) |
+| Paired difference to DRL1 per seed | [reports/figures/core_ablation.png](reports/figures/core_ablation.png) |
+| Raw tables of these runs | [results/ablation_one_change/](results/ablation_one_change/), [results/ablation_more_seeds/](results/ablation_more_seeds/) |
+
+Further experiments and analyses are added as their results come in, until the status table below is filled.
+
+## How it works
+
+The command line tool `ditrl` runs the whole plan in four steps:
+
+1. `config/plan.yaml` lists the sites, the methods and every experiment, with every number used.
+2. `ditrl run <experiment> --shard I/N` trains and tests each job of an experiment and writes one folder per job to `runs/`. Any number of machines can each run one shard, and finished jobs are skipped.
+3. `ditrl export <experiment>` collects the job folders into tables in `results/<experiment>/`.
+4. `ditrl report` rebuilds the figures and tables in `reports/` and the two sections below.
+
+Setup and details: [docs/usage.md](docs/usage.md).
 
 <!-- report:start -->
-## Current results
+## Status
 
-Updated automatically on 2026-10-11 17:17 by `ditrl report`. 1380 of 2372 trainings and rule runs have results. [Progress per experiment](reports/tables/progress.md)
+Filled in by `ditrl report` after every batch of results (last on 2026-10-11 18:09).
 
-### Central findings
+| Stage | Experiment | What it tests | Runs | Results |
+|---|---|---|---|---|
+| 1 | `benchmark` | DRL1, DRL2 and the rules over the budgets, 5 seeds | 0 of 98 | pending |
+| 1 | `ablation_one_change` | core part: DRL1 and three variants that each change one design choice | 60 of 60 | [results/ablation_one_change/](results/ablation_one_change/) |
+| 2 | `ablation_budget_handling` | the other two budget limits, and all three settings of Kelly et al. at once | 45 of 45 | [results/ablation_budget_handling/](results/ablation_budget_handling/) |
+| 2 | `ablation_interactions` | the remaining cells of the 2 x 4 x 2 design | 135 of 135 | [results/ablation_interactions/](results/ablation_interactions/) |
+| 2 | `benchmark_seeds` | DRL1 and DRL2 with 5 more seeds | 0 of 80 | pending |
+| 2 | `benchmark_budgets` | the rest of the yield over budget curve in Tunis | 0 of 154 | pending |
+| 2 | `low_budget` | larger doses and daily decisions at small budgets | 0 of 120 | pending |
+| 2 | `robustness` | the benchmark policies with noisy observations | 0 of 4800 | pending |
+| 2 | `ablation_more_seeds` | the 16 cells of the design with 5 more seeds | 240 of 240 | [results/ablation_more_seeds/](results/ablation_more_seeds/) |
+| 2 | `ablation_more_budgets` | the 16 cells of the design at the other budgets | 900 of 960 | [results/ablation_more_budgets/](results/ablation_more_budgets/) |
+| 3 | `forecast` | DRL1 with a perfect 7-day weather forecast | 0 of 80 | pending |
+| 3 | `test_year` | DRL1 trained on the test year itself | 0 of 320 | pending |
+| 3 | `obs_scaled` | the 18 variables, scaled | 0 of 80 | pending |
+| 3 | `oracle_ds` | best schedule per test year with known weather (not run, published values used) | 0 of 927 | pending |
+| 3 | `oracle_ss` | one robust schedule for all years (not run, published values used) | 0 of 45 | pending |
 
-**1. Rewarding only the yield at the end of the season works better than the stepwise reward of DRL1.** Changing only the reward raises test yield by +1.01 t/ha [+0.55, +1.42] in Nebraska at 75 mm and by +2.39 t/ha [+1.54, +3.27] in Tunis at 300 mm. At every decision the stepwise reward adds the relative evapotranspiration (actual over potential) of a single day, the last day of the 5-day interval. On sandy soil that day is fully wet only if the agent irrigates at every decision, so in Tunis DRL1 gives 34 mm every 5 days while the canopy grows, empties the budget before flowering and grain filling, and the crop dies. The reward for a wet root zone comes at once, the cost of an empty budget weeks later: rerun with the stepwise reward as score, the policies trained on the yield alone even earn a higher stepwise return, so DRL1 settles on a policy that is worse by its own measure. In Nebraska the summed ratios are mostly set by the weather and make up about two thirds of the return, which leaves little weight for the yield. In Tunis at 150 and 200 mm the crop has died in every run with the stepwise reward so far, in every combination of the other two design choices. Only with a large budget (Tunis 500 mm, +0.08 t/ha [-0.30, +0.57]) do both rewards apply the water at nearly the same time and reach nearly the same yield.
+## First look
 
-![agreed_irrigation_timing](reports/figures/agreed_irrigation_timing.png)
+Test yield of the variant minus DRL1 with the same seed, mean over seeds with 95 % bootstrap band (solid), and the same change averaged over the other choices of the 2 x 4 x 2 design (dashed). Gaps: no results for that budget.
 
-**2. The 18 observed variables of Kelly et al. (2024) help in Nebraska and hurt in Tunis.** In Nebraska they raise test yield by +1.05 t/ha [+0.65, +1.43] at 75 mm, in Tunis they lower it by -1.47 t/ha [-2.14, -0.56] at 500 mm. Nebraska has rain and weather that differs from year to year, which the extra variables can describe. Tunis is simulated without rain, so there they plausibly add mostly noise. The 18 variables are given to the network without scaling, and the experiment with scaled variables, which has not run yet, will show whether part of the effect comes from the scaling.
-
-**3. How the budget is enforced matters less than the reward, and its effect depends on the case.** Rejecting a dose that exceeds the remaining budget, where DRL1 masks it, changes test yield by -0.15 t/ha [-0.80, +0.50] in Nebraska at 75 mm and by +0.19 t/ha [-0.82, +1.26] in Tunis at 300 mm. Adding a penalty to the rejection helps in Tunis at 300 mm (+1.81 t/ha [+0.95, +2.62]) but costs yield at 600 mm (-1.08 t/ha [-1.79, -0.39, 9 of 10 runs]). Masking, the choice of DRL1, is therefore not better than the alternatives. Where a single change and the same change averaged over the other choices (diamonds in the figure below) differ, the choices interact, most clearly for the reward in Tunis at 500 mm.
-
-### What changes what
-
-Each panel changes one thing about DRL1. Dot: mean change of test yield against DRL1 trained with the same seed, with the 95 % bootstrap interval over seeds, filled when the interval does not contain 0. Diamond: the same change averaged over the other choices of the 2 x 4 x 2 design. Cross: planned, results pending.
-
-![What changes what](reports/figures/sensitivity.png)
-
-[Numbers](reports/tables/sensitivity.md) · [Agreed ablation for the co-author](reports/README.md#agreed-ablation) · [All figures and tables](reports/README.md)
+![First look: effect of three design choices over the budget](reports/figures/effects_over_budget.png)
 
 <!-- report:end -->
-
-## Quick start
-
-```bash
-make install                      # Python 3.10 environment, every dependency pinned
-ditrl list stage1                 # jobs of a stage or experiment, and how many are done
-ditrl run stage1 --shard 1/2      # run them, one shard per machine (finished jobs are skipped)
-ditrl export stage1               # result tables -> results/<experiment>/
-ditrl report                      # figures and tables -> reports/, and the block above
-```
-
-Every DRL run is tested with the policy after its last training step. More on running on several machines, the result layout and the paper assets: [docs/usage.md](docs/usage.md).
 
 ## Where things are
 
 | Path | Content |
 |---|---|
-| `config/plan.yaml` | the whole experiment plan, with every number it uses |
-| `config/findings.md` | the central findings, written by hand, with their numbers filled in by the report |
-| `docs/` | [experiment plan](docs/experiment-plan.md) (why each experiment exists), [decisions](docs/decisions.md), [usage](docs/usage.md) |
-| `results/` | result tables per experiment (in git) |
-| `reports/` | figures and tables built from them, with an [index](reports/README.md) |
-| `src/ditrl/` | the code: plan, environment, training, rules, oracle, runner, export |
-| `src/ditrl/report/`, `src/ditrl/analysis/` | the report generators, and the paper's figures, tables and statistics |
+| `config/plan.yaml` | the experiment plan |
+| `results/<experiment>/` | result tables per experiment |
+| `reports/` | figures and tables, listed in [reports/README.md](reports/README.md) |
+| `docs/` | [why each experiment exists](docs/experiment-plan.md), [decisions](docs/decisions.md), [usage](docs/usage.md) |
+| `data/` | input weather and external reference values, see [data/README.md](data/README.md) |
+| `src/ditrl/` | the code |
 | `runs/` | raw job folders with models and logs (not in git) |

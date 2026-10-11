@@ -1,4 +1,5 @@
-"""Progress: how many jobs of each experiment of the plan have results."""
+"""Status: one row per experiment of the plan, what it tests, how many of its runs are done, and
+where its results are. Experiments without results stay in the table as pending."""
 
 from __future__ import annotations
 
@@ -7,28 +8,25 @@ import pandas as pd
 from ditrl.report.core import Context, Entry, Section, write_table
 
 
-def counts(ctx: Context) -> pd.DataFrame:
-    """Planned and finished jobs per experiment that belongs to a stage."""
+def counts(ctx: Context, link_base: str = "") -> pd.DataFrame:
     rows = []
     for name, cfg in ctx.plan.experiments.items():
         if cfg.get("stage") is None:
             continue
-        jobs = ctx.plan.expand(name)
+        planned = len(ctx.plan.expand(name))
         done = ctx.table(name, "jobs")
-        rows.append({"Stage": cfg["stage"], "Experiment": name, "Kind": cfg["kind"],
-                     "Jobs": len(jobs), "Done": 0 if done is None else len(done)})
-    table = pd.DataFrame(rows).sort_values(["Stage"], kind="stable")
-    table["Share"] = table["Done"] / table["Jobs"]
-    return table
+        done = 0 if done is None else len(done)
+        rows.append({"Stage": cfg["stage"], "Experiment": f"`{name}`",
+                     "What it tests": cfg.get("about", ""), "Runs": f"{done} of {planned}",
+                     "Results": f"[results/{name}/]({link_base}results/{name}/)" if done
+                     else "pending"})
+    return pd.DataFrame(rows).sort_values("Stage", kind="stable")
 
 
 def build(ctx: Context) -> Section:
-    table = counts(ctx)
-    shown = table.assign(Share=(100 * table["Share"]).round().astype(int).astype(str) + " %")
     path = ctx.tables / "progress.md"
-    write_table(shown, path, decimals=0)
-    trainings = table[table["Kind"] == "methods"]
-    finding = (f"{int(trainings['Done'].sum())} of {int(trainings['Jobs'].sum())} trainings and "
-               f"rule runs have results.")
-    return Section("Progress", [Entry(path, "Progress", "Planned and finished jobs per experiment.",
-                                      __name__)], [finding])
+    write_table(counts(ctx, "../../"), path, decimals=0)
+    ctx.facts["status"] = counts(ctx)
+    return Section("Status", [Entry(path, "Status",
+                                    "Every experiment of the plan with its finished runs.",
+                                    __name__)])

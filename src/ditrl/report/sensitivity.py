@@ -26,10 +26,9 @@ from ditrl.report.core import Context, Entry, Section, write_table
 PAIR = ["site", "budget_mm", "seed", "year"]
 CASE = ["site", "budget_mm"]
 TRAINING_SEED = r"_s(\d+)_noise"   # evaluation jobs: the seed of the trained model is in the id
-SITE_COLORS = {"nebraska": style.BRIGHT["blue"], "tunis": style.BRIGHT["red"]}
-PENDING_COLOR = "0.6"
-COLUMNS = 3          # panels per row of the figure
-SITE_GAP = 1         # empty slots between the sites on the x axis
+COLORS = [style.BRIGHT["yellow"], style.BRIGHT["green"], style.BRIGHT["red"],
+          style.BRIGHT["purple"], style.BRIGHT["cyan"]]   # one per shown question
+SITE_NAMES = {"nebraska": "Nebraska (rain)", "tunis": "Tunis (no rain)"}
 
 
 def _test(ctx: Context, experiments: list[str], archive: bool = False) -> pd.DataFrame:
@@ -136,72 +135,51 @@ def analyse(ctx: Context) -> pd.DataFrame:
     return pd.concat([r for r in rows if not r.empty], ignore_index=True)
 
 
-def _slots(table: pd.DataFrame) -> dict[tuple[str, float], int]:
-    """x position of every case: the sites one after the other, with a gap between them."""
-    slots, x = {}, 0
-    for site in sorted(table["site"].unique()):
-        for budget in sorted(table.loc[table["site"] == site, "budget_mm"].unique()):
-            slots[(site, budget)] = x
-            x += 1
-        x += SITE_GAP
-    return slots
-
-
 def figure(ctx: Context, table: pd.DataFrame) -> Entry:
-    questions = list(dict.fromkeys(table["question"]))
-    slots = _slots(table)
-    rows = math.ceil(len(questions) / COLUMNS)
-    fig, axes = plt.subplots(rows, COLUMNS, figsize=(2.4 * COLUMNS, 1.55 * rows), sharex=True,
-                             sharey=True, squeeze=False)
-    for ax, qid in zip(axes.flat, questions):
-        q = table[table["question"] == qid]
-        effect, test = q[q["kind"] == "effect"], q[q["kind"] == "check"]
-        for _, r in effect.iterrows():
-            x = slots[(r["site"], r["budget_mm"])]
-            if math.isnan(r["effect"]):
-                ax.plot(x, 0, marker="x", markersize=3, color=PENDING_COLOR, linestyle="none")
-                continue
-            clear = r["ci_low"] > 0 or r["ci_high"] < 0
-            color = SITE_COLORS.get(r["site"])
-            ax.errorbar(x, r["effect"], yerr=[[r["effect"] - r["ci_low"]], [r["ci_high"] - r["effect"]]],
-                        marker="o", markersize=3, capsize=1.5, linewidth=0.8, color=color,
-                        markerfacecolor=color if clear else "white")
-        for _, r in test.dropna(subset=["effect"]).iterrows():
-            ax.plot(slots[(r["site"], r["budget_mm"])] + 0.3, r["effect"], marker="D",
-                    markersize=2.2, color="k", linestyle="none")
-        if effect["effect"].isna().all():
-            ax.text(0.5, 0.5, f"no results yet\n({int(effect['done'].sum())} of "
-                    f"{int(effect['planned'].sum())} runs)", transform=ax.transAxes, ha="center",
-                    va="center", fontsize=6, color=PENDING_COLOR)
-        ax.axhline(0, color="k", linewidth=0.5)
-        ax.set_title(f"{q['group'].iloc[0]}: {q['change'].iloc[0]}", fontsize=6.5)
-    for ax in axes.flat[len(questions):]:
-        ax.set_visible(False)
-    for ax in axes[-1]:
-        ax.set_xticks(list(slots.values()), [f"{b:g}" for _, b in slots], fontsize=5, rotation=90)
-        for label, (site, _) in zip(ax.get_xticklabels(), slots, strict=True):
-            label.set_color(SITE_COLORS.get(site))
-    for ax in axes[:, 0]:
-        ax.set_ylabel("Change (t/ha)", fontsize=6)
-    handles = [plt.Line2D([], [], marker="o", color=c, linestyle="none", markersize=3,
-                          label=s.capitalize()) for s, c in SITE_COLORS.items()]
-    handles += [plt.Line2D([], [], marker="o", color="k", markerfacecolor="white",
-                           linestyle="none", markersize=3, label="interval contains 0"),
-                plt.Line2D([], [], marker="D", color="k", linestyle="none", markersize=2.2,
-                           label="averaged over the other choices"),
-                plt.Line2D([], [], marker="x", color=PENDING_COLOR, linestyle="none",
-                           markersize=3, label="planned, results pending")]
-    fig.supxlabel("Seasonal budget (mm), Nebraska in blue, Tunis in red", fontsize=7)
+    """The questions listed under `shown`, as lines over the budget per site. Budgets without
+    results stay on the axis and leave a gap in the line."""
+    shown = ctx.plan.analysis["sensitivity"]["shown"]
+    questions = ctx.plan.analysis["sensitivity"]["questions"]
+    sites = sorted(table["site"].unique())
+    budgets = {s: sorted(table.loc[table["site"] == s, "budget_mm"].unique()) for s in sites}
+    fig, axes = plt.subplots(len(shown), len(sites), figsize=(6.6, 2.05 * len(shown)),
+                             sharey="row", squeeze=False,
+                             gridspec_kw={"width_ratios": [len(budgets[s]) + 2 for s in sites]})
+    for i, (qid, color) in enumerate(zip(shown, COLORS, strict=False)):
+        q = questions[qid]
+        for j, site in enumerate(sites):
+            ax = axes[i][j]
+            grid = pd.DataFrame({"site": site, "budget_mm": budgets[site]})
+            sel = table[table["question"] == qid]
+            one = grid.merge(sel[sel["kind"] == "effect"], how="left")
+            avg = grid.merge(sel[sel["kind"] == "check"], how="left")
+            ax.fill_between(one["budget_mm"], one["ci_low"], one["ci_high"], color=color,
+                            alpha=style.BAND_ALPHA, linewidth=0)
+            ax.plot(one["budget_mm"], one["effect"], color=color, marker="o", markersize=2.5,
+                    linewidth=1.1, label="single change")
+            if avg["effect"].notna().any():
+                ax.plot(avg["budget_mm"], avg["effect"], color=color, linestyle="--",
+                        linewidth=0.9, label="averaged over the other choices")
+            ax.axhline(0, color="k", linewidth=0.5)
+            ax.set_xticks(budgets[site])
+            ax.tick_params(axis="x", labelsize=6)
+            margin = 0.04 * (budgets[site][-1] - budgets[site][0])
+            ax.set_xlim(budgets[site][0] - margin, budgets[site][-1] + margin)
+            if i == 0:
+                ax.set_title(SITE_NAMES.get(site, site), fontsize=8)
+            if i == len(shown) - 1:
+                ax.set_xlabel("Seasonal budget (mm)", fontsize=7)
+        axes[i][0].set_ylabel("Change against DRL1 (t/ha)", fontsize=6.5)
+        axes[i][-1].text(0.01, 0.97, f"{q['group']}: {q['change']}", transform=axes[i][-1].transAxes,
+                         fontsize=7, va="top", fontweight="bold")
+        axes[i][-1].legend(frameon=False, fontsize=5.5, loc="lower right")
     fig.tight_layout()
-    fig.legend(handles=handles, loc="upper center", ncol=len(handles), frameon=False,
-               fontsize=6, bbox_to_anchor=(0.5, 0.0))
-    path = ctx.figures / "sensitivity"
+    path = ctx.figures / "effects_over_budget"
     style.save(fig, path)
-    return Entry(path, "What changes what",
-                 "Each panel changes one thing about DRL1. Dot: mean change of test yield against "
-                 "DRL1 trained with the same seed, with the 95 % bootstrap interval over seeds, "
-                 "filled when the interval does not contain 0. Diamond: the same change averaged over the other "
-                 "choices of the 2 x 4 x 2 design. Cross: planned, results pending.", __name__)
+    return Entry(path, "First look: effect of three design choices over the budget",
+                 "Test yield of the variant minus DRL1 with the same seed, mean over seeds with "
+                 "95 % bootstrap band (solid), and the same change averaged over the other choices "
+                 "of the 2 x 4 x 2 design (dashed). Gaps: no results for that budget.", __name__)
 
 
 def _cell(r) -> str:
@@ -231,14 +209,12 @@ def summary(table: pd.DataFrame) -> pd.DataFrame:
 
 def build(ctx: Context) -> Section:
     table = analyse(ctx)
-    ctx.facts["sensitivity"] = table
     path = ctx.tables / "sensitivity.md"
     write_table(summary(table), path)
     table.to_csv(ctx.tables / "sensitivity_long.csv", index=False)
-    return Section("What changes what", [
+    return Section("First look", [
         figure(ctx, table),
-        Entry(path, "What changes what (table)",
+        Entry(path, "Every question of the plan (table)",
               "Change of test yield in t/ha against DRL1 with the 95 % interval, per case. "
               "\"(k of n)\": k of the n planned runs have results. \"pending\": too few seeds "
-              "have results yet. Empty: not planned. The file `sensitivity_long.csv` holds every "
-              "number.", __name__)])
+              "have results yet. Empty: not planned.", __name__)])

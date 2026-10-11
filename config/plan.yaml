@@ -183,6 +183,7 @@ oracle:
 # Stage 1 is the minimum for the revision; stages 2 and 3 add to it without repeating anything.
 experiments:
   benchmark:
+    about: DRL1, DRL2 and the rules over the budgets, 5 seeds
     stage: 1
     kind: methods
     methods: [drl1, drl2, threshold, fixed_interval, full_irrigation]
@@ -196,6 +197,7 @@ experiments:
     seeds: [100, 100]
 
   ablation_one_change:         # required: DRL1 and the three variants agreed with the co-author,
+    about: "core part: DRL1 and three variants that each change one design choice"
                                # each changing one design choice
     stage: 1
     kind: methods
@@ -204,6 +206,7 @@ experiments:
     seeds: [0, 4]
 
   ablation_budget_handling:    # the other budget handlings, and the full Kelly cell
+    about: the other two budget limits, and all three settings of Kelly et al. at once
     stage: 2
     kind: methods
     methods: [drl1_clip, drl1_penalty, drl1_obs_clip_terminal]
@@ -211,6 +214,7 @@ experiments:
     seeds: [0, 4]
 
   ablation_interactions:       # the cells that complete the 2 x 4 x 2 design
+    about: the remaining cells of the 2 x 4 x 2 design
     stage: 2
     kind: methods
     methods: [drl1_obs_reject, drl1_obs_clip, drl1_obs_penalty, drl1_obs_terminal,
@@ -220,6 +224,7 @@ experiments:
     seeds: [0, 4]
 
   benchmark_seeds:
+    about: DRL1 and DRL2 with 5 more seeds
     stage: 2
     kind: methods
     methods: [drl1, drl2]
@@ -227,6 +232,7 @@ experiments:
     seeds: [5, 9]
 
   benchmark_budgets:           # the rest of the crop water production function; 0 mm gives 0 t/ha
+    about: the rest of the yield over budget curve in Tunis
     stage: 2
     kind: methods
     methods: [drl1, drl2, threshold, fixed_interval]
@@ -234,6 +240,7 @@ experiments:
     seeds: [0, 9]
 
   low_budget:                  # E4
+    about: larger doses and daily decisions at small budgets
     stage: 2
     kind: methods
     methods: [drl1_large_doses, drl1_daily, drl1_large_daily]
@@ -241,6 +248,7 @@ experiments:
     seeds: [0, 9]
 
   robustness:                  # E5: benchmark models on the test years with noisy observations
+    about: the benchmark policies with noisy observations
     stage: 2
     kind: evaluate
     source: [benchmark, benchmark_seeds]
@@ -249,6 +257,7 @@ experiments:
     seeds: [0, 9]
 
   ablation_more_seeds:         # seeds 5-9 for all 16 cells on the same three cases
+    about: the 16 cells of the design with 5 more seeds
     stage: 2
     kind: methods
     methods: &all_ablation_cells [drl1, drl1_obs, drl1_reject, drl1_clip, drl1_penalty, drl1_terminal,
@@ -260,6 +269,7 @@ experiments:
     seeds: [5, 9]
 
   ablation_more_budgets:       # all 16 cells at the other budgets of the ablation
+    about: the 16 cells of the design at the other budgets
     stage: 2
     kind: methods
     methods: *all_ablation_cells
@@ -267,6 +277,7 @@ experiments:
     seeds: [0, 9]
 
   forecast:                    # E3: DRL1 with a perfect 7-day forecast
+    about: DRL1 with a perfect 7-day weather forecast
     stage: 3
     kind: methods
     methods: [drl1_forecast]
@@ -274,6 +285,7 @@ experiments:
     seeds: [0, 9]
 
   test_year:                   # E3: DRL1 trained and tested on the same single year
+    about: DRL1 trained on the test year itself
     stage: 3
     kind: methods
     methods: [drl1]
@@ -282,6 +294,7 @@ experiments:
     seeds: {tunis: [0, 9], nebraska: [0, 2]}
 
   obs_scaled:                  # is the observation effect of the ablation partly a scaling effect?
+    about: the 18 variables, scaled
     stage: 3
     kind: methods
     methods: [drl1_obs_scaled]
@@ -289,6 +302,7 @@ experiments:
     seeds: [0, 9]
 
   oracle_ds:                   # E0: best schedule for each known test year
+    about: best schedule per test year with known weather (not run, published values used)
     stage: 3
     kind: oracle
     years: test
@@ -298,6 +312,7 @@ experiments:
     seeds: [0, 2]
 
   oracle_ss:                   # E0: one robust schedule, 10 % yield quantile over 1981-2001
+    about: one robust schedule for all years (not run, published values used)
     stage: 3
     kind: oracle
     years: train_val
@@ -355,6 +370,7 @@ analysis:
     design: [ablation_one_change, ablation_budget_handling, ablation_interactions,
              ablation_more_seeds, ablation_more_budgets]                    # the 2 x 4 x 2 cells
     min_seeds: 3        # fewer paired seeds in a case: shown as pending
+    shown: [terminal, obs, reject]   # the questions of the figure in the README
     questions:          # id: group, what changes, which runs (method; experiment, noise_sd, archive)
       obs:         {group: Observation, change: 18 variables instead of 5, method: drl1_obs, factor: observation}
       obs_scaled:  {group: Observation, change: "18 variables, scaled", method: drl1_obs_scaled}
