@@ -7,19 +7,18 @@ Experiments for the major revision of *Benchmarking deep reinforcement learning 
 <!-- report:start -->
 ## Current results
 
-Updated automatically on 2026-10-11 12:23 by `ditrl report`; all figures and tables are in [reports/](reports/README.md).
+Updated automatically on 2026-10-11 12:28 by `ditrl report`; all figures and tables are in [reports/](reports/README.md).
 
-- 900 of 2372 trainings and rule runs have results.
+- 960 of 2372 trainings and rule runs have results.
 - Nebraska 75 mm: best variant 18 variables with 12.00 t/ha against 10.95 t/ha for DRL1 (10 seeds).
 - Tunis 300 mm: best variant yield at the end with 4.22 t/ha against 1.82 t/ha for DRL1 (10 seeds).
 - Tunis 500 mm: best variant yield at the end with 9.78 t/ha against 9.70 t/ha for DRL1 (10 seeds).
-- Ablation so far: 900 of 1520 runs; effects at budgets with few runs are preliminary.
-- Switching to 18 variables changes test yield significantly in: Nebraska 75 mm +0.64, Nebraska 100 mm +0.74, Nebraska 125 mm +0.62, Tunis 300 mm +0.46 t/ha.
-- Switching to reject changes test yield significantly in: Nebraska 100 mm -0.14 t/ha.
-- Switching to cut to remaining budget changes test yield significantly in: Nebraska 75 mm -0.15, Nebraska 100 mm +0.90, Nebraska 125 mm +0.12, Tunis 400 mm +1.39 t/ha.
-- Switching to reject + penalty changes test yield significantly in: Nebraska 75 mm -0.24, Nebraska 125 mm -0.08 t/ha.
-- Switching to yield at the end changes test yield significantly in: Nebraska 75 mm +0.45, Nebraska 100 mm +0.76, Nebraska 125 mm +0.69, Tunis 150 mm +1.11, Tunis 200 mm +2.11, Tunis 300 mm +1.84, Tunis 400 mm +1.63, Tunis 500 mm +0.81 t/ha.
-- 100% of 900 ablation runs converged before the step limit; median training length 501k steps.
+- Ablation so far: 960 of 1520 runs; effects at budgets with few runs are preliminary.
+- Switching to 18 variables changes test yield significantly in: Nebraska 75 mm +0.64, Nebraska 100 mm +0.70, Nebraska 125 mm +0.63, Tunis 300 mm +0.46 t/ha.
+- Switching to cut to remaining budget changes test yield significantly in: Nebraska 75 mm -0.15, Nebraska 125 mm +0.09, Tunis 400 mm +1.39 t/ha.
+- Switching to reject + penalty changes test yield significantly in: Nebraska 75 mm -0.24, Nebraska 100 mm -0.25, Nebraska 125 mm -0.11 t/ha.
+- Switching to yield at the end changes test yield significantly in: Nebraska 75 mm +0.45, Nebraska 100 mm +0.73, Nebraska 125 mm +0.71, Tunis 150 mm +1.12, Tunis 200 mm +2.13, Tunis 300 mm +1.84, Tunis 400 mm +1.58, Tunis 500 mm +0.81 t/ha.
+- 100% of 960 ablation runs converged before the step limit; median training length 501k steps.
 
 [Findings so far](reports/findings.md) · [Progress per experiment](reports/tables/progress.md)
 
