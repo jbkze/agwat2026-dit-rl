@@ -7,7 +7,7 @@ Experiments for the major revision of *Benchmarking deep reinforcement learning 
 <!-- report:start -->
 ## Current results
 
-Updated automatically on 2026-10-11 15:11 by `ditrl report`. 1260 of 2372 trainings and rule runs have results. [Progress per experiment](reports/tables/progress.md)
+Updated automatically on 2026-10-11 15:24 by `ditrl report`. 1320 of 2372 trainings and rule runs have results. [Progress per experiment](reports/tables/progress.md)
 
 ### Central findings
 
