@@ -117,7 +117,6 @@ def build(ctx: Context) -> Section:
         for site, y in ((tunis, 4.3), (nebraska, 4.0)):
             _line(ax, site["r"], (4.95, site["r"][1]), (4.95, y), (env["l"][0], y))
         _note(ax, 11.2, 4.45, "observation x budget limit x reward: 2 x 4 x 2 design")
-        _note(ax, 12.85, 2.35, "larger or daily doses: Tunis 100-200 mm")
 
         path = ctx.figures / "overview"
         style.save(fig, path)
