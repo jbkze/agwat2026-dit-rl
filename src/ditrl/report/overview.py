@@ -102,7 +102,7 @@ def build(ctx: Context) -> Section:
         env = _box(ax, 6.6, 4.15, 2.0, 1.1, "AquaCrop-OSPy", ["simulates", "the season"])
         agent = _box(ax, 15.6, 4.15, 2.0, 1.1, "PPO policy", ["10 seeds"])
         obs = _knob(ax, 9.6, 5.35, 2.9, 1.0, "Observation",
-                    ["5 or 18 variables", "scaled, forecast, noise"])
+                    ["5 or 18 variables", "scaled, with a forecast"])
         reward = _knob(ax, 12.85, 5.35, 2.9, 1.0, "Reward", ["relative ET + yield", "or yield only"])
         action = _knob(ax, 12.85, 2.95, 2.9, 1.0, "Dose", ["0-34 mm or larger", "every 5 days or daily"])
         budget = _knob(ax, 9.6, 2.95, 2.9, 1.0, "Budget limit", ["mask, reject, cut", "or penalty"])
@@ -123,7 +123,8 @@ def build(ctx: Context) -> Section:
         _box(ax, 5.3, 0.75, 3.2, 0.75, "Rules", ["threshold, fixed interval"])
         _box(ax, 8.75, 0.75, 3.2, 0.75, "Optimum", ["weather known in advance"])
         _region(ax, 11.0, 0, 17.1, 1.8, "Evaluation")
-        _box(ax, 14.05, 0.75, 5.6, 0.75, "Test years", ["each variant paired with DRL1 of the same seed"])
+        _box(ax, 14.05, 0.8, 5.6, 1.0, "Test years", ["each variant paired with DRL1 of the same seed",
+                                                 "benchmark policies also with noisy observations"])
         path = ctx.figures / "overview"
         style.save(fig, path)
     return Section("Experiments", entries=[Entry(
