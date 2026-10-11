@@ -41,7 +41,7 @@ def _relative(path: Path, start: Path) -> str:
 
 def _index(sections: list[Section], out: Path) -> str:
     lines = ["# Report", "",
-             "Built by `ditrl report` from the tables in `results/`; do not edit by hand. Every "
+             "Built by `ditrl report` from the tables in `results/`, so it is not edited by hand. Every "
              "figure exists as PNG and PDF, every table as Markdown and CSV. The module named "
              "under each entry generates it (`src/ditrl/report/`). The central findings are in "
              "[findings.md](findings.md).", ""]

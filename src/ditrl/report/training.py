@@ -130,7 +130,7 @@ def length_figure(ctx: Context) -> Entry | None:
     ax.legend(frameon=False, fontsize=6)
     path = ctx.figures / "training_length"
     style.save(fig, path)
-    return Entry(path, "Training length until convergence",
+    return Entry(path, "Training length",
                  "Steps each run of the agreed variants trained before the stopping rule ended "
                  "it, one dot per run.", __name__)
 
@@ -141,11 +141,5 @@ def build(ctx: Context) -> Section:
         entry = make(ctx)
         if entry:
             section.entries.append(entry)
-    jobs = ctx.tables_of(ctx.plan.analysis["tables"]["ablation"], "jobs")
-    if not jobs.empty and "stopped_by" in jobs:
-        converged = (jobs["stopped_by"] == "converged").mean()
-        section.findings.append(
-            f"{converged:.0%} of {len(jobs)} ablation runs converged before the step limit; "
-            f"median training length {jobs['steps_trained'].median() / 1000:.0f}k steps.")
     return section
 

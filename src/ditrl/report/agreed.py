@@ -45,9 +45,10 @@ def configuration(ctx: Context) -> pd.DataFrame:
             rows[f"PPO {key}"] = [str(first.loc[m, key]) if m in first.index else ""
                                   for m in VARIANTS]
     rule = plan.method("drl1", site)["training"]
-    rows["Training"] = [f"until convergence: blocks of {rule['block_steps']:,} steps, gain "
-                        f"> {rule['tolerance']} t/ha, patience {rule['patience']}, "
-                        f"{rule['min_steps']:,} to {rule['max_steps']:,} steps"] * len(VARIANTS)
+    rows["Training"] = [f"until the mean yield of the training seasons rises by no more than "
+                        f"{rule['tolerance']} t/ha in {rule['patience']} blocks of "
+                        f"{rule['block_steps']:,} steps, {rule['min_steps']:,} to "
+                        f"{rule['max_steps']:,} steps"] * len(VARIANTS)
     rows["Evaluation"] = ["final policy, deterministic actions, test years"] * len(VARIANTS)
     table = pd.DataFrame(rows, index=[method_label(plan, m) for m in VARIANTS]).T
     return table.reset_index(names="Setting")

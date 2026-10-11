@@ -7,8 +7,9 @@ from ditrl.report.core import Context, Entry, Section
 
 FIGURES = {   # name in reports/figures -> (generator, title, what it shows)
     "paper_cwpf": (figures.cwpf, "Crop water production function",
-                   "Mean test yield over the seasonal budget for every method; DRL lines show the "
-                   "median over seeds, the band the worst to the best seed; dashed: the oracle."),
+                   "Mean test yield over the seasonal budget for every method. For DRL the line is "
+                   "the median over seeds and the band runs from the worst to the best seed. "
+                   "Dashed: the oracle."),
     "paper_actions_low_budget": (figures.actions_low_budget, "Actions at low budgets",
                                  "Which depths DRL1 and its low-budget variants apply in Tunis at "
                                  "100 to 200 mm, and how the remaining budget falls."),

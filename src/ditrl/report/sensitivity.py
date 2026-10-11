@@ -186,7 +186,7 @@ def figure(ctx: Context, table: pd.DataFrame) -> Entry:
     handles = [plt.Line2D([], [], marker="o", color=c, linestyle="none", markersize=3,
                           label=s.capitalize()) for s, c in SITE_COLORS.items()]
     handles += [plt.Line2D([], [], marker="o", color="k", markerfacecolor="white",
-                           linestyle="none", markersize=3, label="interval includes 0"),
+                           linestyle="none", markersize=3, label="interval contains 0"),
                 plt.Line2D([], [], marker="D", color="k", linestyle="none", markersize=2.2,
                            label="averaged over the other choices"),
                 plt.Line2D([], [], marker="x", color=PENDING_COLOR, linestyle="none",
@@ -199,8 +199,8 @@ def figure(ctx: Context, table: pd.DataFrame) -> Entry:
     style.save(fig, path)
     return Entry(path, "What changes what",
                  "Each panel changes one thing about DRL1. Dot: mean change of test yield against "
-                 "DRL1 trained with the same seed, with 95 % bootstrap interval over seeds; filled "
-                 "when the interval excludes 0. Diamond: the same change averaged over the other "
+                 "DRL1 trained with the same seed, with the 95 % bootstrap interval over seeds, "
+                 "filled when the interval does not contain 0. Diamond: the same change averaged over the other "
                  "choices of the 2 x 4 x 2 design. Cross: planned, results pending.", __name__)
 
 
@@ -238,6 +238,7 @@ def build(ctx: Context) -> Section:
     return Section("What changes what", [
         figure(ctx, table),
         Entry(path, "What changes what (table)",
-              "Change of test yield in t/ha against DRL1 with 95 % interval, per case; "
-              "\"(k of n)\": only k of the n planned runs are in; \"pending\": too few seeds "
-              "yet; empty: not planned. `sensitivity_long.csv` has every number.", __name__)])
+              "Change of test yield in t/ha against DRL1 with the 95 % interval, per case. "
+              "\"(k of n)\": k of the n planned runs have results. \"pending\": too few seeds "
+              "have results yet. Empty: not planned. The file `sensitivity_long.csv` holds every "
+              "number.", __name__)])
