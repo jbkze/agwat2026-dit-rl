@@ -136,7 +136,7 @@ def length_figure(ctx: Context) -> Entry | None:
 
 
 def build(ctx: Context) -> Section:
-    section = Section()
+    section = Section("Appendix: training diagnostics")
     for make in (learning_figure, dynamics_figure, length_figure):
         entry = make(ctx)
         if entry:

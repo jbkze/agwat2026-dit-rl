@@ -47,6 +47,6 @@ def build(ctx: Context) -> Section:
                                      color="0.35", linewidth=0.8, connectionstyle=bend))
     path = ctx.figures / "overview"
     style.save(fig, path)
-    return Section(entries=[Entry(path, "System overview",
+    return Section("System", entries=[Entry(path, "System overview",
                                   "How an experiment plan becomes runs, result tables and this "
                                   "report.", __name__)])

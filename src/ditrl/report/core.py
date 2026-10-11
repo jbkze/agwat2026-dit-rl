@@ -24,7 +24,9 @@ class Entry:
 
 @dataclass
 class Section:
-    """What a module adds to the report: entries for the index, sentences for the README."""
+    """What a module adds to the report: a heading and entries for the index, status sentences
+    for the README."""
+    title: str = ""
     entries: list[Entry] = field(default_factory=list)
     findings: list[str] = field(default_factory=list)
 
@@ -34,6 +36,7 @@ class Context:
     plan: Plan
     results: Path         # result tables (results/)
     out: Path             # report folder (reports/)
+    facts: dict = field(default_factory=dict)   # tables a module hands to the findings
 
     @property
     def figures(self) -> Path:

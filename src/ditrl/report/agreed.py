@@ -1,6 +1,6 @@
 """The ablation agreed with the co-author: DRL1 and three variants that change one design choice
 each, on three cases. Configuration table, result table and the paired differences per seed, as
-the agreed plan asks: once with its five seeds, once with the five extra seeds added."""
+the agreed plan asks, over all seeds (the agreed five and the five extra ones)."""
 
 from __future__ import annotations
 
@@ -142,36 +142,25 @@ def build(ctx: Context) -> Section:
     if base is None:
         return Section()
     base = base[(base["split"] == "test") & base["method"].isin(VARIANTS)]
-    section = Section()
+    section = Section("Agreed ablation")
     config_path = ctx.tables / "agreed_ablation_configuration.md"
     write_table(configuration(ctx), config_path)
     section.entries.append(Entry(config_path, "Agreed ablation, configuration",
                                  "Design choices, PPO settings actually used, training and "
                                  "evaluation of the four variants.", __name__))
-    sets = {"5": base}
+    seasons = base
     extra = ctx.table(EXTRA_SEEDS, "seasons")
-    if extra is not None:
+    if extra is not None:   # the extra seeds, on the agreed cases only
         extra = extra[(extra["split"] == "test") & extra["method"].isin(VARIANTS)]
-        merged = pd.concat([base, extra], ignore_index=True)
-        merged = merged.merge(base[["site", "budget_mm"]].drop_duplicates())
-        sets["10"] = merged
-    for label, seasons in sets.items():
-        table = results(ctx, seasons)
-        path = ctx.tables / f"agreed_ablation_results_{label}_seeds.md"
-        write_table(table, path)
-        section.entries.append(Entry(path, f"Agreed ablation, results ({label} seeds)",
-                                     "Test yield per case and variant over seeds, and the "
-                                     "paired difference to DRL1 per seed.", __name__))
-        section.entries.append(paired_figure(ctx, seasons, f"agreed_ablation_{label}_seeds"))
+        seasons = pd.concat([base, extra], ignore_index=True).merge(
+            base[["site", "budget_mm"]].drop_duplicates())
+    path = ctx.tables / "agreed_ablation_results.md"
+    write_table(results(ctx, seasons), path)
+    section.entries += [Entry(path, "Agreed ablation, results",
+                              "Test yield per case and variant over all seeds, and the paired "
+                              "difference to DRL1 per seed.", __name__),
+                        paired_figure(ctx, seasons, "agreed_ablation")]
     decisions = ctx.tables_of([EXPERIMENT, EXTRA_SEEDS], "decisions")
     if not decisions.empty:
-        section.entries.append(timing_figure(ctx, decisions, sets[max(sets, key=int)]))
-    final = results(ctx, sets[max(sets, key=int)])
-    for case, g in final.groupby("Case", sort=False):
-        best = g.loc[g["Mean yield (t/ha)"].idxmax()]
-        drl1 = g[g["Variant"] == "DRL1"]["Mean yield (t/ha)"].iloc[0]
-        section.findings.append(
-            f"{case}: best variant {best['Variant'].removeprefix('DRL1, ')} with "
-            f"{best['Mean yield (t/ha)']:.2f} t/ha "
-            f"against {drl1:.2f} t/ha for DRL1 ({int(best['Seeds'])} seeds).")
+        section.entries.append(timing_figure(ctx, decisions, seasons))
     return section

@@ -30,5 +30,5 @@ def build(ctx: Context) -> Section:
     trainings = table[table["Kind"] == "methods"]
     finding = (f"{int(trainings['Done'].sum())} of {int(trainings['Jobs'].sum())} trainings and "
                f"rule runs have results.")
-    return Section(entries=[Entry(path, "Progress", "Planned and finished jobs per experiment.",
-                                  __name__)], findings=[finding])
+    return Section("Progress", [Entry(path, "Progress", "Planned and finished jobs per experiment.",
+                                      __name__)], [finding])

@@ -18,7 +18,7 @@ FIGURES = {   # name in reports/figures -> (generator, title, what it shows)
 
 
 def build(ctx: Context) -> Section:
-    section = Section()
+    section = Section("Paper figures")
     for name, (generate, title, shows) in FIGURES.items():
         path = ctx.figures / name
         try:
