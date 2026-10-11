@@ -7,7 +7,7 @@ Experiments for the major revision of *Benchmarking deep reinforcement learning 
 <!-- report:start -->
 ## Current results
 
-Updated automatically on 2026-10-10 23:50 by `ditrl report`; all figures and tables are in [reports/](reports/README.md).
+Updated automatically on 2026-10-11 12:12 by `ditrl report`; all figures and tables are in [reports/](reports/README.md).
 
 - 780 of 2372 trainings and rule runs have results.
 - Nebraska 75 mm: best variant 18 variables with 12.00 t/ha against 10.95 t/ha for DRL1 (10 seeds).
@@ -29,6 +29,10 @@ Updated automatically on 2026-10-10 23:50 by `ditrl report`; all figures and tab
 **Agreed ablation, paired differences (5 seeds).** Mean test yield of DRL1 minus that of each variant, one dot per seed (5 seeds), bar at the mean. Above zero: the change costs yield; below zero: the variant is better than DRL1.
 
 ![Agreed ablation, paired differences (5 seeds)](reports/figures/agreed_ablation_5_seeds.png)
+
+**When the water is applied, by reward.** Mean cumulative irrigation over the season in the test years (all seeds), in 10-day steps; dotted line: budget. The legend gives the share of test seasons in which the crop dies.
+
+![When the water is applied, by reward](reports/figures/agreed_irrigation_timing.png)
 
 **Ablation, main effects.** Change of mean test yield when one design choice of DRL1 is switched, paired over the other choices, seeds and test years, with 95 % bootstrap intervals; one line per site over the seasonal budget.
 

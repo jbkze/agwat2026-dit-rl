@@ -2,6 +2,11 @@
 
 Notable results, written down when a batch of results comes in; newest first. The figures are rebuilt by `ditrl report` and always show the current data; the numbers quoted here are those of the date in the heading.
 
+## 2026-10-11: Why the yield at the end works better as reward
+
+**With relative evapotranspiration at every step, DRL1 applies its water at the wrong time.** The step reward (Tr + Es) / (TrPot + EsPot) counts every day the same and also counts evaporation from wet soil, so it pays off most early in the season, when the canopy is small and a little water already brings the ratio close to 1. It also dominates the return: in Nebraska the episode return during training is about 30 with the step reward against about 11 with the yield alone. In Tunis at 300 mm DRL1 applies half of its budget by day 45 after planting (yield only: day 65), has used it up by day 90 and the crop dies in 9 of 10 runs (yield only: 1 of 10). In Nebraska at 75 mm DRL1 leaves 31 mm of the budget unused, while the variant rewarded with the yield uses 72 of 75 mm, most of it between day 50 and 80. At 500 mm in Tunis the budget is large enough that the timing hardly differs, and so does the yield. The step reward is not a potential-based shaping term, so it changes which policy is optimal instead of only speeding up learning, and with about 26 decisions per season the yield alone is still easy to learn. Tunis has only one test year, so its numbers are 10 seeds in a single season.
+![When the water is applied](figures/agreed_irrigation_timing.png)
+
 ## 2026-10-10: Agreed ablation and full design, trained until convergence
 
 **The reward is the strongest design choice.** Rewarding the yield at the end of the season only, instead of relative evapotranspiration at every step plus the yield, raises test yield in every case: +0.45 t/ha in Nebraska at 75 mm, +1.84 t/ha in Tunis at 300 mm and +0.81 t/ha at 500 mm (main effects over the full 2 x 4 x 2 design, 10 seeds, all significant after Holm correction). The extra budgets of the ablation, which are still coming in, show the same direction up to 400 mm.

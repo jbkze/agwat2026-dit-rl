@@ -22,7 +22,7 @@ REPORTS = REPO / "reports"
 README = REPO / "README.md"
 START, END = "<!-- report:start -->", "<!-- report:end -->"
 # Figures shown in the README itself, in this order; the index lists all of them.
-README_FIGURES = ["agreed_ablation_10_seeds", "agreed_ablation_5_seeds", "ablation_main_effects",
+README_FIGURES = ["agreed_ablation_10_seeds", "agreed_ablation_5_seeds", "agreed_irrigation_timing", "ablation_main_effects",
                   "agreed_learning_curves", "paper_cwpf"]
 
 
