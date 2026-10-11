@@ -98,13 +98,13 @@ def build(ctx: Context) -> Section:
         _cloud(ax, 0.85, 3.6, rain=True)
 
         # the decision loop of DRL1, with the four design choices the study varies
-        _region(ax, 4.8, 2.1, 17.1, 6.35, "One decision every 5 days")
+        _region(ax, 4.8, 2.1, 17.1, 6.35, "Decision loop of DRL1")
         env = _box(ax, 6.6, 4.15, 2.0, 1.1, "AquaCrop-OSPy", ["simulates", "the season"])
         agent = _box(ax, 15.6, 4.15, 2.0, 1.1, "PPO policy", ["10 seeds"])
         obs = _knob(ax, 9.6, 5.35, 2.9, 1.0, "Observation",
                     ["5 or 18 variables", "scaled, with a forecast"])
         reward = _knob(ax, 12.85, 5.35, 2.9, 1.0, "Reward", ["relative ET + yield", "or yield only"])
-        action = _knob(ax, 12.85, 2.95, 2.9, 1.0, "Dose", ["0-34 mm or larger", "every 5 days or daily"])
+        action = _knob(ax, 12.85, 2.95, 2.9, 1.0, "Dose and interval", ["0-34 mm, every 5 days", "or larger, or daily"])
         budget = _knob(ax, 9.6, 2.95, 2.9, 1.0, "Budget limit", ["mask, reject, cut", "or penalty"])
         _line(ax, env["t"], (env["t"][0], obs["l"][1]), obs["l"])
         _line(ax, obs["r"], reward["l"])
