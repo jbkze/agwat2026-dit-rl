@@ -11,3 +11,12 @@ paper_assets/
 
 # notes for the coding assistant, kept local
 CLAUDE.md
+
+# tool caches, editor settings, files the operating system creates
+.ruff_cache/
+.pytest_cache/
+*.pyc
+.vscode/
+.idea/
+Thumbs.db
+.DS_Store
