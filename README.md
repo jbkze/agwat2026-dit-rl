@@ -7,7 +7,7 @@ Experiments for the major revision of *Benchmarking deep reinforcement learning 
 <!-- report:start -->
 ## Current results
 
-Updated automatically on 2026-10-11 15:24 by `ditrl report`. 1320 of 2372 trainings and rule runs have results. [Progress per experiment](reports/tables/progress.md)
+Updated automatically on 2026-10-11 17:17 by `ditrl report`. 1380 of 2372 trainings and rule runs have results. [Progress per experiment](reports/tables/progress.md)
 
 ### Central findings
 
@@ -17,7 +17,7 @@ Updated automatically on 2026-10-11 15:24 by `ditrl report`. 1320 of 2372 traini
 
 **2. The 18 observed variables of Kelly et al. (2024) help in Nebraska and hurt in Tunis.** In Nebraska they raise test yield by +1.05 t/ha [+0.65, +1.43] at 75 mm, in Tunis they lower it by -1.47 t/ha [-2.14, -0.56] at 500 mm. Nebraska has rain and weather that differs from year to year, which the extra variables can describe. Tunis is simulated without rain, so there they plausibly add mostly noise. The 18 variables are given to the network without scaling, and the experiment with scaled variables, which has not run yet, will show whether part of the effect comes from the scaling.
 
-**3. How the budget is enforced matters less than the reward, and its effect depends on the case.** Rejecting a dose that exceeds the remaining budget, where DRL1 masks it, changes test yield by -0.15 t/ha [-0.80, +0.50] in Nebraska at 75 mm and by +0.19 t/ha [-0.82, +1.26] in Tunis at 300 mm. Adding a penalty to the rejection helps in Tunis at 300 mm (+1.81 t/ha [+0.95, +2.62]) but costs yield at 600 mm (-1.20 t/ha [-1.95, -0.46, 8 of 10 runs]). Masking, the choice of DRL1, is therefore not better than the alternatives. Where a single change and the same change averaged over the other choices (diamonds in the figure below) differ, the choices interact, most clearly for the reward in Tunis at 500 mm.
+**3. How the budget is enforced matters less than the reward, and its effect depends on the case.** Rejecting a dose that exceeds the remaining budget, where DRL1 masks it, changes test yield by -0.15 t/ha [-0.80, +0.50] in Nebraska at 75 mm and by +0.19 t/ha [-0.82, +1.26] in Tunis at 300 mm. Adding a penalty to the rejection helps in Tunis at 300 mm (+1.81 t/ha [+0.95, +2.62]) but costs yield at 600 mm (-1.08 t/ha [-1.79, -0.39, 9 of 10 runs]). Masking, the choice of DRL1, is therefore not better than the alternatives. Where a single change and the same change averaged over the other choices (diamonds in the figure below) differ, the choices interact, most clearly for the reward in Tunis at 500 mm.
 
 ### What changes what
 
