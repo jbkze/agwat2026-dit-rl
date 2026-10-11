@@ -9,7 +9,7 @@
 | 2 | `low_budget` | larger doses and daily decisions at small budgets | 0 of 120 | pending |
 | 2 | `robustness` | the benchmark policies with noisy observations | 0 of 4800 | pending |
 | 2 | `ablation_more_seeds` | the 16 cells of the design with 5 more seeds | 240 of 240 | [results/ablation_more_seeds/](../../results/ablation_more_seeds/) |
-| 2 | `ablation_more_budgets` | the 16 cells of the design at the other budgets | 900 of 960 | [results/ablation_more_budgets/](../../results/ablation_more_budgets/) |
+| 2 | `ablation_more_budgets` | the 16 cells of the design at the other budgets | 960 of 960 | [results/ablation_more_budgets/](../../results/ablation_more_budgets/) |
 | 3 | `forecast` | DRL1 with a perfect 7-day weather forecast | 0 of 80 | pending |
 | 3 | `test_year` | DRL1 trained on the test year itself | 0 of 320 | pending |
 | 3 | `obs_scaled` | the 18 variables, scaled | 0 of 80 | pending |
