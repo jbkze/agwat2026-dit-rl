@@ -1,0 +1,61 @@
+job,kind,method,site,budget_mm,seed,observation,constraint,reward,depths,interval,trained_on_year,oracle_year,oracle_years,oracle_events,noise_sd,steps_trained,stopped_by,resumed_at,test_mean_yield_t_ha,val_mean_yield_t_ha,seconds,commit
+tunis_B100_drl1_daily_s0,drl,drl1_daily,tunis,100,0,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",1,,,,,,300000,converged,0,0.0,0.0,589.6,204693f
+tunis_B100_drl1_daily_s2,drl,drl1_daily,tunis,100,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",1,,,,,,300000,converged,0,0.0,0.0,581.0,204693f
+tunis_B100_drl1_daily_s4,drl,drl1_daily,tunis,100,4,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",1,,,,,,300000,converged,0,0.0,0.0,573.8,204693f
+tunis_B100_drl1_daily_s6,drl,drl1_daily,tunis,100,6,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",1,,,,,,300000,converged,0,0.0,0.0,590.5,204693f
+tunis_B100_drl1_daily_s8,drl,drl1_daily,tunis,100,8,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",1,,,,,,300000,converged,0,0.0,0.0,576.0,204693f
+tunis_B100_drl1_large_daily_s0,drl,drl1_large_daily,tunis,100,0,DRL1,mask,dense,"[0, 5, 13, 21, 34, 55, 89]",1,,,,,,300000,converged,0,0.0,0.0,570.3,204693f
+tunis_B100_drl1_large_daily_s2,drl,drl1_large_daily,tunis,100,2,DRL1,mask,dense,"[0, 5, 13, 21, 34, 55, 89]",1,,,,,,300000,converged,0,0.0,0.0,581.2,204693f
+tunis_B100_drl1_large_daily_s4,drl,drl1_large_daily,tunis,100,4,DRL1,mask,dense,"[0, 5, 13, 21, 34, 55, 89]",1,,,,,,300000,converged,0,0.0,0.0,576.9,204693f
+tunis_B100_drl1_large_daily_s6,drl,drl1_large_daily,tunis,100,6,DRL1,mask,dense,"[0, 5, 13, 21, 34, 55, 89]",1,,,,,,300000,converged,0,0.0,0.0,577.7,204693f
+tunis_B100_drl1_large_daily_s8,drl,drl1_large_daily,tunis,100,8,DRL1,mask,dense,"[0, 5, 13, 21, 34, 55, 89]",1,,,,,,300000,converged,0,0.0,0.0,576.7,204693f
+tunis_B100_drl1_large_doses_s0,drl,drl1_large_doses,tunis,100,0,DRL1,mask,dense,"[0, 5, 13, 21, 34, 55, 89]",5,,,,,,300000,converged,0,0.0,0.0,1314.1,204693f
+tunis_B100_drl1_large_doses_s2,drl,drl1_large_doses,tunis,100,2,DRL1,mask,dense,"[0, 5, 13, 21, 34, 55, 89]",5,,,,,,300000,converged,0,0.0,0.0,1326.2,204693f
+tunis_B100_drl1_large_doses_s4,drl,drl1_large_doses,tunis,100,4,DRL1,mask,dense,"[0, 5, 13, 21, 34, 55, 89]",5,,,,,,300000,converged,0,0.0,0.0,1320.8,204693f
+tunis_B100_drl1_large_doses_s6,drl,drl1_large_doses,tunis,100,6,DRL1,mask,dense,"[0, 5, 13, 21, 34, 55, 89]",5,,,,,,300000,converged,0,0.0,0.0,1323.1,204693f
+tunis_B100_drl1_large_doses_s8,drl,drl1_large_doses,tunis,100,8,DRL1,mask,dense,"[0, 5, 13, 21, 34, 55, 89]",5,,,,,,300000,converged,0,0.0,0.0,1320.6,204693f
+tunis_B125_drl1_daily_s0,drl,drl1_daily,tunis,125,0,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",1,,,,,,300000,converged,0,0.0,0.0,583.3,204693f
+tunis_B125_drl1_daily_s2,drl,drl1_daily,tunis,125,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",1,,,,,,300000,converged,0,0.0,0.0,588.5,204693f
+tunis_B125_drl1_daily_s4,drl,drl1_daily,tunis,125,4,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",1,,,,,,300000,converged,0,0.0,0.0,591.3,204693f
+tunis_B125_drl1_daily_s6,drl,drl1_daily,tunis,125,6,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",1,,,,,,300000,converged,0,0.0,0.0,581.8,204693f
+tunis_B125_drl1_daily_s8,drl,drl1_daily,tunis,125,8,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",1,,,,,,300000,converged,0,0.0,0.0,585.1,204693f
+tunis_B125_drl1_large_daily_s0,drl,drl1_large_daily,tunis,125,0,DRL1,mask,dense,"[0, 5, 13, 21, 34, 55, 89]",1,,,,,,300000,converged,0,0.0,0.0,579.8,204693f
+tunis_B125_drl1_large_daily_s2,drl,drl1_large_daily,tunis,125,2,DRL1,mask,dense,"[0, 5, 13, 21, 34, 55, 89]",1,,,,,,300000,converged,0,0.0,0.0,581.9,204693f
+tunis_B125_drl1_large_daily_s4,drl,drl1_large_daily,tunis,125,4,DRL1,mask,dense,"[0, 5, 13, 21, 34, 55, 89]",1,,,,,,300000,converged,0,0.0,0.0,579.2,204693f
+tunis_B125_drl1_large_daily_s6,drl,drl1_large_daily,tunis,125,6,DRL1,mask,dense,"[0, 5, 13, 21, 34, 55, 89]",1,,,,,,300000,converged,0,0.0,0.0,570.2,204693f
+tunis_B125_drl1_large_daily_s8,drl,drl1_large_daily,tunis,125,8,DRL1,mask,dense,"[0, 5, 13, 21, 34, 55, 89]",1,,,,,,300000,converged,0,0.0,0.0,578.6,204693f
+tunis_B125_drl1_large_doses_s0,drl,drl1_large_doses,tunis,125,0,DRL1,mask,dense,"[0, 5, 13, 21, 34, 55, 89]",5,,,,,,300000,converged,0,0.0,0.0,1329.7,204693f
+tunis_B125_drl1_large_doses_s2,drl,drl1_large_doses,tunis,125,2,DRL1,mask,dense,"[0, 5, 13, 21, 34, 55, 89]",5,,,,,,300000,converged,0,0.0,0.0,1345.8,204693f
+tunis_B125_drl1_large_doses_s4,drl,drl1_large_doses,tunis,125,4,DRL1,mask,dense,"[0, 5, 13, 21, 34, 55, 89]",5,,,,,,300000,converged,0,0.0,0.0,1330.6,204693f
+tunis_B125_drl1_large_doses_s6,drl,drl1_large_doses,tunis,125,6,DRL1,mask,dense,"[0, 5, 13, 21, 34, 55, 89]",5,,,,,,300000,converged,0,0.0,0.0,1318.7,204693f
+tunis_B125_drl1_large_doses_s8,drl,drl1_large_doses,tunis,125,8,DRL1,mask,dense,"[0, 5, 13, 21, 34, 55, 89]",5,,,,,,300000,converged,0,0.0,0.0,1310.9,204693f
+tunis_B150_drl1_daily_s0,drl,drl1_daily,tunis,150,0,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",1,,,,,,300000,converged,0,0.0,0.0,595.0,204693f
+tunis_B150_drl1_daily_s2,drl,drl1_daily,tunis,150,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",1,,,,,,300000,converged,0,0.0,0.0,593.0,204693f
+tunis_B150_drl1_daily_s4,drl,drl1_daily,tunis,150,4,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",1,,,,,,300000,converged,0,0.0,0.0,587.4,204693f
+tunis_B150_drl1_daily_s6,drl,drl1_daily,tunis,150,6,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",1,,,,,,300000,converged,0,0.0,0.0,596.0,204693f
+tunis_B150_drl1_daily_s8,drl,drl1_daily,tunis,150,8,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",1,,,,,,300000,converged,0,0.0,0.0,593.5,204693f
+tunis_B150_drl1_large_daily_s0,drl,drl1_large_daily,tunis,150,0,DRL1,mask,dense,"[0, 5, 13, 21, 34, 55, 89]",1,,,,,,300000,converged,0,0.0,0.0,579.5,204693f
+tunis_B150_drl1_large_daily_s2,drl,drl1_large_daily,tunis,150,2,DRL1,mask,dense,"[0, 5, 13, 21, 34, 55, 89]",1,,,,,,300000,converged,0,0.0,0.0,580.7,204693f
+tunis_B150_drl1_large_daily_s4,drl,drl1_large_daily,tunis,150,4,DRL1,mask,dense,"[0, 5, 13, 21, 34, 55, 89]",1,,,,,,300000,converged,0,0.0,0.0,573.9,204693f
+tunis_B150_drl1_large_daily_s6,drl,drl1_large_daily,tunis,150,6,DRL1,mask,dense,"[0, 5, 13, 21, 34, 55, 89]",1,,,,,,300000,converged,0,0.0,0.0,582.9,204693f
+tunis_B150_drl1_large_daily_s8,drl,drl1_large_daily,tunis,150,8,DRL1,mask,dense,"[0, 5, 13, 21, 34, 55, 89]",1,,,,,,300000,converged,0,0.0,0.0,586.1,204693f
+tunis_B150_drl1_large_doses_s0,drl,drl1_large_doses,tunis,150,0,DRL1,mask,dense,"[0, 5, 13, 21, 34, 55, 89]",5,,,,,,300000,converged,0,0.0,0.0,1318.6,204693f
+tunis_B150_drl1_large_doses_s2,drl,drl1_large_doses,tunis,150,2,DRL1,mask,dense,"[0, 5, 13, 21, 34, 55, 89]",5,,,,,,300000,converged,0,0.0,0.0,1316.2,204693f
+tunis_B150_drl1_large_doses_s4,drl,drl1_large_doses,tunis,150,4,DRL1,mask,dense,"[0, 5, 13, 21, 34, 55, 89]",5,,,,,,300000,converged,0,0.0,0.0,1328.2,204693f
+tunis_B150_drl1_large_doses_s6,drl,drl1_large_doses,tunis,150,6,DRL1,mask,dense,"[0, 5, 13, 21, 34, 55, 89]",5,,,,,,300000,converged,0,0.0,0.0,1305.5,204693f
+tunis_B150_drl1_large_doses_s8,drl,drl1_large_doses,tunis,150,8,DRL1,mask,dense,"[0, 5, 13, 21, 34, 55, 89]",5,,,,,,300000,converged,0,0.0,0.0,1308.0,204693f
+tunis_B200_drl1_daily_s0,drl,drl1_daily,tunis,200,0,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",1,,,,,,300000,converged,0,0.0,0.0,587.1,204693f
+tunis_B200_drl1_daily_s2,drl,drl1_daily,tunis,200,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",1,,,,,,300000,converged,0,0.0,0.0,579.8,204693f
+tunis_B200_drl1_daily_s4,drl,drl1_daily,tunis,200,4,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",1,,,,,,300000,converged,0,0.0,0.0,587.6,204693f
+tunis_B200_drl1_daily_s6,drl,drl1_daily,tunis,200,6,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",1,,,,,,300000,converged,0,0.0,0.0,589.1,204693f
+tunis_B200_drl1_daily_s8,drl,drl1_daily,tunis,200,8,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",1,,,,,,300000,converged,0,0.0,0.0,592.6,204693f
+tunis_B200_drl1_large_daily_s0,drl,drl1_large_daily,tunis,200,0,DRL1,mask,dense,"[0, 5, 13, 21, 34, 55, 89]",1,,,,,,300000,converged,0,0.0,0.0,586.1,204693f
+tunis_B200_drl1_large_daily_s2,drl,drl1_large_daily,tunis,200,2,DRL1,mask,dense,"[0, 5, 13, 21, 34, 55, 89]",1,,,,,,300000,converged,0,0.0,0.0,574.6,204693f
+tunis_B200_drl1_large_daily_s4,drl,drl1_large_daily,tunis,200,4,DRL1,mask,dense,"[0, 5, 13, 21, 34, 55, 89]",1,,,,,,300000,converged,0,0.0,0.0,581.8,204693f
+tunis_B200_drl1_large_daily_s6,drl,drl1_large_daily,tunis,200,6,DRL1,mask,dense,"[0, 5, 13, 21, 34, 55, 89]",1,,,,,,300000,converged,0,0.0,0.0,579.4,204693f
+tunis_B200_drl1_large_daily_s8,drl,drl1_large_daily,tunis,200,8,DRL1,mask,dense,"[0, 5, 13, 21, 34, 55, 89]",1,,,,,,300000,converged,0,0.0,0.0,580.1,204693f
+tunis_B200_drl1_large_doses_s0,drl,drl1_large_doses,tunis,200,0,DRL1,mask,dense,"[0, 5, 13, 21, 34, 55, 89]",5,,,,,,300000,converged,0,0.0,0.0,1277.4,204693f
+tunis_B200_drl1_large_doses_s2,drl,drl1_large_doses,tunis,200,2,DRL1,mask,dense,"[0, 5, 13, 21, 34, 55, 89]",5,,,,,,300000,converged,0,0.0,0.0,1274.7,204693f
+tunis_B200_drl1_large_doses_s4,drl,drl1_large_doses,tunis,200,4,DRL1,mask,dense,"[0, 5, 13, 21, 34, 55, 89]",5,,,,,,300000,converged,0,0.0,0.0,1282.9,204693f
+tunis_B200_drl1_large_doses_s6,drl,drl1_large_doses,tunis,200,6,DRL1,mask,dense,"[0, 5, 13, 21, 34, 55, 89]",5,,,,,,300000,converged,0,0.0,0.0,1264.6,204693f
+tunis_B200_drl1_large_doses_s8,drl,drl1_large_doses,tunis,200,8,DRL1,mask,dense,"[0, 5, 13, 21, 34, 55, 89]",5,,,,,,300000,converged,0,0.0,0.0,1277.3,204693f

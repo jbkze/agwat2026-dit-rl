@@ -97,18 +97,18 @@ tunis,300,,,80,1.842605509500705,1.5019147876143966,2.184969255476973,terminal,R
 tunis,400,,,80,1.559772123929631,1.24790111267955,1.8882735303985914,terminal,Reward,yield at the end only,check
 tunis,500,,,80,0.8052544014048726,0.5133890857085228,1.1066900468021155,terminal,Reward,yield at the end only,check
 tunis,600,,,80,0.1758995904954203,-0.023198334952042557,0.366654248874417,terminal,Reward,yield at the end only,check
-tunis,100,10.0,0.0,,,,,large_doses,Actions,doses up to 89 mm,effect
-tunis,125,10.0,0.0,,,,,large_doses,Actions,doses up to 89 mm,effect
-tunis,150,10.0,0.0,,,,,large_doses,Actions,doses up to 89 mm,effect
-tunis,200,10.0,0.0,,,,,large_doses,Actions,doses up to 89 mm,effect
-tunis,100,10.0,0.0,,,,,daily,Actions,daily decisions,effect
-tunis,125,10.0,0.0,,,,,daily,Actions,daily decisions,effect
-tunis,150,10.0,0.0,,,,,daily,Actions,daily decisions,effect
-tunis,200,10.0,0.0,,,,,daily,Actions,daily decisions,effect
-tunis,100,10.0,0.0,,,,,large_daily,Actions,larger doses and daily,effect
-tunis,125,10.0,0.0,,,,,large_daily,Actions,larger doses and daily,effect
-tunis,150,10.0,0.0,,,,,large_daily,Actions,larger doses and daily,effect
-tunis,200,10.0,0.0,,,,,large_daily,Actions,larger doses and daily,effect
+tunis,100,10.0,5.0,3,0.0,0.0,0.0,large_doses,Actions,doses up to 89 mm,effect
+tunis,125,10.0,5.0,4,0.0,0.0,0.0,large_doses,Actions,doses up to 89 mm,effect
+tunis,150,10.0,5.0,5,0.0,0.0,0.0,large_doses,Actions,doses up to 89 mm,effect
+tunis,200,10.0,5.0,5,0.0,0.0,0.0,large_doses,Actions,doses up to 89 mm,effect
+tunis,100,10.0,5.0,3,0.0,0.0,0.0,daily,Actions,daily decisions,effect
+tunis,125,10.0,5.0,4,0.0,0.0,0.0,daily,Actions,daily decisions,effect
+tunis,150,10.0,5.0,5,0.0,0.0,0.0,daily,Actions,daily decisions,effect
+tunis,200,10.0,5.0,5,0.0,0.0,0.0,daily,Actions,daily decisions,effect
+tunis,100,10.0,5.0,3,0.0,0.0,0.0,large_daily,Actions,larger doses and daily,effect
+tunis,125,10.0,5.0,4,0.0,0.0,0.0,large_daily,Actions,larger doses and daily,effect
+tunis,150,10.0,5.0,5,0.0,0.0,0.0,large_daily,Actions,larger doses and daily,effect
+tunis,200,10.0,5.0,5,0.0,0.0,0.0,large_daily,Actions,larger doses and daily,effect
 nebraska,75,10.0,0.0,,,,,forecast,Information,perfect 7-day forecast,effect
 nebraska,100,10.0,0.0,,,,,forecast,Information,perfect 7-day forecast,effect
 nebraska,125,10.0,0.0,,,,,forecast,Information,perfect 7-day forecast,effect
