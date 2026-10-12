@@ -31,7 +31,7 @@ Setup and details: [docs/usage.md](docs/usage.md).
 <!-- report:start -->
 ## Status
 
-Filled in by `ditrl report` after every batch of results (last on 2026-10-12 06:41).
+Filled in by `ditrl report` after every batch of results (last on 2026-10-12 07:40).
 
 | Stage | Experiment | What it tests | Runs | Results |
 |---|---|---|---|---|
@@ -45,7 +45,7 @@ Filled in by `ditrl report` after every batch of results (last on 2026-10-12 06:
 | 2 | `robustness` | the benchmark policies with noisy observations | 0 of 4800 | pending |
 | 2 | `ablation_more_seeds` | the 16 cells of the design with 5 more seeds | 240 of 240 | [results/ablation_more_seeds/](results/ablation_more_seeds/) |
 | 2 | `ablation_more_budgets` | the 16 cells of the design at the other budgets | 960 of 960 | [results/ablation_more_budgets/](results/ablation_more_budgets/) |
-| 3 | `forecast` | DRL1 with a perfect 7-day weather forecast | 40 of 80 | [results/forecast/](results/forecast/) |
+| 3 | `forecast` | DRL1 with a perfect 7-day weather forecast | 80 of 80 | [results/forecast/](results/forecast/) |
 | 3 | `test_year` | DRL1 trained on the test year itself | 0 of 320 | pending |
 | 3 | `obs_scaled` | the 18 variables, scaled | 0 of 80 | pending |
 | 3 | `oracle_ds` | best schedule per test year with known weather (not run, published values used) | 0 of 927 | pending |

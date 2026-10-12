@@ -109,14 +109,14 @@ tunis,100,10.0,10.0,10,0.0,0.0,0.0,large_daily,Actions,larger doses and daily,ef
 tunis,125,10.0,10.0,10,0.0,0.0,0.0,large_daily,Actions,larger doses and daily,effect
 tunis,150,10.0,10.0,10,0.0,0.0,0.0,large_daily,Actions,larger doses and daily,effect
 tunis,200,10.0,10.0,10,0.0,0.0,0.0,large_daily,Actions,larger doses and daily,effect
-nebraska,75,10.0,5.0,5,-0.012817340416170886,-0.7602415450933837,0.7346068642610419,forecast,Information,perfect 7-day forecast,effect
-nebraska,100,10.0,5.0,5,0.9992745674402681,0.33541605524029444,1.7588414597180333,forecast,Information,perfect 7-day forecast,effect
-nebraska,125,10.0,5.0,5,-0.16298759226403745,-1.0432847743519165,0.6681895758821725,forecast,Information,perfect 7-day forecast,effect
-tunis,150,10.0,5.0,5,0.0,0.0,0.0,forecast,Information,perfect 7-day forecast,effect
-tunis,200,10.0,5.0,5,0.0,0.0,0.0,forecast,Information,perfect 7-day forecast,effect
-tunis,300,10.0,5.0,5,-1.8782321787125311,-2.656529741583258,-0.9794159031396124,forecast,Information,perfect 7-day forecast,effect
-tunis,400,10.0,5.0,5,0.4752034997113593,-0.3181652718680203,1.700329485461254,forecast,Information,perfect 7-day forecast,effect
-tunis,600,10.0,5.0,5,0.13338732788379631,-1.0318927459586302,1.3920086000482736,forecast,Information,perfect 7-day forecast,effect
+nebraska,75,10.0,10.0,10,0.14490874962476546,-0.4202077069185626,0.7427253413168402,forecast,Information,perfect 7-day forecast,effect
+nebraska,100,10.0,10.0,10,0.7188158564205324,0.05636386284063,1.363076809565298,forecast,Information,perfect 7-day forecast,effect
+nebraska,125,10.0,10.0,10,0.06808799081139785,-0.671819991152688,0.8349618594380127,forecast,Information,perfect 7-day forecast,effect
+tunis,150,10.0,10.0,10,0.0,0.0,0.0,forecast,Information,perfect 7-day forecast,effect
+tunis,200,10.0,10.0,10,0.0,0.0,0.0,forecast,Information,perfect 7-day forecast,effect
+tunis,300,10.0,10.0,10,-0.8042983821309255,-1.645038362116985,-0.03250278255715075,forecast,Information,perfect 7-day forecast,effect
+tunis,400,10.0,10.0,10,0.44328748669998924,-0.16559291509598473,1.1591492456319512,forecast,Information,perfect 7-day forecast,effect
+tunis,600,10.0,10.0,10,0.41211903306525227,-0.583567207834485,1.4870567773504402,forecast,Information,perfect 7-day forecast,effect
 nebraska,75,90.0,0.0,,,,,test_year,Information,trained on the test year itself,effect
 nebraska,100,90.0,0.0,,,,,test_year,Information,trained on the test year itself,effect
 nebraska,125,90.0,0.0,,,,,test_year,Information,trained on the test year itself,effect
