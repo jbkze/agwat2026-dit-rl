@@ -13,7 +13,7 @@ Reward,"yield at the end only, averaged over the other choices","+0.45 [+0.28, +
 Actions,doses up to 89 mm,,,,"+0.00 [+0.00, +0.00]","+0.00 [+0.00, +0.00]","+0.00 [+0.00, +0.00]","+0.00 [+0.00, +0.00]",,,,
 Actions,daily decisions,,,,"+0.00 [+0.00, +0.00]","+0.00 [+0.00, +0.00]","+0.00 [+0.00, +0.00]","+0.00 [+0.00, +0.00]",,,,
 Actions,larger doses and daily,,,,"+0.00 [+0.00, +0.00]","+0.00 [+0.00, +0.00]","+0.00 [+0.00, +0.00]","+0.00 [+0.00, +0.00]",,,,
-Information,perfect 7-day forecast,pending (0 of 10),pending (0 of 10),pending (0 of 10),,,pending (0 of 10),pending (0 of 10),pending (0 of 10),pending (0 of 10),,pending (0 of 10)
+Information,perfect 7-day forecast,"-0.01 [-0.76, +0.73] (5 of 10)","+1.00 [+0.34, +1.76] (5 of 10)","-0.16 [-1.04, +0.67] (5 of 10)",,,"+0.00 [+0.00, +0.00] (5 of 10)","+0.00 [+0.00, +0.00] (5 of 10)","-1.88 [-2.66, -0.98] (5 of 10)","+0.48 [-0.32, +1.70] (5 of 10)",,"+0.13 [-1.03, +1.39] (5 of 10)"
 Information,trained on the test year itself,pending (0 of 90),pending (0 of 90),pending (0 of 90),,,pending (0 of 10),pending (0 of 10),pending (0 of 10),pending (0 of 10),,pending (0 of 10)
 Robustness,5 % observation noise,pending (0 of 100),pending (0 of 100),pending (0 of 100),,,pending (0 of 100),pending (0 of 100),pending (0 of 100),pending (0 of 100),,pending (0 of 100)
 Robustness,10 % observation noise,pending (0 of 100),pending (0 of 100),pending (0 of 100),,,pending (0 of 100),pending (0 of 100),pending (0 of 100),pending (0 of 100),,pending (0 of 100)
