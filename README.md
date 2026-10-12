@@ -31,7 +31,7 @@ Setup and details: [docs/usage.md](docs/usage.md).
 <!-- report:start -->
 ## Status
 
-Filled in by `ditrl report` after every batch of results (last on 2026-10-12 07:40).
+Filled in by `ditrl report` after every batch of results (last on 2026-10-12 22:18).
 
 | Stage | Experiment | What it tests | Runs | Results |
 |---|---|---|---|---|
@@ -42,11 +42,11 @@ Filled in by `ditrl report` after every batch of results (last on 2026-10-12 07:
 | 2 | `benchmark_seeds` | DRL1 and DRL2 with 5 more seeds | 80 of 80 | [results/benchmark_seeds/](results/benchmark_seeds/) |
 | 2 | `benchmark_budgets` | the rest of the yield over budget curve in Tunis | 154 of 154 | [results/benchmark_budgets/](results/benchmark_budgets/) |
 | 2 | `low_budget` | larger doses and daily decisions at small budgets | 120 of 120 | [results/low_budget/](results/low_budget/) |
-| 2 | `robustness` | the benchmark policies with noisy observations | 0 of 4800 | pending |
+| 2 | `robustness` | the benchmark policies with noisy observations | 4800 of 4800 | [results/robustness/](results/robustness/) |
 | 2 | `ablation_more_seeds` | the 16 cells of the design with 5 more seeds | 240 of 240 | [results/ablation_more_seeds/](results/ablation_more_seeds/) |
 | 2 | `ablation_more_budgets` | the 16 cells of the design at the other budgets | 960 of 960 | [results/ablation_more_budgets/](results/ablation_more_budgets/) |
 | 3 | `forecast` | DRL1 with a perfect 7-day weather forecast | 80 of 80 | [results/forecast/](results/forecast/) |
-| 3 | `test_year` | DRL1 trained on the test year itself | 0 of 320 | pending |
+| 3 | `test_year` | DRL1 trained on the test year itself | 54 of 320 | [results/test_year/](results/test_year/) |
 | 3 | `obs_scaled` | the 18 variables, scaled | 0 of 80 | pending |
 | 3 | `oracle_ds` | best schedule per test year with known weather (not run, published values used) | 0 of 927 | pending |
 | 3 | `oracle_ss` | one robust schedule for all years (not run, published values used) | 0 of 45 | pending |

@@ -1,0 +1,25 @@
+{
+ "started": "2026-10-12T09:12:58",
+ "selection": [
+  "robustness"
+ ],
+ "shard": null,
+ "workers": 12,
+ "commit": "ce14155ba32073bc8642a4da5617c6c929f305bb",
+ "uncommitted_changes": false,
+ "command": "C:\\Users\\jkunze\\Documents\\projects\\wasserstress\\agwat2026-dit-rl\\.venv\\Scripts\\ditrl --runs runs run robustness --workers 12",
+ "python": "3.10.20 (main, Mar 10 2026, 18:12:03) [MSC v.1944 64 bit (AMD64)]",
+ "platform": "Windows-10-10.0.26200-SP0",
+ "host": "ANALYTICS-L-2",
+ "cpu_count": 16,
+ "packages": {
+  "aquacrop": "3.0.8",
+  "numpy": "1.26.4",
+  "pandas": "2.2.2",
+  "gymnasium": "0.29.1",
+  "stable-baselines3": "2.3.2",
+  "sb3-contrib": "2.3.0",
+  "torch": "2.4.1+cpu",
+  "pymoo": "0.6.1.3"
+ }
+}
