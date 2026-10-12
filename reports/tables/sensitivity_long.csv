@@ -117,14 +117,14 @@ tunis,200,10.0,10.0,10,0.0,0.0,0.0,forecast,Information,perfect 7-day forecast,e
 tunis,300,10.0,10.0,10,-0.8042983821309255,-1.645038362116985,-0.03250278255715075,forecast,Information,perfect 7-day forecast,effect
 tunis,400,10.0,10.0,10,0.44328748669998924,-0.16559291509598473,1.1591492456319512,forecast,Information,perfect 7-day forecast,effect
 tunis,600,10.0,10.0,10,0.41211903306525227,-0.583567207834485,1.4870567773504402,forecast,Information,perfect 7-day forecast,effect
-nebraska,75,90.0,15.0,1,,,,test_year,Information,trained on the test year itself,effect
-nebraska,100,90.0,15.0,1,,,,test_year,Information,trained on the test year itself,effect
-nebraska,125,90.0,15.0,1,,,,test_year,Information,trained on the test year itself,effect
-tunis,150,10.0,2.0,2,,,,test_year,Information,trained on the test year itself,effect
-tunis,200,10.0,2.0,2,,,,test_year,Information,trained on the test year itself,effect
-tunis,300,10.0,1.0,1,,,,test_year,Information,trained on the test year itself,effect
-tunis,400,10.0,2.0,2,,,,test_year,Information,trained on the test year itself,effect
-tunis,600,10.0,2.0,2,,,,test_year,Information,trained on the test year itself,effect
+nebraska,75,90.0,30.0,2,,,,test_year,Information,trained on the test year itself,effect
+nebraska,100,90.0,30.0,2,,,,test_year,Information,trained on the test year itself,effect
+nebraska,125,90.0,30.0,2,,,,test_year,Information,trained on the test year itself,effect
+tunis,150,10.0,4.0,4,0.0,0.0,0.0,test_year,Information,trained on the test year itself,effect
+tunis,200,10.0,4.0,4,0.0,0.0,0.0,test_year,Information,trained on the test year itself,effect
+tunis,300,10.0,2.0,2,,,,test_year,Information,trained on the test year itself,effect
+tunis,400,10.0,4.0,4,0.8001254398509261,0.414892326859704,1.1525327239908156,test_year,Information,trained on the test year itself,effect
+tunis,600,10.0,4.0,4,0.1247581110195628,-0.8885332391435314,1.3902226898803716,test_year,Information,trained on the test year itself,effect
 nebraska,75,100.0,100.0,10,-0.034541819204749344,-0.17947752159580263,0.09789378461423573,noise_5,Robustness,5 % observation noise,effect
 nebraska,100,100.0,100.0,10,-0.018660196838336994,-0.09618080306598781,0.03201974537302344,noise_5,Robustness,5 % observation noise,effect
 nebraska,125,100.0,100.0,10,0.03152688208080569,0.003968546226737679,0.06542756416463388,noise_5,Robustness,5 % observation noise,effect
