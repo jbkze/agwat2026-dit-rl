@@ -31,7 +31,7 @@ Setup and details: [docs/usage.md](docs/usage.md).
 <!-- report:start -->
 ## Status
 
-Filled in by `ditrl report` after every batch of results (last on 2026-10-12 03:31).
+Filled in by `ditrl report` after every batch of results (last on 2026-10-12 03:49).
 
 | Stage | Experiment | What it tests | Runs | Results |
 |---|---|---|---|---|
@@ -40,7 +40,7 @@ Filled in by `ditrl report` after every batch of results (last on 2026-10-12 03:
 | 2 | `ablation_budget_handling` | the other two budget limits, and all three settings of Kelly et al. at once | 45 of 45 | [results/ablation_budget_handling/](results/ablation_budget_handling/) |
 | 2 | `ablation_interactions` | the remaining cells of the 2 x 4 x 2 design | 135 of 135 | [results/ablation_interactions/](results/ablation_interactions/) |
 | 2 | `benchmark_seeds` | DRL1 and DRL2 with 5 more seeds | 80 of 80 | [results/benchmark_seeds/](results/benchmark_seeds/) |
-| 2 | `benchmark_budgets` | the rest of the yield over budget curve in Tunis | 103 of 154 | [results/benchmark_budgets/](results/benchmark_budgets/) |
+| 2 | `benchmark_budgets` | the rest of the yield over budget curve in Tunis | 154 of 154 | [results/benchmark_budgets/](results/benchmark_budgets/) |
 | 2 | `low_budget` | larger doses and daily decisions at small budgets | 60 of 120 | [results/low_budget/](results/low_budget/) |
 | 2 | `robustness` | the benchmark policies with noisy observations | 0 of 4800 | pending |
 | 2 | `ablation_more_seeds` | the 16 cells of the design with 5 more seeds | 240 of 240 | [results/ablation_more_seeds/](results/ablation_more_seeds/) |
