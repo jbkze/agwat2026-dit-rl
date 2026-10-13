@@ -134,7 +134,9 @@ def observation_scale(spec: EnvSpec, seasons: int, seed: int) -> dict:
         done = False
         while not done:
             rows.append(obs)
-            obs, _, done, _, _ = env.step(env.action_space.sample())
+            # with masking, a random decision is drawn from the depths that fit into the budget
+            mask = env.action_masks().astype(np.int8) if spec.constraint == "mask" else None
+            obs, _, done, _, _ = env.step(env.action_space.sample(mask=mask))
     rows = np.vstack(rows)
     std = rows.std(axis=0)
     return {"mean": rows.mean(axis=0).tolist(), "std": np.where(std > 0, std, 1.0).tolist()}
