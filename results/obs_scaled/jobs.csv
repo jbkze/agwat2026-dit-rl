@@ -1,0 +1,9 @@
+job,kind,method,site,budget_mm,seed,observation,constraint,reward,depths,interval,trained_on_year,oracle_year,oracle_years,oracle_events,noise_sd,steps_trained,stopped_by,resumed_at,test_mean_yield_t_ha,val_mean_yield_t_ha,seconds,commit
+tunis_B400_drl1_obs_scaled_s4,drl,drl1_obs_scaled,tunis,400,4,KELLY,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,,,,,,300000,converged,0,7.116902870434647,6.33411500175653,1277.4,204693f
+tunis_B400_drl1_obs_scaled_s6,drl,drl1_obs_scaled,tunis,400,6,KELLY,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,,,,,,300000,converged,0,7.438600286372087,6.812207285720012,1299.2,204693f
+tunis_B400_drl1_obs_scaled_s8,drl,drl1_obs_scaled,tunis,400,8,KELLY,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,,,,,,350000,converged,0,7.390002305304966,6.289534309861592,1514.8,204693f
+tunis_B600_drl1_obs_scaled_s0,drl,drl1_obs_scaled,tunis,600,0,KELLY,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,,,,,,350000,converged,0,13.501124260725588,12.551973027507715,1320.2,204693f
+tunis_B600_drl1_obs_scaled_s2,drl,drl1_obs_scaled,tunis,600,2,KELLY,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,,,,,,350000,converged,0,13.478569174298183,12.327642127870917,1332.4,204693f
+tunis_B600_drl1_obs_scaled_s4,drl,drl1_obs_scaled,tunis,600,4,KELLY,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,,,,,,300000,converged,0,13.501124260725588,12.29723443509979,1142.1,204693f
+tunis_B600_drl1_obs_scaled_s6,drl,drl1_obs_scaled,tunis,600,6,KELLY,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,,,,,,300000,converged,0,13.55215073135823,11.874803733209012,1151.1,204693f
+tunis_B600_drl1_obs_scaled_s8,drl,drl1_obs_scaled,tunis,600,8,KELLY,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,,,,,,350000,converged,0,13.436241146944845,12.635053553662557,1329.9,204693f
