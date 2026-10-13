@@ -117,14 +117,14 @@ tunis,200,10.0,10.0,10,0.0,0.0,0.0,forecast,Information,perfect 7-day forecast,e
 tunis,300,10.0,10.0,10,-0.8042983821309255,-1.645038362116985,-0.03250278255715075,forecast,Information,perfect 7-day forecast,effect
 tunis,400,10.0,10.0,10,0.44328748669998924,-0.16559291509598473,1.1591492456319512,forecast,Information,perfect 7-day forecast,effect
 tunis,600,10.0,10.0,10,0.41211903306525227,-0.583567207834485,1.4870567773504402,forecast,Information,perfect 7-day forecast,effect
-nebraska,75,90.0,75.0,3,1.05802543118321,0.3747150569852768,1.5658152960146634,test_year,Information,trained on the test year itself,effect
-nebraska,100,90.0,75.0,3,1.2172830304304776,0.3321524974586321,2.1088146936064027,test_year,Information,trained on the test year itself,effect
-nebraska,125,90.0,75.0,3,0.5273043679722229,-0.24734349150235835,1.4050563687545055,test_year,Information,trained on the test year itself,effect
-tunis,150,10.0,9.0,9,0.0,0.0,0.0,test_year,Information,trained on the test year itself,effect
-tunis,200,10.0,8.0,8,0.0,0.0,0.0,test_year,Information,trained on the test year itself,effect
-tunis,300,10.0,8.0,8,0.3425692291606687,-0.6665736166912758,1.2252070049925576,test_year,Information,trained on the test year itself,effect
-tunis,400,10.0,9.0,9,1.3797370267195639,0.48633836607127395,2.422831516394808,test_year,Information,trained on the test year itself,effect
-tunis,600,10.0,8.0,8,0.11232611743046328,-0.7778007155835767,1.1387719745234122,test_year,Information,trained on the test year itself,effect
+nebraska,75,90.0,90.0,3,1.1132177107156471,0.5402918955825885,1.5658152960146634,test_year,Information,trained on the test year itself,effect
+nebraska,100,90.0,90.0,3,1.2327618498049373,0.37858895558201083,2.1088146936064027,test_year,Information,trained on the test year itself,effect
+nebraska,125,90.0,90.0,3,0.5494115265738326,-0.24734349150235835,1.4050563687545055,test_year,Information,trained on the test year itself,effect
+tunis,150,10.0,10.0,10,0.0,0.0,0.0,test_year,Information,trained on the test year itself,effect
+tunis,200,10.0,10.0,10,0.0,0.0,0.0,test_year,Information,trained on the test year itself,effect
+tunis,300,10.0,10.0,10,0.6316580216903607,-0.32600766009245186,1.5548412160893996,test_year,Information,trained on the test year itself,effect
+tunis,400,10.0,10.0,10,1.604105759535371,0.6836236163413957,2.6273816910509606,test_year,Information,trained on the test year itself,effect
+tunis,600,10.0,10.0,10,0.06051961907786012,-0.6554553206312692,0.9143868027953157,test_year,Information,trained on the test year itself,effect
 nebraska,75,100.0,100.0,10,-0.034541819204749344,-0.17947752159580263,0.09789378461423573,noise_5,Robustness,5 % observation noise,effect
 nebraska,100,100.0,100.0,10,-0.018660196838336994,-0.09618080306598781,0.03201974537302344,noise_5,Robustness,5 % observation noise,effect
 nebraska,125,100.0,100.0,10,0.03152688208080569,0.003968546226737679,0.06542756416463388,noise_5,Robustness,5 % observation noise,effect

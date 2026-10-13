@@ -5,6 +5,8 @@ nebraska_B100_drl1_y2065_s1,drl,drl1,nebraska,100,1,DRL1,mask,dense,"[0, 1, 2, 3
 nebraska_B100_drl1_y2065_s1,drl,drl1,nebraska,100,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2065,,,,,val,2065,9.262868064839981,84.0,False
 nebraska_B100_drl1_y2065_s2,drl,drl1,nebraska,100,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2065,,,,,test,2065,9.262868064839981,84.0,False
 nebraska_B100_drl1_y2065_s2,drl,drl1,nebraska,100,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2065,,,,,val,2065,9.262868064839981,84.0,False
+nebraska_B100_drl1_y2066_s0,drl,drl1,nebraska,100,0,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2066,,,,,test,2066,11.71922557718208,97.0,False
+nebraska_B100_drl1_y2066_s0,drl,drl1,nebraska,100,0,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2066,,,,,val,2066,11.71922557718208,97.0,False
 nebraska_B100_drl1_y2066_s1,drl,drl1,nebraska,100,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2066,,,,,test,2066,11.731399566160693,100.0,False
 nebraska_B100_drl1_y2066_s1,drl,drl1,nebraska,100,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2066,,,,,val,2066,11.731399566160693,100.0,False
 nebraska_B100_drl1_y2066_s2,drl,drl1,nebraska,100,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2066,,,,,test,2066,11.56957726580943,100.0,False
@@ -15,6 +17,8 @@ nebraska_B100_drl1_y2067_s1,drl,drl1,nebraska,100,1,DRL1,mask,dense,"[0, 1, 2, 3
 nebraska_B100_drl1_y2067_s1,drl,drl1,nebraska,100,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2067,,,,,val,2067,13.477664610726539,89.0,False
 nebraska_B100_drl1_y2067_s2,drl,drl1,nebraska,100,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2067,,,,,test,2067,13.379172998263902,98.0,False
 nebraska_B100_drl1_y2067_s2,drl,drl1,nebraska,100,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2067,,,,,val,2067,13.379172998263902,98.0,False
+nebraska_B100_drl1_y2068_s0,drl,drl1,nebraska,100,0,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2068,,,,,test,2068,12.858136629354012,97.0,False
+nebraska_B100_drl1_y2068_s0,drl,drl1,nebraska,100,0,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2068,,,,,val,2068,12.858136629354012,97.0,False
 nebraska_B100_drl1_y2068_s1,drl,drl1,nebraska,100,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2068,,,,,test,2068,12.218817533629037,100.0,False
 nebraska_B100_drl1_y2068_s1,drl,drl1,nebraska,100,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2068,,,,,val,2068,12.218817533629037,100.0,False
 nebraska_B100_drl1_y2068_s2,drl,drl1,nebraska,100,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2068,,,,,test,2068,12.20526507508561,97.0,False
@@ -25,6 +29,8 @@ nebraska_B100_drl1_y2069_s1,drl,drl1,nebraska,100,1,DRL1,mask,dense,"[0, 1, 2, 3
 nebraska_B100_drl1_y2069_s1,drl,drl1,nebraska,100,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2069,,,,,val,2069,3.7541990520920896,21.0,True
 nebraska_B100_drl1_y2069_s2,drl,drl1,nebraska,100,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2069,,,,,test,2069,10.529237209539628,91.0,False
 nebraska_B100_drl1_y2069_s2,drl,drl1,nebraska,100,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2069,,,,,val,2069,10.529237209539628,91.0,False
+nebraska_B100_drl1_y2070_s0,drl,drl1,nebraska,100,0,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2070,,,,,test,2070,11.28803582531997,97.0,True
+nebraska_B100_drl1_y2070_s0,drl,drl1,nebraska,100,0,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2070,,,,,val,2070,11.28803582531997,97.0,True
 nebraska_B100_drl1_y2070_s1,drl,drl1,nebraska,100,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2070,,,,,test,2070,11.864696710638427,98.0,True
 nebraska_B100_drl1_y2070_s1,drl,drl1,nebraska,100,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2070,,,,,val,2070,11.864696710638427,98.0,True
 nebraska_B100_drl1_y2070_s2,drl,drl1,nebraska,100,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2070,,,,,test,2070,11.04102995541446,96.0,False
@@ -35,6 +41,8 @@ nebraska_B100_drl1_y2071_s1,drl,drl1,nebraska,100,1,DRL1,mask,dense,"[0, 1, 2, 3
 nebraska_B100_drl1_y2071_s1,drl,drl1,nebraska,100,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2071,,,,,val,2071,12.702239834493557,97.0,False
 nebraska_B100_drl1_y2071_s2,drl,drl1,nebraska,100,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2071,,,,,test,2071,12.926877938132964,97.0,False
 nebraska_B100_drl1_y2071_s2,drl,drl1,nebraska,100,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2071,,,,,val,2071,12.926877938132964,97.0,False
+nebraska_B100_drl1_y2072_s0,drl,drl1,nebraska,100,0,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2072,,,,,test,2072,13.4255912899626,98.0,False
+nebraska_B100_drl1_y2072_s0,drl,drl1,nebraska,100,0,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2072,,,,,val,2072,13.4255912899626,98.0,False
 nebraska_B100_drl1_y2072_s1,drl,drl1,nebraska,100,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2072,,,,,test,2072,13.353161473083336,100.0,False
 nebraska_B100_drl1_y2072_s1,drl,drl1,nebraska,100,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2072,,,,,val,2072,13.353161473083336,100.0,False
 nebraska_B100_drl1_y2072_s2,drl,drl1,nebraska,100,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2072,,,,,test,2072,13.418054837104751,96.0,False
@@ -45,6 +53,8 @@ nebraska_B100_drl1_y2073_s1,drl,drl1,nebraska,100,1,DRL1,mask,dense,"[0, 1, 2, 3
 nebraska_B100_drl1_y2073_s1,drl,drl1,nebraska,100,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2073,,,,,val,2073,6.531111664662116,99.0,True
 nebraska_B100_drl1_y2073_s2,drl,drl1,nebraska,100,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2073,,,,,test,2073,9.008152335384963,97.0,False
 nebraska_B100_drl1_y2073_s2,drl,drl1,nebraska,100,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2073,,,,,val,2073,9.008152335384963,97.0,False
+nebraska_B100_drl1_y2074_s0,drl,drl1,nebraska,100,0,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2074,,,,,test,2074,11.939053631559071,98.0,False
+nebraska_B100_drl1_y2074_s0,drl,drl1,nebraska,100,0,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2074,,,,,val,2074,11.939053631559071,98.0,False
 nebraska_B100_drl1_y2074_s1,drl,drl1,nebraska,100,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2074,,,,,test,2074,9.549761300052271,34.0,False
 nebraska_B100_drl1_y2074_s1,drl,drl1,nebraska,100,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2074,,,,,val,2074,9.549761300052271,34.0,False
 nebraska_B100_drl1_y2074_s2,drl,drl1,nebraska,100,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2074,,,,,test,2074,10.51583519718413,55.0,False
@@ -55,6 +65,8 @@ nebraska_B100_drl1_y2075_s1,drl,drl1,nebraska,100,1,DRL1,mask,dense,"[0, 1, 2, 3
 nebraska_B100_drl1_y2075_s1,drl,drl1,nebraska,100,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2075,,,,,val,2075,14.280788096685331,100.0,False
 nebraska_B100_drl1_y2075_s2,drl,drl1,nebraska,100,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2075,,,,,test,2075,14.239361330771008,99.0,False
 nebraska_B100_drl1_y2075_s2,drl,drl1,nebraska,100,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2075,,,,,val,2075,14.239361330771008,99.0,False
+nebraska_B100_drl1_y2076_s0,drl,drl1,nebraska,100,0,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2076,,,,,test,2076,12.816716917121648,84.0,False
+nebraska_B100_drl1_y2076_s0,drl,drl1,nebraska,100,0,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2076,,,,,val,2076,12.816716917121648,84.0,False
 nebraska_B100_drl1_y2076_s1,drl,drl1,nebraska,100,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2076,,,,,test,2076,13.103573285294384,97.0,False
 nebraska_B100_drl1_y2076_s1,drl,drl1,nebraska,100,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2076,,,,,val,2076,13.103573285294384,97.0,False
 nebraska_B100_drl1_y2076_s2,drl,drl1,nebraska,100,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2076,,,,,test,2076,13.244783973293941,97.0,False
@@ -65,6 +77,8 @@ nebraska_B100_drl1_y2077_s1,drl,drl1,nebraska,100,1,DRL1,mask,dense,"[0, 1, 2, 3
 nebraska_B100_drl1_y2077_s1,drl,drl1,nebraska,100,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2077,,,,,val,2077,14.335495396529163,99.0,False
 nebraska_B100_drl1_y2077_s2,drl,drl1,nebraska,100,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2077,,,,,test,2077,14.36314624747085,100.0,False
 nebraska_B100_drl1_y2077_s2,drl,drl1,nebraska,100,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2077,,,,,val,2077,14.36314624747085,100.0,False
+nebraska_B100_drl1_y2078_s0,drl,drl1,nebraska,100,0,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2078,,,,,test,2078,13.508456590429855,100.0,False
+nebraska_B100_drl1_y2078_s0,drl,drl1,nebraska,100,0,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2078,,,,,val,2078,13.508456590429855,100.0,False
 nebraska_B100_drl1_y2078_s1,drl,drl1,nebraska,100,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2078,,,,,test,2078,13.858611663751491,100.0,False
 nebraska_B100_drl1_y2078_s1,drl,drl1,nebraska,100,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2078,,,,,val,2078,13.858611663751491,100.0,False
 nebraska_B100_drl1_y2078_s2,drl,drl1,nebraska,100,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2078,,,,,test,2078,13.48376086156153,100.0,False
@@ -75,6 +89,8 @@ nebraska_B100_drl1_y2079_s1,drl,drl1,nebraska,100,1,DRL1,mask,dense,"[0, 1, 2, 3
 nebraska_B100_drl1_y2079_s1,drl,drl1,nebraska,100,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2079,,,,,val,2079,11.928553535067532,84.0,False
 nebraska_B100_drl1_y2079_s2,drl,drl1,nebraska,100,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2079,,,,,test,2079,12.572691751696256,97.0,False
 nebraska_B100_drl1_y2079_s2,drl,drl1,nebraska,100,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2079,,,,,val,2079,12.572691751696256,97.0,False
+nebraska_B100_drl1_y2080_s0,drl,drl1,nebraska,100,0,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2080,,,,,test,2080,14.226721044731523,84.0,False
+nebraska_B100_drl1_y2080_s0,drl,drl1,nebraska,100,0,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2080,,,,,val,2080,14.226721044731523,84.0,False
 nebraska_B100_drl1_y2080_s1,drl,drl1,nebraska,100,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2080,,,,,test,2080,14.004058554769339,81.0,False
 nebraska_B100_drl1_y2080_s1,drl,drl1,nebraska,100,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2080,,,,,val,2080,14.004058554769339,81.0,False
 nebraska_B100_drl1_y2080_s2,drl,drl1,nebraska,100,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2080,,,,,test,2080,13.91866321611681,74.0,False
@@ -85,6 +101,8 @@ nebraska_B100_drl1_y2081_s1,drl,drl1,nebraska,100,1,DRL1,mask,dense,"[0, 1, 2, 3
 nebraska_B100_drl1_y2081_s1,drl,drl1,nebraska,100,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2081,,,,,val,2081,14.584847753218071,84.0,False
 nebraska_B100_drl1_y2081_s2,drl,drl1,nebraska,100,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2081,,,,,test,2081,14.274111630792895,0.0,False
 nebraska_B100_drl1_y2081_s2,drl,drl1,nebraska,100,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2081,,,,,val,2081,14.274111630792895,0.0,False
+nebraska_B100_drl1_y2082_s0,drl,drl1,nebraska,100,0,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2082,,,,,test,2082,14.06227732190244,99.0,False
+nebraska_B100_drl1_y2082_s0,drl,drl1,nebraska,100,0,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2082,,,,,val,2082,14.06227732190244,99.0,False
 nebraska_B100_drl1_y2082_s1,drl,drl1,nebraska,100,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2082,,,,,test,2082,14.107742467644961,100.0,False
 nebraska_B100_drl1_y2082_s1,drl,drl1,nebraska,100,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2082,,,,,val,2082,14.107742467644961,100.0,False
 nebraska_B100_drl1_y2082_s2,drl,drl1,nebraska,100,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2082,,,,,test,2082,12.57998685959822,0.0,False
@@ -95,6 +113,8 @@ nebraska_B100_drl1_y2083_s1,drl,drl1,nebraska,100,1,DRL1,mask,dense,"[0, 1, 2, 3
 nebraska_B100_drl1_y2083_s1,drl,drl1,nebraska,100,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2083,,,,,val,2083,14.011372187100223,89.0,False
 nebraska_B100_drl1_y2083_s2,drl,drl1,nebraska,100,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2083,,,,,test,2083,14.33042395734333,100.0,False
 nebraska_B100_drl1_y2083_s2,drl,drl1,nebraska,100,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2083,,,,,val,2083,14.33042395734333,100.0,False
+nebraska_B100_drl1_y2084_s0,drl,drl1,nebraska,100,0,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2084,,,,,test,2084,7.905143767668188,100.0,False
+nebraska_B100_drl1_y2084_s0,drl,drl1,nebraska,100,0,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2084,,,,,val,2084,7.905143767668188,100.0,False
 nebraska_B100_drl1_y2084_s1,drl,drl1,nebraska,100,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2084,,,,,test,2084,7.270680207703301,100.0,False
 nebraska_B100_drl1_y2084_s1,drl,drl1,nebraska,100,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2084,,,,,val,2084,7.270680207703301,100.0,False
 nebraska_B100_drl1_y2084_s2,drl,drl1,nebraska,100,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2084,,,,,test,2084,7.752809023344099,100.0,False
@@ -105,6 +125,8 @@ nebraska_B100_drl1_y2085_s1,drl,drl1,nebraska,100,1,DRL1,mask,dense,"[0, 1, 2, 3
 nebraska_B100_drl1_y2085_s1,drl,drl1,nebraska,100,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2085,,,,,val,2085,13.13404238081976,63.0,False
 nebraska_B100_drl1_y2085_s2,drl,drl1,nebraska,100,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2085,,,,,test,2085,13.48233188666647,84.0,False
 nebraska_B100_drl1_y2085_s2,drl,drl1,nebraska,100,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2085,,,,,val,2085,13.48233188666647,84.0,False
+nebraska_B100_drl1_y2086_s0,drl,drl1,nebraska,100,0,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2086,,,,,test,2086,13.091879993750771,100.0,False
+nebraska_B100_drl1_y2086_s0,drl,drl1,nebraska,100,0,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2086,,,,,val,2086,13.091879993750771,100.0,False
 nebraska_B100_drl1_y2086_s1,drl,drl1,nebraska,100,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2086,,,,,test,2086,13.091879993750771,100.0,False
 nebraska_B100_drl1_y2086_s1,drl,drl1,nebraska,100,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2086,,,,,val,2086,13.091879993750771,100.0,False
 nebraska_B100_drl1_y2086_s2,drl,drl1,nebraska,100,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2086,,,,,test,2086,13.091879993750771,100.0,False
@@ -115,6 +137,8 @@ nebraska_B100_drl1_y2087_s1,drl,drl1,nebraska,100,1,DRL1,mask,dense,"[0, 1, 2, 3
 nebraska_B100_drl1_y2087_s1,drl,drl1,nebraska,100,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2087,,,,,val,2087,14.330241050089992,52.0,False
 nebraska_B100_drl1_y2087_s2,drl,drl1,nebraska,100,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2087,,,,,test,2087,14.419803468078806,50.0,False
 nebraska_B100_drl1_y2087_s2,drl,drl1,nebraska,100,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2087,,,,,val,2087,14.419803468078806,50.0,False
+nebraska_B100_drl1_y2088_s0,drl,drl1,nebraska,100,0,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2088,,,,,test,2088,13.174988337867667,99.0,False
+nebraska_B100_drl1_y2088_s0,drl,drl1,nebraska,100,0,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2088,,,,,val,2088,13.174988337867667,99.0,False
 nebraska_B100_drl1_y2088_s1,drl,drl1,nebraska,100,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2088,,,,,test,2088,13.380204848641716,86.0,False
 nebraska_B100_drl1_y2088_s1,drl,drl1,nebraska,100,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2088,,,,,val,2088,13.380204848641716,86.0,False
 nebraska_B100_drl1_y2088_s2,drl,drl1,nebraska,100,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2088,,,,,test,2088,13.554256941151015,100.0,False
@@ -125,6 +149,8 @@ nebraska_B100_drl1_y2089_s1,drl,drl1,nebraska,100,1,DRL1,mask,dense,"[0, 1, 2, 3
 nebraska_B100_drl1_y2089_s1,drl,drl1,nebraska,100,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2089,,,,,val,2089,14.347919820693903,0.0,False
 nebraska_B100_drl1_y2089_s2,drl,drl1,nebraska,100,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2089,,,,,test,2089,14.347919820693903,0.0,False
 nebraska_B100_drl1_y2089_s2,drl,drl1,nebraska,100,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2089,,,,,val,2089,14.347919820693903,0.0,False
+nebraska_B100_drl1_y2090_s0,drl,drl1,nebraska,100,0,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2090,,,,,test,2090,11.418253484762767,99.0,False
+nebraska_B100_drl1_y2090_s0,drl,drl1,nebraska,100,0,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2090,,,,,val,2090,11.418253484762767,99.0,False
 nebraska_B100_drl1_y2090_s1,drl,drl1,nebraska,100,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2090,,,,,test,2090,10.103430900341364,68.0,False
 nebraska_B100_drl1_y2090_s1,drl,drl1,nebraska,100,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2090,,,,,val,2090,10.103430900341364,68.0,False
 nebraska_B100_drl1_y2090_s2,drl,drl1,nebraska,100,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2090,,,,,test,2090,10.103430900341364,68.0,False
@@ -135,6 +161,8 @@ nebraska_B100_drl1_y2091_s1,drl,drl1,nebraska,100,1,DRL1,mask,dense,"[0, 1, 2, 3
 nebraska_B100_drl1_y2091_s1,drl,drl1,nebraska,100,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2091,,,,,val,2091,13.559904896212243,91.0,False
 nebraska_B100_drl1_y2091_s2,drl,drl1,nebraska,100,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2091,,,,,test,2091,13.559904896212243,91.0,False
 nebraska_B100_drl1_y2091_s2,drl,drl1,nebraska,100,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2091,,,,,val,2091,13.559904896212243,91.0,False
+nebraska_B100_drl1_y2092_s0,drl,drl1,nebraska,100,0,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2092,,,,,test,2092,12.080311126057918,98.0,False
+nebraska_B100_drl1_y2092_s0,drl,drl1,nebraska,100,0,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2092,,,,,val,2092,12.080311126057918,98.0,False
 nebraska_B100_drl1_y2092_s1,drl,drl1,nebraska,100,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2092,,,,,test,2092,11.724464692715106,89.0,False
 nebraska_B100_drl1_y2092_s1,drl,drl1,nebraska,100,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2092,,,,,val,2092,11.724464692715106,89.0,False
 nebraska_B100_drl1_y2092_s2,drl,drl1,nebraska,100,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2092,,,,,test,2092,12.167934513350463,100.0,False
@@ -145,6 +173,8 @@ nebraska_B100_drl1_y2093_s1,drl,drl1,nebraska,100,1,DRL1,mask,dense,"[0, 1, 2, 3
 nebraska_B100_drl1_y2093_s1,drl,drl1,nebraska,100,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2093,,,,,val,2093,11.87394649716183,100.0,False
 nebraska_B100_drl1_y2093_s2,drl,drl1,nebraska,100,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2093,,,,,test,2093,12.791519458256003,98.0,False
 nebraska_B100_drl1_y2093_s2,drl,drl1,nebraska,100,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2093,,,,,val,2093,12.791519458256003,98.0,False
+nebraska_B100_drl1_y2094_s0,drl,drl1,nebraska,100,0,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2094,,,,,test,2094,11.483813648671168,89.0,False
+nebraska_B100_drl1_y2094_s0,drl,drl1,nebraska,100,0,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2094,,,,,val,2094,11.483813648671168,89.0,False
 nebraska_B100_drl1_y2094_s1,drl,drl1,nebraska,100,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2094,,,,,test,2094,11.825723436104923,89.0,False
 nebraska_B100_drl1_y2094_s1,drl,drl1,nebraska,100,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2094,,,,,val,2094,11.825723436104923,89.0,False
 nebraska_B100_drl1_y2094_s2,drl,drl1,nebraska,100,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2094,,,,,test,2094,9.755561887006047,34.0,False
@@ -155,6 +185,8 @@ nebraska_B125_drl1_y2065_s1,drl,drl1,nebraska,125,1,DRL1,mask,dense,"[0, 1, 2, 3
 nebraska_B125_drl1_y2065_s1,drl,drl1,nebraska,125,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2065,,,,,val,2065,10.10168912228741,125.0,False
 nebraska_B125_drl1_y2065_s2,drl,drl1,nebraska,125,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2065,,,,,test,2065,11.15276796534066,123.0,False
 nebraska_B125_drl1_y2065_s2,drl,drl1,nebraska,125,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2065,,,,,val,2065,11.15276796534066,123.0,False
+nebraska_B125_drl1_y2066_s0,drl,drl1,nebraska,125,0,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2066,,,,,test,2066,12.021300716099091,125.0,False
+nebraska_B125_drl1_y2066_s0,drl,drl1,nebraska,125,0,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2066,,,,,val,2066,12.021300716099091,125.0,False
 nebraska_B125_drl1_y2066_s1,drl,drl1,nebraska,125,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2066,,,,,test,2066,12.299179072193684,121.0,False
 nebraska_B125_drl1_y2066_s1,drl,drl1,nebraska,125,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2066,,,,,val,2066,12.299179072193684,121.0,False
 nebraska_B125_drl1_y2066_s2,drl,drl1,nebraska,125,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2066,,,,,test,2066,11.587759543851346,125.0,True
@@ -165,6 +197,8 @@ nebraska_B125_drl1_y2067_s1,drl,drl1,nebraska,125,1,DRL1,mask,dense,"[0, 1, 2, 3
 nebraska_B125_drl1_y2067_s1,drl,drl1,nebraska,125,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2067,,,,,val,2067,13.746726979123402,123.0,False
 nebraska_B125_drl1_y2067_s2,drl,drl1,nebraska,125,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2067,,,,,test,2067,13.934702105455564,124.0,False
 nebraska_B125_drl1_y2067_s2,drl,drl1,nebraska,125,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2067,,,,,val,2067,13.934702105455564,124.0,False
+nebraska_B125_drl1_y2068_s0,drl,drl1,nebraska,125,0,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2068,,,,,test,2068,12.570130377797366,105.0,False
+nebraska_B125_drl1_y2068_s0,drl,drl1,nebraska,125,0,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2068,,,,,val,2068,12.570130377797366,105.0,False
 nebraska_B125_drl1_y2068_s1,drl,drl1,nebraska,125,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2068,,,,,test,2068,12.570130377797366,105.0,False
 nebraska_B125_drl1_y2068_s1,drl,drl1,nebraska,125,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2068,,,,,val,2068,12.570130377797366,105.0,False
 nebraska_B125_drl1_y2068_s2,drl,drl1,nebraska,125,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2068,,,,,test,2068,12.629639547267658,118.0,False
@@ -175,6 +209,8 @@ nebraska_B125_drl1_y2069_s1,drl,drl1,nebraska,125,1,DRL1,mask,dense,"[0, 1, 2, 3
 nebraska_B125_drl1_y2069_s1,drl,drl1,nebraska,125,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2069,,,,,val,2069,11.525505074566238,125.0,False
 nebraska_B125_drl1_y2069_s2,drl,drl1,nebraska,125,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2069,,,,,test,2069,12.511582752295977,124.0,False
 nebraska_B125_drl1_y2069_s2,drl,drl1,nebraska,125,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2069,,,,,val,2069,12.511582752295977,124.0,False
+nebraska_B125_drl1_y2070_s0,drl,drl1,nebraska,125,0,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2070,,,,,test,2070,11.974589115535347,102.0,True
+nebraska_B125_drl1_y2070_s0,drl,drl1,nebraska,125,0,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2070,,,,,val,2070,11.974589115535347,102.0,True
 nebraska_B125_drl1_y2070_s1,drl,drl1,nebraska,125,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2070,,,,,test,2070,12.505025985623407,123.0,False
 nebraska_B125_drl1_y2070_s1,drl,drl1,nebraska,125,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2070,,,,,val,2070,12.505025985623407,123.0,False
 nebraska_B125_drl1_y2070_s2,drl,drl1,nebraska,125,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2070,,,,,test,2070,12.349212786138807,123.0,False
@@ -185,6 +221,8 @@ nebraska_B125_drl1_y2071_s1,drl,drl1,nebraska,125,1,DRL1,mask,dense,"[0, 1, 2, 3
 nebraska_B125_drl1_y2071_s1,drl,drl1,nebraska,125,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2071,,,,,val,2071,13.62830693750594,123.0,False
 nebraska_B125_drl1_y2071_s2,drl,drl1,nebraska,125,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2071,,,,,test,2071,13.7580448288105,125.0,False
 nebraska_B125_drl1_y2071_s2,drl,drl1,nebraska,125,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2071,,,,,val,2071,13.7580448288105,125.0,False
+nebraska_B125_drl1_y2072_s0,drl,drl1,nebraska,125,0,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2072,,,,,test,2072,13.627252058434697,124.0,False
+nebraska_B125_drl1_y2072_s0,drl,drl1,nebraska,125,0,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2072,,,,,val,2072,13.627252058434697,124.0,False
 nebraska_B125_drl1_y2072_s1,drl,drl1,nebraska,125,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2072,,,,,test,2072,13.269903448441086,120.0,False
 nebraska_B125_drl1_y2072_s1,drl,drl1,nebraska,125,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2072,,,,,val,2072,13.269903448441086,120.0,False
 nebraska_B125_drl1_y2072_s2,drl,drl1,nebraska,125,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2072,,,,,test,2072,13.783656391715587,122.0,False
@@ -195,6 +233,8 @@ nebraska_B125_drl1_y2073_s1,drl,drl1,nebraska,125,1,DRL1,mask,dense,"[0, 1, 2, 3
 nebraska_B125_drl1_y2073_s1,drl,drl1,nebraska,125,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2073,,,,,val,2073,10.034643407906417,125.0,False
 nebraska_B125_drl1_y2073_s2,drl,drl1,nebraska,125,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2073,,,,,test,2073,9.199524308430306,125.0,True
 nebraska_B125_drl1_y2073_s2,drl,drl1,nebraska,125,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2073,,,,,val,2073,9.199524308430306,125.0,True
+nebraska_B125_drl1_y2074_s0,drl,drl1,nebraska,125,0,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2074,,,,,test,2074,12.724948280489915,125.0,False
+nebraska_B125_drl1_y2074_s0,drl,drl1,nebraska,125,0,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2074,,,,,val,2074,12.724948280489915,125.0,False
 nebraska_B125_drl1_y2074_s1,drl,drl1,nebraska,125,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2074,,,,,test,2074,12.304399817315106,121.0,False
 nebraska_B125_drl1_y2074_s1,drl,drl1,nebraska,125,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2074,,,,,val,2074,12.304399817315106,121.0,False
 nebraska_B125_drl1_y2074_s2,drl,drl1,nebraska,125,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2074,,,,,test,2074,12.432490955915105,123.0,False
@@ -205,6 +245,8 @@ nebraska_B125_drl1_y2075_s1,drl,drl1,nebraska,125,1,DRL1,mask,dense,"[0, 1, 2, 3
 nebraska_B125_drl1_y2075_s1,drl,drl1,nebraska,125,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2075,,,,,val,2075,14.37807948578649,125.0,False
 nebraska_B125_drl1_y2075_s2,drl,drl1,nebraska,125,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2075,,,,,test,2075,12.536215252488416,0.0,False
 nebraska_B125_drl1_y2075_s2,drl,drl1,nebraska,125,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2075,,,,,val,2075,12.536215252488416,0.0,False
+nebraska_B125_drl1_y2076_s0,drl,drl1,nebraska,125,0,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2076,,,,,test,2076,13.694475813106465,123.0,False
+nebraska_B125_drl1_y2076_s0,drl,drl1,nebraska,125,0,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2076,,,,,val,2076,13.694475813106465,123.0,False
 nebraska_B125_drl1_y2076_s1,drl,drl1,nebraska,125,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2076,,,,,test,2076,13.694475813106465,123.0,False
 nebraska_B125_drl1_y2076_s1,drl,drl1,nebraska,125,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2076,,,,,val,2076,13.694475813106465,123.0,False
 nebraska_B125_drl1_y2076_s2,drl,drl1,nebraska,125,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2076,,,,,test,2076,13.58550521885518,125.0,False
@@ -215,6 +257,8 @@ nebraska_B125_drl1_y2077_s1,drl,drl1,nebraska,125,1,DRL1,mask,dense,"[0, 1, 2, 3
 nebraska_B125_drl1_y2077_s1,drl,drl1,nebraska,125,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2077,,,,,val,2077,14.353271103004168,111.0,False
 nebraska_B125_drl1_y2077_s2,drl,drl1,nebraska,125,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2077,,,,,test,2077,14.334859868760786,125.0,False
 nebraska_B125_drl1_y2077_s2,drl,drl1,nebraska,125,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2077,,,,,val,2077,14.334859868760786,125.0,False
+nebraska_B125_drl1_y2078_s0,drl,drl1,nebraska,125,0,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2078,,,,,test,2078,14.100894105636675,124.0,False
+nebraska_B125_drl1_y2078_s0,drl,drl1,nebraska,125,0,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2078,,,,,val,2078,14.100894105636675,124.0,False
 nebraska_B125_drl1_y2078_s1,drl,drl1,nebraska,125,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2078,,,,,test,2078,14.09619404293791,125.0,False
 nebraska_B125_drl1_y2078_s1,drl,drl1,nebraska,125,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2078,,,,,val,2078,14.09619404293791,125.0,False
 nebraska_B125_drl1_y2078_s2,drl,drl1,nebraska,125,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2078,,,,,test,2078,14.040821128522674,125.0,False
@@ -225,6 +269,8 @@ nebraska_B125_drl1_y2079_s1,drl,drl1,nebraska,125,1,DRL1,mask,dense,"[0, 1, 2, 3
 nebraska_B125_drl1_y2079_s1,drl,drl1,nebraska,125,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2079,,,,,val,2079,12.964797310080167,125.0,False
 nebraska_B125_drl1_y2079_s2,drl,drl1,nebraska,125,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2079,,,,,test,2079,12.078939135818935,105.0,False
 nebraska_B125_drl1_y2079_s2,drl,drl1,nebraska,125,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2079,,,,,val,2079,12.078939135818935,105.0,False
+nebraska_B125_drl1_y2080_s0,drl,drl1,nebraska,125,0,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2080,,,,,test,2080,13.478854995629758,72.0,False
+nebraska_B125_drl1_y2080_s0,drl,drl1,nebraska,125,0,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2080,,,,,val,2080,13.478854995629758,72.0,False
 nebraska_B125_drl1_y2080_s1,drl,drl1,nebraska,125,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2080,,,,,test,2080,13.481482077439768,97.0,False
 nebraska_B125_drl1_y2080_s1,drl,drl1,nebraska,125,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2080,,,,,val,2080,13.481482077439768,97.0,False
 nebraska_B125_drl1_y2080_s2,drl,drl1,nebraska,125,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2080,,,,,test,2080,13.481482077439768,117.0,False
@@ -235,6 +281,8 @@ nebraska_B125_drl1_y2081_s1,drl,drl1,nebraska,125,1,DRL1,mask,dense,"[0, 1, 2, 3
 nebraska_B125_drl1_y2081_s1,drl,drl1,nebraska,125,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2081,,,,,val,2081,14.448493758807356,125.0,False
 nebraska_B125_drl1_y2081_s2,drl,drl1,nebraska,125,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2081,,,,,test,2081,14.448424324961774,108.0,False
 nebraska_B125_drl1_y2081_s2,drl,drl1,nebraska,125,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2081,,,,,val,2081,14.448424324961774,108.0,False
+nebraska_B125_drl1_y2082_s0,drl,drl1,nebraska,125,0,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2082,,,,,test,2082,12.57998685959822,0.0,False
+nebraska_B125_drl1_y2082_s0,drl,drl1,nebraska,125,0,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2082,,,,,val,2082,12.57998685959822,0.0,False
 nebraska_B125_drl1_y2082_s1,drl,drl1,nebraska,125,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2082,,,,,test,2082,13.545502091646885,125.0,False
 nebraska_B125_drl1_y2082_s1,drl,drl1,nebraska,125,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2082,,,,,val,2082,13.545502091646885,125.0,False
 nebraska_B125_drl1_y2082_s2,drl,drl1,nebraska,125,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2082,,,,,test,2082,14.23754717413535,125.0,False
@@ -245,6 +293,8 @@ nebraska_B125_drl1_y2083_s1,drl,drl1,nebraska,125,1,DRL1,mask,dense,"[0, 1, 2, 3
 nebraska_B125_drl1_y2083_s1,drl,drl1,nebraska,125,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2083,,,,,val,2083,14.371695740441979,123.0,False
 nebraska_B125_drl1_y2083_s2,drl,drl1,nebraska,125,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2083,,,,,test,2083,13.186585378073483,68.0,False
 nebraska_B125_drl1_y2083_s2,drl,drl1,nebraska,125,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2083,,,,,val,2083,13.186585378073483,68.0,False
+nebraska_B125_drl1_y2084_s0,drl,drl1,nebraska,125,0,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2084,,,,,test,2084,8.039888412533584,125.0,False
+nebraska_B125_drl1_y2084_s0,drl,drl1,nebraska,125,0,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2084,,,,,val,2084,8.039888412533584,125.0,False
 nebraska_B125_drl1_y2084_s1,drl,drl1,nebraska,125,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2084,,,,,test,2084,8.133731718845219,125.0,False
 nebraska_B125_drl1_y2084_s1,drl,drl1,nebraska,125,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2084,,,,,val,2084,8.133731718845219,125.0,False
 nebraska_B125_drl1_y2084_s2,drl,drl1,nebraska,125,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2084,,,,,test,2084,7.828136361948536,123.0,False
@@ -255,6 +305,8 @@ nebraska_B125_drl1_y2085_s1,drl,drl1,nebraska,125,1,DRL1,mask,dense,"[0, 1, 2, 3
 nebraska_B125_drl1_y2085_s1,drl,drl1,nebraska,125,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2085,,,,,val,2085,13.48233188666647,84.0,False
 nebraska_B125_drl1_y2085_s2,drl,drl1,nebraska,125,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2085,,,,,test,2085,13.837948837466332,107.0,False
 nebraska_B125_drl1_y2085_s2,drl,drl1,nebraska,125,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2085,,,,,val,2085,13.837948837466332,107.0,False
+nebraska_B125_drl1_y2086_s0,drl,drl1,nebraska,125,0,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2086,,,,,test,2086,13.589166937890322,123.0,False
+nebraska_B125_drl1_y2086_s0,drl,drl1,nebraska,125,0,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2086,,,,,val,2086,13.589166937890322,123.0,False
 nebraska_B125_drl1_y2086_s1,drl,drl1,nebraska,125,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2086,,,,,test,2086,13.589166937890322,123.0,False
 nebraska_B125_drl1_y2086_s1,drl,drl1,nebraska,125,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2086,,,,,val,2086,13.589166937890322,123.0,False
 nebraska_B125_drl1_y2086_s2,drl,drl1,nebraska,125,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2086,,,,,test,2086,13.697114519271535,125.0,False
@@ -265,6 +317,8 @@ nebraska_B125_drl1_y2087_s1,drl,drl1,nebraska,125,1,DRL1,mask,dense,"[0, 1, 2, 3
 nebraska_B125_drl1_y2087_s1,drl,drl1,nebraska,125,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2087,,,,,val,2087,14.384060941379488,125.0,False
 nebraska_B125_drl1_y2087_s2,drl,drl1,nebraska,125,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2087,,,,,test,2087,14.381081231109112,106.0,False
 nebraska_B125_drl1_y2087_s2,drl,drl1,nebraska,125,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2087,,,,,val,2087,14.381081231109112,106.0,False
+nebraska_B125_drl1_y2088_s0,drl,drl1,nebraska,125,0,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2088,,,,,test,2088,13.765030255022584,125.0,False
+nebraska_B125_drl1_y2088_s0,drl,drl1,nebraska,125,0,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2088,,,,,val,2088,13.765030255022584,125.0,False
 nebraska_B125_drl1_y2088_s1,drl,drl1,nebraska,125,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2088,,,,,test,2088,13.024516167769407,84.0,False
 nebraska_B125_drl1_y2088_s1,drl,drl1,nebraska,125,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2088,,,,,val,2088,13.024516167769407,84.0,False
 nebraska_B125_drl1_y2088_s2,drl,drl1,nebraska,125,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2088,,,,,test,2088,12.266161279683836,54.0,False
@@ -275,6 +329,8 @@ nebraska_B125_drl1_y2089_s1,drl,drl1,nebraska,125,1,DRL1,mask,dense,"[0, 1, 2, 3
 nebraska_B125_drl1_y2089_s1,drl,drl1,nebraska,125,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2089,,,,,val,2089,14.347919820693903,0.0,False
 nebraska_B125_drl1_y2089_s2,drl,drl1,nebraska,125,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2089,,,,,test,2089,14.347919820693903,0.0,False
 nebraska_B125_drl1_y2089_s2,drl,drl1,nebraska,125,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2089,,,,,val,2089,14.347919820693903,0.0,False
+nebraska_B125_drl1_y2090_s0,drl,drl1,nebraska,125,0,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2090,,,,,test,2090,12.04512221599481,123.0,False
+nebraska_B125_drl1_y2090_s0,drl,drl1,nebraska,125,0,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2090,,,,,val,2090,12.04512221599481,123.0,False
 nebraska_B125_drl1_y2090_s1,drl,drl1,nebraska,125,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2090,,,,,test,2090,11.834981727627913,125.0,False
 nebraska_B125_drl1_y2090_s1,drl,drl1,nebraska,125,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2090,,,,,val,2090,11.834981727627913,125.0,False
 nebraska_B125_drl1_y2090_s2,drl,drl1,nebraska,125,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2090,,,,,test,2090,11.725117723651003,123.0,False
@@ -285,6 +341,8 @@ nebraska_B125_drl1_y2091_s1,drl,drl1,nebraska,125,1,DRL1,mask,dense,"[0, 1, 2, 3
 nebraska_B125_drl1_y2091_s1,drl,drl1,nebraska,125,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2091,,,,,val,2091,13.955612111757231,117.0,False
 nebraska_B125_drl1_y2091_s2,drl,drl1,nebraska,125,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2091,,,,,test,2091,14.097462366156376,125.0,False
 nebraska_B125_drl1_y2091_s2,drl,drl1,nebraska,125,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2091,,,,,val,2091,14.097462366156376,125.0,False
+nebraska_B125_drl1_y2092_s0,drl,drl1,nebraska,125,0,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2092,,,,,test,2092,13.15221303914408,125.0,False
+nebraska_B125_drl1_y2092_s0,drl,drl1,nebraska,125,0,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2092,,,,,val,2092,13.15221303914408,125.0,False
 nebraska_B125_drl1_y2092_s1,drl,drl1,nebraska,125,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2092,,,,,test,2092,13.07617272156871,124.0,False
 nebraska_B125_drl1_y2092_s1,drl,drl1,nebraska,125,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2092,,,,,val,2092,13.07617272156871,124.0,False
 nebraska_B125_drl1_y2092_s2,drl,drl1,nebraska,125,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2092,,,,,test,2092,13.167678566160538,125.0,False
@@ -295,6 +353,8 @@ nebraska_B125_drl1_y2093_s1,drl,drl1,nebraska,125,1,DRL1,mask,dense,"[0, 1, 2, 3
 nebraska_B125_drl1_y2093_s1,drl,drl1,nebraska,125,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2093,,,,,val,2093,12.177711735227147,106.0,False
 nebraska_B125_drl1_y2093_s2,drl,drl1,nebraska,125,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2093,,,,,test,2093,13.330403432653746,124.0,False
 nebraska_B125_drl1_y2093_s2,drl,drl1,nebraska,125,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2093,,,,,val,2093,13.330403432653746,124.0,False
+nebraska_B125_drl1_y2094_s0,drl,drl1,nebraska,125,0,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2094,,,,,test,2094,12.428936593411526,115.0,False
+nebraska_B125_drl1_y2094_s0,drl,drl1,nebraska,125,0,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2094,,,,,val,2094,12.428936593411526,115.0,False
 nebraska_B125_drl1_y2094_s1,drl,drl1,nebraska,125,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2094,,,,,test,2094,12.15858253588277,102.0,False
 nebraska_B125_drl1_y2094_s1,drl,drl1,nebraska,125,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2094,,,,,val,2094,12.15858253588277,102.0,False
 nebraska_B125_drl1_y2094_s2,drl,drl1,nebraska,125,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2094,,,,,test,2094,12.15858253588277,102.0,False
@@ -305,6 +365,8 @@ nebraska_B75_drl1_y2065_s1,drl,drl1,nebraska,75,1,DRL1,mask,dense,"[0, 1, 2, 3, 
 nebraska_B75_drl1_y2065_s1,drl,drl1,nebraska,75,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2065,,,,,val,2065,9.8646514614363,68.0,False
 nebraska_B75_drl1_y2065_s2,drl,drl1,nebraska,75,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2065,,,,,test,2065,9.8646514614363,68.0,False
 nebraska_B75_drl1_y2065_s2,drl,drl1,nebraska,75,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2065,,,,,val,2065,9.8646514614363,68.0,False
+nebraska_B75_drl1_y2066_s0,drl,drl1,nebraska,75,0,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2066,,,,,test,2066,9.580974529888021,63.0,False
+nebraska_B75_drl1_y2066_s0,drl,drl1,nebraska,75,0,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2066,,,,,val,2066,9.580974529888021,63.0,False
 nebraska_B75_drl1_y2066_s1,drl,drl1,nebraska,75,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2066,,,,,test,2066,10.88552902969884,71.0,True
 nebraska_B75_drl1_y2066_s1,drl,drl1,nebraska,75,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2066,,,,,val,2066,10.88552902969884,71.0,True
 nebraska_B75_drl1_y2066_s2,drl,drl1,nebraska,75,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2066,,,,,test,2066,10.890281419564742,68.0,True
@@ -315,6 +377,8 @@ nebraska_B75_drl1_y2067_s1,drl,drl1,nebraska,75,1,DRL1,mask,dense,"[0, 1, 2, 3, 
 nebraska_B75_drl1_y2067_s1,drl,drl1,nebraska,75,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2067,,,,,val,2067,13.085794563192044,75.0,False
 nebraska_B75_drl1_y2067_s2,drl,drl1,nebraska,75,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2067,,,,,test,2067,13.07671071987534,73.0,False
 nebraska_B75_drl1_y2067_s2,drl,drl1,nebraska,75,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2067,,,,,val,2067,13.07671071987534,73.0,False
+nebraska_B75_drl1_y2068_s0,drl,drl1,nebraska,75,0,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2068,,,,,test,2068,12.839076728042707,68.0,False
+nebraska_B75_drl1_y2068_s0,drl,drl1,nebraska,75,0,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2068,,,,,val,2068,12.839076728042707,68.0,False
 nebraska_B75_drl1_y2068_s1,drl,drl1,nebraska,75,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2068,,,,,test,2068,12.839076728042707,68.0,False
 nebraska_B75_drl1_y2068_s1,drl,drl1,nebraska,75,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2068,,,,,val,2068,12.839076728042707,68.0,False
 nebraska_B75_drl1_y2068_s2,drl,drl1,nebraska,75,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2068,,,,,test,2068,12.839076728042707,68.0,False
@@ -325,6 +389,8 @@ nebraska_B75_drl1_y2069_s1,drl,drl1,nebraska,75,1,DRL1,mask,dense,"[0, 1, 2, 3, 
 nebraska_B75_drl1_y2069_s1,drl,drl1,nebraska,75,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2069,,,,,val,2069,10.839508881742125,63.0,False
 nebraska_B75_drl1_y2069_s2,drl,drl1,nebraska,75,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2069,,,,,test,2069,10.841623750734117,75.0,False
 nebraska_B75_drl1_y2069_s2,drl,drl1,nebraska,75,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2069,,,,,val,2069,10.841623750734117,75.0,False
+nebraska_B75_drl1_y2070_s0,drl,drl1,nebraska,75,0,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2070,,,,,test,2070,11.664632230252167,75.0,False
+nebraska_B75_drl1_y2070_s0,drl,drl1,nebraska,75,0,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2070,,,,,val,2070,11.664632230252167,75.0,False
 nebraska_B75_drl1_y2070_s1,drl,drl1,nebraska,75,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2070,,,,,test,2070,12.020016000571745,75.0,False
 nebraska_B75_drl1_y2070_s1,drl,drl1,nebraska,75,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2070,,,,,val,2070,12.020016000571745,75.0,False
 nebraska_B75_drl1_y2070_s2,drl,drl1,nebraska,75,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2070,,,,,test,2070,11.330388329671344,75.0,False
@@ -335,6 +401,8 @@ nebraska_B75_drl1_y2071_s1,drl,drl1,nebraska,75,1,DRL1,mask,dense,"[0, 1, 2, 3, 
 nebraska_B75_drl1_y2071_s1,drl,drl1,nebraska,75,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2071,,,,,val,2071,12.970028284183368,68.0,False
 nebraska_B75_drl1_y2071_s2,drl,drl1,nebraska,75,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2071,,,,,test,2071,12.970028284183368,68.0,False
 nebraska_B75_drl1_y2071_s2,drl,drl1,nebraska,75,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2071,,,,,val,2071,12.970028284183368,68.0,False
+nebraska_B75_drl1_y2072_s0,drl,drl1,nebraska,75,0,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2072,,,,,test,2072,13.011042431490514,75.0,False
+nebraska_B75_drl1_y2072_s0,drl,drl1,nebraska,75,0,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2072,,,,,val,2072,13.011042431490514,75.0,False
 nebraska_B75_drl1_y2072_s1,drl,drl1,nebraska,75,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2072,,,,,test,2072,13.078248754879398,75.0,False
 nebraska_B75_drl1_y2072_s1,drl,drl1,nebraska,75,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2072,,,,,val,2072,13.078248754879398,75.0,False
 nebraska_B75_drl1_y2072_s2,drl,drl1,nebraska,75,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2072,,,,,test,2072,10.94569737655994,75.0,False
@@ -345,6 +413,8 @@ nebraska_B75_drl1_y2073_s1,drl,drl1,nebraska,75,1,DRL1,mask,dense,"[0, 1, 2, 3, 
 nebraska_B75_drl1_y2073_s1,drl,drl1,nebraska,75,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2073,,,,,val,2073,7.846904149099649,75.0,True
 nebraska_B75_drl1_y2073_s2,drl,drl1,nebraska,75,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2073,,,,,test,2073,7.638634963615862,70.0,True
 nebraska_B75_drl1_y2073_s2,drl,drl1,nebraska,75,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2073,,,,,val,2073,7.638634963615862,70.0,True
+nebraska_B75_drl1_y2074_s0,drl,drl1,nebraska,75,0,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2074,,,,,test,2074,10.511668810991557,68.0,False
+nebraska_B75_drl1_y2074_s0,drl,drl1,nebraska,75,0,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2074,,,,,val,2074,10.511668810991557,68.0,False
 nebraska_B75_drl1_y2074_s1,drl,drl1,nebraska,75,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2074,,,,,test,2074,11.32869123448592,74.0,False
 nebraska_B75_drl1_y2074_s1,drl,drl1,nebraska,75,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2074,,,,,val,2074,11.32869123448592,74.0,False
 nebraska_B75_drl1_y2074_s2,drl,drl1,nebraska,75,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2074,,,,,test,2074,10.511668810991557,68.0,False
@@ -355,6 +425,8 @@ nebraska_B75_drl1_y2075_s1,drl,drl1,nebraska,75,1,DRL1,mask,dense,"[0, 1, 2, 3, 
 nebraska_B75_drl1_y2075_s1,drl,drl1,nebraska,75,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2075,,,,,val,2075,14.085803429378759,72.0,False
 nebraska_B75_drl1_y2075_s2,drl,drl1,nebraska,75,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2075,,,,,test,2075,13.918869368347883,73.0,False
 nebraska_B75_drl1_y2075_s2,drl,drl1,nebraska,75,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2075,,,,,val,2075,13.918869368347883,73.0,False
+nebraska_B75_drl1_y2076_s0,drl,drl1,nebraska,75,0,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2076,,,,,test,2076,12.886997996264354,68.0,False
+nebraska_B75_drl1_y2076_s0,drl,drl1,nebraska,75,0,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2076,,,,,val,2076,12.886997996264354,68.0,False
 nebraska_B75_drl1_y2076_s1,drl,drl1,nebraska,75,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2076,,,,,test,2076,13.334909445152423,68.0,False
 nebraska_B75_drl1_y2076_s1,drl,drl1,nebraska,75,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2076,,,,,val,2076,13.334909445152423,68.0,False
 nebraska_B75_drl1_y2076_s2,drl,drl1,nebraska,75,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2076,,,,,test,2076,13.31200202659166,73.0,False
@@ -365,6 +437,8 @@ nebraska_B75_drl1_y2077_s1,drl,drl1,nebraska,75,1,DRL1,mask,dense,"[0, 1, 2, 3, 
 nebraska_B75_drl1_y2077_s1,drl,drl1,nebraska,75,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2077,,,,,val,2077,14.315689857013693,73.0,False
 nebraska_B75_drl1_y2077_s2,drl,drl1,nebraska,75,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2077,,,,,test,2077,14.276981244853024,75.0,False
 nebraska_B75_drl1_y2077_s2,drl,drl1,nebraska,75,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2077,,,,,val,2077,14.276981244853024,75.0,False
+nebraska_B75_drl1_y2078_s0,drl,drl1,nebraska,75,0,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2078,,,,,test,2078,12.479872499250789,74.0,False
+nebraska_B75_drl1_y2078_s0,drl,drl1,nebraska,75,0,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2078,,,,,val,2078,12.479872499250789,74.0,False
 nebraska_B75_drl1_y2078_s1,drl,drl1,nebraska,75,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2078,,,,,test,2078,13.527664272529794,75.0,False
 nebraska_B75_drl1_y2078_s1,drl,drl1,nebraska,75,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2078,,,,,val,2078,13.527664272529794,75.0,False
 nebraska_B75_drl1_y2078_s2,drl,drl1,nebraska,75,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2078,,,,,test,2078,13.567839289812913,73.0,False
@@ -375,6 +449,8 @@ nebraska_B75_drl1_y2079_s1,drl,drl1,nebraska,75,1,DRL1,mask,dense,"[0, 1, 2, 3, 
 nebraska_B75_drl1_y2079_s1,drl,drl1,nebraska,75,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2079,,,,,val,2079,11.689308303386206,68.0,False
 nebraska_B75_drl1_y2079_s2,drl,drl1,nebraska,75,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2079,,,,,test,2079,11.689308303386206,68.0,False
 nebraska_B75_drl1_y2079_s2,drl,drl1,nebraska,75,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2079,,,,,val,2079,11.689308303386206,68.0,False
+nebraska_B75_drl1_y2080_s0,drl,drl1,nebraska,75,0,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2080,,,,,test,2080,14.121938908043044,63.0,False
+nebraska_B75_drl1_y2080_s0,drl,drl1,nebraska,75,0,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2080,,,,,val,2080,14.121938908043044,63.0,False
 nebraska_B75_drl1_y2080_s1,drl,drl1,nebraska,75,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2080,,,,,test,2080,14.121938908043044,63.0,False
 nebraska_B75_drl1_y2080_s1,drl,drl1,nebraska,75,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2080,,,,,val,2080,14.121938908043044,63.0,False
 nebraska_B75_drl1_y2080_s2,drl,drl1,nebraska,75,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2080,,,,,test,2080,14.121938908043044,63.0,False
@@ -385,6 +461,8 @@ nebraska_B75_drl1_y2081_s1,drl,drl1,nebraska,75,1,DRL1,mask,dense,"[0, 1, 2, 3, 
 nebraska_B75_drl1_y2081_s1,drl,drl1,nebraska,75,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2081,,,,,val,2081,14.566255030881496,63.0,False
 nebraska_B75_drl1_y2081_s2,drl,drl1,nebraska,75,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2081,,,,,test,2081,14.274111630792895,0.0,False
 nebraska_B75_drl1_y2081_s2,drl,drl1,nebraska,75,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2081,,,,,val,2081,14.274111630792895,0.0,False
+nebraska_B75_drl1_y2082_s0,drl,drl1,nebraska,75,0,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2082,,,,,test,2082,13.309102621435889,47.0,False
+nebraska_B75_drl1_y2082_s0,drl,drl1,nebraska,75,0,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2082,,,,,val,2082,13.309102621435889,47.0,False
 nebraska_B75_drl1_y2082_s1,drl,drl1,nebraska,75,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2082,,,,,test,2082,13.656491531384296,72.0,False
 nebraska_B75_drl1_y2082_s1,drl,drl1,nebraska,75,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2082,,,,,val,2082,13.656491531384296,72.0,False
 nebraska_B75_drl1_y2082_s2,drl,drl1,nebraska,75,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2082,,,,,test,2082,12.57998685959822,0.0,False
@@ -395,6 +473,8 @@ nebraska_B75_drl1_y2083_s1,drl,drl1,nebraska,75,1,DRL1,mask,dense,"[0, 1, 2, 3, 
 nebraska_B75_drl1_y2083_s1,drl,drl1,nebraska,75,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2083,,,,,val,2083,13.986213506260972,68.0,False
 nebraska_B75_drl1_y2083_s2,drl,drl1,nebraska,75,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2083,,,,,test,2083,13.986213506260972,68.0,False
 nebraska_B75_drl1_y2083_s2,drl,drl1,nebraska,75,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2083,,,,,val,2083,13.986213506260972,68.0,False
+nebraska_B75_drl1_y2084_s0,drl,drl1,nebraska,75,0,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2084,,,,,test,2084,2.160614462964547,75.0,True
+nebraska_B75_drl1_y2084_s0,drl,drl1,nebraska,75,0,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2084,,,,,val,2084,2.160614462964547,75.0,True
 nebraska_B75_drl1_y2084_s1,drl,drl1,nebraska,75,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2084,,,,,test,2084,2.7364874016109377,68.0,True
 nebraska_B75_drl1_y2084_s1,drl,drl1,nebraska,75,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2084,,,,,val,2084,2.7364874016109377,68.0,True
 nebraska_B75_drl1_y2084_s2,drl,drl1,nebraska,75,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2084,,,,,test,2084,2.7596387067825496,75.0,True
@@ -405,6 +485,8 @@ nebraska_B75_drl1_y2085_s1,drl,drl1,nebraska,75,1,DRL1,mask,dense,"[0, 1, 2, 3, 
 nebraska_B75_drl1_y2085_s1,drl,drl1,nebraska,75,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2085,,,,,val,2085,13.13404238081976,63.0,False
 nebraska_B75_drl1_y2085_s2,drl,drl1,nebraska,75,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2085,,,,,test,2085,13.13404238081976,63.0,False
 nebraska_B75_drl1_y2085_s2,drl,drl1,nebraska,75,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2085,,,,,val,2085,13.13404238081976,63.0,False
+nebraska_B75_drl1_y2086_s0,drl,drl1,nebraska,75,0,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2086,,,,,test,2086,13.056731956547038,72.0,False
+nebraska_B75_drl1_y2086_s0,drl,drl1,nebraska,75,0,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2086,,,,,val,2086,13.056731956547038,72.0,False
 nebraska_B75_drl1_y2086_s1,drl,drl1,nebraska,75,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2086,,,,,test,2086,12.525241831181376,74.0,False
 nebraska_B75_drl1_y2086_s1,drl,drl1,nebraska,75,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2086,,,,,val,2086,12.525241831181376,74.0,False
 nebraska_B75_drl1_y2086_s2,drl,drl1,nebraska,75,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2086,,,,,test,2086,12.537219723494976,75.0,False
@@ -415,6 +497,8 @@ nebraska_B75_drl1_y2087_s1,drl,drl1,nebraska,75,1,DRL1,mask,dense,"[0, 1, 2, 3, 
 nebraska_B75_drl1_y2087_s1,drl,drl1,nebraska,75,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2087,,,,,val,2087,14.420868521240983,65.0,False
 nebraska_B75_drl1_y2087_s2,drl,drl1,nebraska,75,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2087,,,,,test,2087,14.426595639901572,58.0,False
 nebraska_B75_drl1_y2087_s2,drl,drl1,nebraska,75,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2087,,,,,val,2087,14.426595639901572,58.0,False
+nebraska_B75_drl1_y2088_s0,drl,drl1,nebraska,75,0,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2088,,,,,test,2088,13.23504784499327,73.0,False
+nebraska_B75_drl1_y2088_s0,drl,drl1,nebraska,75,0,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2088,,,,,val,2088,13.23504784499327,73.0,False
 nebraska_B75_drl1_y2088_s1,drl,drl1,nebraska,75,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2088,,,,,test,2088,13.212966199219135,63.0,False
 nebraska_B75_drl1_y2088_s1,drl,drl1,nebraska,75,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2088,,,,,val,2088,13.212966199219135,63.0,False
 nebraska_B75_drl1_y2088_s2,drl,drl1,nebraska,75,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2088,,,,,test,2088,13.203949419864538,75.0,False
@@ -425,6 +509,8 @@ nebraska_B75_drl1_y2089_s1,drl,drl1,nebraska,75,1,DRL1,mask,dense,"[0, 1, 2, 3, 
 nebraska_B75_drl1_y2089_s1,drl,drl1,nebraska,75,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2089,,,,,val,2089,14.447634188814886,50.0,False
 nebraska_B75_drl1_y2089_s2,drl,drl1,nebraska,75,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2089,,,,,test,2089,14.347919820693903,0.0,False
 nebraska_B75_drl1_y2089_s2,drl,drl1,nebraska,75,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2089,,,,,val,2089,14.347919820693903,0.0,False
+nebraska_B75_drl1_y2090_s0,drl,drl1,nebraska,75,0,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2090,,,,,test,2090,10.103430900341364,68.0,False
+nebraska_B75_drl1_y2090_s0,drl,drl1,nebraska,75,0,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2090,,,,,val,2090,10.103430900341364,68.0,False
 nebraska_B75_drl1_y2090_s1,drl,drl1,nebraska,75,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2090,,,,,test,2090,10.103430900341364,68.0,False
 nebraska_B75_drl1_y2090_s1,drl,drl1,nebraska,75,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2090,,,,,val,2090,10.103430900341364,68.0,False
 nebraska_B75_drl1_y2090_s2,drl,drl1,nebraska,75,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2090,,,,,test,2090,10.278788174289605,73.0,False
@@ -435,6 +521,8 @@ nebraska_B75_drl1_y2091_s1,drl,drl1,nebraska,75,1,DRL1,mask,dense,"[0, 1, 2, 3, 
 nebraska_B75_drl1_y2091_s1,drl,drl1,nebraska,75,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2091,,,,,val,2091,13.376871473580502,73.0,False
 nebraska_B75_drl1_y2091_s2,drl,drl1,nebraska,75,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2091,,,,,test,2091,13.326527963577792,75.0,False
 nebraska_B75_drl1_y2091_s2,drl,drl1,nebraska,75,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2091,,,,,val,2091,13.326527963577792,75.0,False
+nebraska_B75_drl1_y2092_s0,drl,drl1,nebraska,75,0,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2092,,,,,test,2092,11.27846516540942,74.0,False
+nebraska_B75_drl1_y2092_s0,drl,drl1,nebraska,75,0,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2092,,,,,val,2092,11.27846516540942,74.0,False
 nebraska_B75_drl1_y2092_s1,drl,drl1,nebraska,75,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2092,,,,,test,2092,11.289151011354416,68.0,False
 nebraska_B75_drl1_y2092_s1,drl,drl1,nebraska,75,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2092,,,,,val,2092,11.289151011354416,68.0,False
 nebraska_B75_drl1_y2092_s2,drl,drl1,nebraska,75,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2092,,,,,test,2092,11.289151011354416,68.0,False
@@ -445,6 +533,8 @@ nebraska_B75_drl1_y2093_s1,drl,drl1,nebraska,75,1,DRL1,mask,dense,"[0, 1, 2, 3, 
 nebraska_B75_drl1_y2093_s1,drl,drl1,nebraska,75,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2093,,,,,val,2093,11.871740570181744,75.0,False
 nebraska_B75_drl1_y2093_s2,drl,drl1,nebraska,75,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2093,,,,,test,2093,11.063743840904454,68.0,False
 nebraska_B75_drl1_y2093_s2,drl,drl1,nebraska,75,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2093,,,,,val,2093,11.063743840904454,68.0,False
+nebraska_B75_drl1_y2094_s0,drl,drl1,nebraska,75,0,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2094,,,,,test,2094,10.85653510709841,68.0,False
+nebraska_B75_drl1_y2094_s0,drl,drl1,nebraska,75,0,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2094,,,,,val,2094,10.85653510709841,68.0,False
 nebraska_B75_drl1_y2094_s1,drl,drl1,nebraska,75,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2094,,,,,test,2094,10.85653510709841,68.0,False
 nebraska_B75_drl1_y2094_s1,drl,drl1,nebraska,75,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2094,,,,,val,2094,10.85653510709841,68.0,False
 nebraska_B75_drl1_y2094_s2,drl,drl1,nebraska,75,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,2094,,,,,test,2094,11.269738845291387,68.0,False
@@ -459,6 +549,8 @@ tunis_B150_drl1_y1980_s3,drl,drl1,tunis,150,3,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8
 tunis_B150_drl1_y1980_s3,drl,drl1,tunis,150,3,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,1980,,,,,val,1980,0.0,149.0,True
 tunis_B150_drl1_y1980_s4,drl,drl1,tunis,150,4,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,1980,,,,,test,1980,0.0,150.0,True
 tunis_B150_drl1_y1980_s4,drl,drl1,tunis,150,4,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,1980,,,,,val,1980,0.0,150.0,True
+tunis_B150_drl1_y1980_s5,drl,drl1,tunis,150,5,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,1980,,,,,test,1980,0.0,149.0,True
+tunis_B150_drl1_y1980_s5,drl,drl1,tunis,150,5,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,1980,,,,,val,1980,0.0,149.0,True
 tunis_B150_drl1_y1980_s6,drl,drl1,tunis,150,6,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,1980,,,,,test,1980,0.0,149.0,True
 tunis_B150_drl1_y1980_s6,drl,drl1,tunis,150,6,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,1980,,,,,val,1980,0.0,149.0,True
 tunis_B150_drl1_y1980_s7,drl,drl1,tunis,150,7,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,1980,,,,,test,1980,0.0,146.0,True
@@ -469,6 +561,8 @@ tunis_B150_drl1_y1980_s9,drl,drl1,tunis,150,9,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8
 tunis_B150_drl1_y1980_s9,drl,drl1,tunis,150,9,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,1980,,,,,val,1980,0.0,150.0,True
 tunis_B200_drl1_y1980_s0,drl,drl1,tunis,200,0,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,1980,,,,,test,1980,0.0,199.0,True
 tunis_B200_drl1_y1980_s0,drl,drl1,tunis,200,0,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,1980,,,,,val,1980,0.0,199.0,True
+tunis_B200_drl1_y1980_s1,drl,drl1,tunis,200,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,1980,,,,,test,1980,0.0,200.0,True
+tunis_B200_drl1_y1980_s1,drl,drl1,tunis,200,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,1980,,,,,val,1980,0.0,200.0,True
 tunis_B200_drl1_y1980_s2,drl,drl1,tunis,200,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,1980,,,,,test,1980,0.0,199.0,True
 tunis_B200_drl1_y1980_s2,drl,drl1,tunis,200,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,1980,,,,,val,1980,0.0,199.0,True
 tunis_B200_drl1_y1980_s3,drl,drl1,tunis,200,3,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,1980,,,,,test,1980,0.0,199.0,True
@@ -479,6 +573,8 @@ tunis_B200_drl1_y1980_s5,drl,drl1,tunis,200,5,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8
 tunis_B200_drl1_y1980_s5,drl,drl1,tunis,200,5,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,1980,,,,,val,1980,0.0,199.0,True
 tunis_B200_drl1_y1980_s6,drl,drl1,tunis,200,6,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,1980,,,,,test,1980,0.0,200.0,True
 tunis_B200_drl1_y1980_s6,drl,drl1,tunis,200,6,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,1980,,,,,val,1980,0.0,200.0,True
+tunis_B200_drl1_y1980_s7,drl,drl1,tunis,200,7,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,1980,,,,,test,1980,0.0,200.0,True
+tunis_B200_drl1_y1980_s7,drl,drl1,tunis,200,7,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,1980,,,,,val,1980,0.0,200.0,True
 tunis_B200_drl1_y1980_s8,drl,drl1,tunis,200,8,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,1980,,,,,test,1980,0.0,199.0,True
 tunis_B200_drl1_y1980_s8,drl,drl1,tunis,200,8,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,1980,,,,,val,1980,0.0,199.0,True
 tunis_B200_drl1_y1980_s9,drl,drl1,tunis,200,9,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,1980,,,,,test,1980,0.0,199.0,True
@@ -489,6 +585,8 @@ tunis_B300_drl1_y1980_s1,drl,drl1,tunis,300,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8
 tunis_B300_drl1_y1980_s1,drl,drl1,tunis,300,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,1980,,,,,val,1980,1.997726543736244,298.0,True
 tunis_B300_drl1_y1980_s2,drl,drl1,tunis,300,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,1980,,,,,test,1980,3.9264256660689525,300.0,False
 tunis_B300_drl1_y1980_s2,drl,drl1,tunis,300,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,1980,,,,,val,1980,3.9264256660689525,300.0,False
+tunis_B300_drl1_y1980_s3,drl,drl1,tunis,300,3,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,1980,,,,,test,1980,3.9071029227057408,300.0,False
+tunis_B300_drl1_y1980_s3,drl,drl1,tunis,300,3,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,1980,,,,,val,1980,3.9071029227057408,300.0,False
 tunis_B300_drl1_y1980_s4,drl,drl1,tunis,300,4,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,1980,,,,,test,1980,4.015102322464625,300.0,False
 tunis_B300_drl1_y1980_s4,drl,drl1,tunis,300,4,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,1980,,,,,val,1980,4.015102322464625,300.0,False
 tunis_B300_drl1_y1980_s5,drl,drl1,tunis,300,5,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,1980,,,,,test,1980,0.04714795245500429,204.0,True
@@ -499,6 +597,8 @@ tunis_B300_drl1_y1980_s7,drl,drl1,tunis,300,7,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8
 tunis_B300_drl1_y1980_s7,drl,drl1,tunis,300,7,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,1980,,,,,val,1980,1.9811628250789124,300.0,True
 tunis_B300_drl1_y1980_s8,drl,drl1,tunis,300,8,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,1980,,,,,test,1980,1.4593839891395877,272.0,True
 tunis_B300_drl1_y1980_s8,drl,drl1,tunis,300,8,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,1980,,,,,val,1980,1.4593839891395877,272.0,True
+tunis_B300_drl1_y1980_s9,drl,drl1,tunis,300,9,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,1980,,,,,test,1980,1.283629006642482,299.0,True
+tunis_B300_drl1_y1980_s9,drl,drl1,tunis,300,9,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,1980,,,,,val,1980,1.283629006642482,299.0,True
 tunis_B400_drl1_y1980_s0,drl,drl1,tunis,400,0,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,1980,,,,,test,1980,6.7979719340993245,400.0,False
 tunis_B400_drl1_y1980_s0,drl,drl1,tunis,400,0,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,1980,,,,,val,1980,6.7979719340993245,400.0,False
 tunis_B400_drl1_y1980_s1,drl,drl1,tunis,400,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,1980,,,,,test,1980,6.60395408613525,400.0,False
@@ -509,6 +609,8 @@ tunis_B400_drl1_y1980_s3,drl,drl1,tunis,400,3,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8
 tunis_B400_drl1_y1980_s3,drl,drl1,tunis,400,3,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,1980,,,,,val,1980,6.740344653244971,400.0,False
 tunis_B400_drl1_y1980_s4,drl,drl1,tunis,400,4,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,1980,,,,,test,1980,6.7769053522945955,400.0,False
 tunis_B400_drl1_y1980_s4,drl,drl1,tunis,400,4,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,1980,,,,,val,1980,6.7769053522945955,400.0,False
+tunis_B400_drl1_y1980_s5,drl,drl1,tunis,400,5,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,1980,,,,,test,1980,6.755983564864236,396.0,False
+tunis_B400_drl1_y1980_s5,drl,drl1,tunis,400,5,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,1980,,,,,val,1980,6.755983564864236,396.0,False
 tunis_B400_drl1_y1980_s6,drl,drl1,tunis,400,6,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,1980,,,,,test,1980,6.72764155648429,400.0,False
 tunis_B400_drl1_y1980_s6,drl,drl1,tunis,400,6,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,1980,,,,,val,1980,6.72764155648429,400.0,False
 tunis_B400_drl1_y1980_s7,drl,drl1,tunis,400,7,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,1980,,,,,test,1980,7.3487083377283735,400.0,False
@@ -519,6 +621,8 @@ tunis_B400_drl1_y1980_s9,drl,drl1,tunis,400,9,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8
 tunis_B400_drl1_y1980_s9,drl,drl1,tunis,400,9,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,1980,,,,,val,1980,7.4965556283391726,398.0,False
 tunis_B600_drl1_y1980_s0,drl,drl1,tunis,600,0,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,1980,,,,,test,1980,13.564744576559555,599.0,False
 tunis_B600_drl1_y1980_s0,drl,drl1,tunis,600,0,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,1980,,,,,val,1980,13.564744576559555,599.0,False
+tunis_B600_drl1_y1980_s1,drl,drl1,tunis,600,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,1980,,,,,test,1980,11.786473118229008,600.0,False
+tunis_B600_drl1_y1980_s1,drl,drl1,tunis,600,1,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,1980,,,,,val,1980,11.786473118229008,600.0,False
 tunis_B600_drl1_y1980_s2,drl,drl1,tunis,600,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,1980,,,,,test,1980,11.786130949764313,600.0,False
 tunis_B600_drl1_y1980_s2,drl,drl1,tunis,600,2,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,1980,,,,,val,1980,11.786130949764313,600.0,False
 tunis_B600_drl1_y1980_s3,drl,drl1,tunis,600,3,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,1980,,,,,test,1980,13.319851676282047,600.0,False
@@ -529,6 +633,8 @@ tunis_B600_drl1_y1980_s5,drl,drl1,tunis,600,5,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8
 tunis_B600_drl1_y1980_s5,drl,drl1,tunis,600,5,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,1980,,,,,val,1980,13.02974374732733,600.0,False
 tunis_B600_drl1_y1980_s6,drl,drl1,tunis,600,6,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,1980,,,,,test,1980,11.920570081684453,600.0,False
 tunis_B600_drl1_y1980_s6,drl,drl1,tunis,600,6,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,1980,,,,,val,1980,11.920570081684453,600.0,False
+tunis_B600_drl1_y1980_s7,drl,drl1,tunis,600,7,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,1980,,,,,test,1980,13.272650914231129,600.0,False
+tunis_B600_drl1_y1980_s7,drl,drl1,tunis,600,7,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,1980,,,,,val,1980,13.272650914231129,600.0,False
 tunis_B600_drl1_y1980_s8,drl,drl1,tunis,600,8,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,1980,,,,,test,1980,13.451885048891528,600.0,False
 tunis_B600_drl1_y1980_s8,drl,drl1,tunis,600,8,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,1980,,,,,val,1980,13.451885048891528,600.0,False
 tunis_B600_drl1_y1980_s9,drl,drl1,tunis,600,9,DRL1,mask,dense,"[0, 1, 2, 3, 5, 8, 13, 21, 34]",5,1980,,,,,test,1980,11.76097569884687,600.0,False
