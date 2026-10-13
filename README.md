@@ -15,8 +15,6 @@ The core part of the ablation is complete: DRL1 and three variants that each cha
 | Paired difference to DRL1 per seed | [reports/figures/core_ablation.png](reports/figures/core_ablation.png) |
 | Raw tables of these runs | [results/ablation_one_change/](results/ablation_one_change/), [results/ablation_more_seeds/](results/ablation_more_seeds/) |
 
-Further experiments and analyses are added as their results come in, until the status table below is filled.
-
 ## How it works
 
 The command line tool `ditrl` runs the whole plan in four steps:
@@ -31,7 +29,7 @@ Setup and details: [docs/usage.md](docs/usage.md).
 <!-- report:start -->
 ## Status
 
-Filled in by `ditrl report` after every batch of results (last on 2026-10-13 19:52).
+Filled in by `ditrl report` after every batch of results (last on 2026-10-13 19:54).
 
 | Stage | Experiment | What it tests | Runs | Results |
 |---|---|---|---|---|
@@ -48,8 +46,8 @@ Filled in by `ditrl report` after every batch of results (last on 2026-10-13 19:
 | 3 | `forecast` | DRL1 with a perfect 7-day weather forecast | 80 of 80 | [results/forecast/](results/forecast/) |
 | 3 | `test_year` | DRL1 trained on the test year itself | 320 of 320 | [results/test_year/](results/test_year/) |
 | 3 | `obs_scaled` | the 18 variables, scaled | 80 of 80 | [results/obs_scaled/](results/obs_scaled/) |
-| 3 | `oracle_ds` | best schedule per test year with known weather (not run, published values used) | 0 of 927 | pending |
-| 3 | `oracle_ss` | one robust schedule for all years (not run, published values used) | 0 of 45 | pending |
+| 3 | `oracle_ds` | best schedule per test year with known weather | 0 of 927 | not run: published values in data/external/ |
+| 3 | `oracle_ss` | one robust schedule for all years | 0 of 45 | not run: published values in data/external/ |
 
 ## First look
 

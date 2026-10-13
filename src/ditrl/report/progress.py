@@ -19,7 +19,7 @@ def counts(ctx: Context, link_base: str = "") -> pd.DataFrame:
         rows.append({"Stage": cfg["stage"], "Experiment": f"`{name}`",
                      "What it tests": cfg.get("about", ""), "Runs": f"{done} of {planned}",
                      "Results": f"[results/{name}/]({link_base}results/{name}/)" if done
-                     else "pending"})
+                     else f"not run: {cfg['not_run']}" if "not_run" in cfg else "pending"})
     return pd.DataFrame(rows).sort_values("Stage", kind="stable")
 
 

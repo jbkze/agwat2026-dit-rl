@@ -302,7 +302,8 @@ experiments:
     seeds: [0, 9]
 
   oracle_ds:                   # E0: best schedule for each known test year
-    about: best schedule per test year with known weather (not run, published values used)
+    about: best schedule per test year with known weather
+    not_run: published values in data/external/
     stage: 3
     kind: oracle
     years: test
@@ -312,7 +313,8 @@ experiments:
     seeds: [0, 2]
 
   oracle_ss:                   # E0: one robust schedule, 10 % yield quantile over 1981-2001
-    about: one robust schedule for all years (not run, published values used)
+    about: one robust schedule for all years
+    not_run: published values in data/external/
     stage: 3
     kind: oracle
     years: train_val

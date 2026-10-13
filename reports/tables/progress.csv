@@ -12,5 +12,5 @@ Stage,Experiment,What it tests,Runs,Results
 3,`forecast`,DRL1 with a perfect 7-day weather forecast,80 of 80,[results/forecast/](../../results/forecast/)
 3,`test_year`,DRL1 trained on the test year itself,320 of 320,[results/test_year/](../../results/test_year/)
 3,`obs_scaled`,"the 18 variables, scaled",80 of 80,[results/obs_scaled/](../../results/obs_scaled/)
-3,`oracle_ds`,"best schedule per test year with known weather (not run, published values used)",0 of 927,pending
-3,`oracle_ss`,"one robust schedule for all years (not run, published values used)",0 of 45,pending
+3,`oracle_ds`,best schedule per test year with known weather,0 of 927,not run: published values in data/external/
+3,`oracle_ss`,one robust schedule for all years,0 of 45,not run: published values in data/external/
