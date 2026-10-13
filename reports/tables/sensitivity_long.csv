@@ -23,8 +23,8 @@ nebraska,125,10.0,0.0,,,,,obs_scaled,Observation,"18 variables, scaled",effect
 tunis,150,10.0,0.0,,,,,obs_scaled,Observation,"18 variables, scaled",effect
 tunis,200,10.0,0.0,,,,,obs_scaled,Observation,"18 variables, scaled",effect
 tunis,300,10.0,0.0,,,,,obs_scaled,Observation,"18 variables, scaled",effect
-tunis,400,10.0,3.0,3.0,2.0553660855689686,0.972770741251237,4.16079356237346,obs_scaled,Observation,"18 variables, scaled",effect
-tunis,600,10.0,5.0,5.0,0.8025527121255476,0.16049957912222795,1.8046362817530777,obs_scaled,Observation,"18 variables, scaled",effect
+tunis,400,10.0,6.0,6.0,2.0224420870431508,0.8777333929614771,3.201081844829005,obs_scaled,Observation,"18 variables, scaled",effect
+tunis,600,10.0,10.0,10.0,0.9684370772078982,0.29165460914145774,1.8030031963254536,obs_scaled,Observation,"18 variables, scaled",effect
 nebraska,75,10.0,10.0,10.0,-0.12208511724615578,-0.7745079324514039,0.5307249508660731,reject,Budget handling,reject instead of mask,effect
 nebraska,100,10.0,10.0,10.0,-0.0672030707811569,-0.7183297417249763,0.5961506814499666,reject,Budget handling,reject instead of mask,effect
 nebraska,125,10.0,10.0,10.0,-0.47209446693008694,-1.2295759765148182,0.2571056254755406,reject,Budget handling,reject instead of mask,effect
